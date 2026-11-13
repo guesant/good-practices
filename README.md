@@ -1054,6 +1054,27 @@ jobs:
 
 ---
 
+## 15. Guia de adoção por perfil
+
+| Perfil | Controles prioritários |
+| --- | --- |
+| Documentação | README, licença, contribuições, Markdownlint, verificação de links e acessibilidade |
+| Biblioteca open source | Testes, matriz de compatibilidade, SemVer, release, SBOM, vulnerabilidades e código de conduta |
+| Aplicação web | Lint, testes, SAST, segredos, acessibilidade, autenticação, privacidade, CI e deploy |
+| API e backend | Contratos, autorização, validação de entrada, observabilidade, testes de integração e migrações |
+| Dados e IA | Proveniência, licenças de datasets, qualidade, vieses, avaliação, reprodutibilidade e privacidade |
+| Infraestrutura | IaC, menor privilégio, hardening, scanners, backups, SLO e recuperação |
+| GitHub Actions | actionlint, zizmor, permissões mínimas, pinning de actions e proteção contra PR não confiável |
+
+### Campos mínimos para acompanhar cada controle
+
+- **ID**: identificador estável.
+- **Aplicabilidade**: aplicável, não aplicável ou a avaliar.
+- **Criticidade**: essencial, recomendado ou opcional.
+- **Estado**: pendente, configurado, verificado ou exceção documentada.
+- **Evidência**: configuração, workflow, log de execução, issue ou commit.
+- **Responsável e revisão**: pessoa ou equipe responsável e data da próxima revisão.
+
 ## 16. Perfil de configurações do GitHub e arquivos obrigatórios por contexto
 
 Checklist operacional condensado a partir do [guia de GitHub](docs/github-repository-setup.md). O perfil de merge e o padrão visual são **preferências configuráveis**, não exigências normativas. Itens continuam desmarcados até validação do repositório.
@@ -2424,27 +2445,6 @@ A organização das tarefas abaixo é uma sugestão de implementação, não uma
 
 O [Open Source Guides](https://opensource.guide/) oferece orientações para comunidades e mantenedores de software livre. Este documento **resume e adapta** recomendações dos guias temáticos, sem reproduzi-los integralmente nem transformar sugestões em obrigações universais. A seção 10 é condicional e aplicável a projetos orientados a dados, conteúdo, transparência ou IA. As recomendações deverão ser confrontadas com a legislação aplicável, as políticas institucionais e as características de cada projeto.
 
-
-## 15. Guia de adoção por perfil
-
-| Perfil | Controles prioritários |
-| --- | --- |
-| Documentação | README, licença, contribuições, Markdownlint, verificação de links e acessibilidade |
-| Biblioteca open source | Testes, matriz de compatibilidade, SemVer, release, SBOM, vulnerabilidades e código de conduta |
-| Aplicação web | Lint, testes, SAST, segredos, acessibilidade, autenticação, privacidade, CI e deploy |
-| API e backend | Contratos, autorização, validação de entrada, observabilidade, testes de integração e migrações |
-| Dados e IA | Proveniência, licenças de datasets, qualidade, vieses, avaliação, reprodutibilidade e privacidade |
-| Infraestrutura | IaC, menor privilégio, hardening, scanners, backups, SLO e recuperação |
-| GitHub Actions | actionlint, zizmor, permissões mínimas, pinning de actions e proteção contra PR não confiável |
-
-### Campos mínimos para acompanhar cada controle
-
-- **ID**: identificador estável.
-- **Aplicabilidade**: aplicável, não aplicável ou a avaliar.
-- **Criticidade**: essencial, recomendado ou opcional.
-- **Estado**: pendente, configurado, verificado ou exceção documentada.
-- **Evidência**: configuração, workflow, log de execução, issue ou commit.
-- **Responsável e revisão**: pessoa ou equipe responsável e data da próxima revisão.
 
 **Referências principais:** [Open Source Guides](https://opensource.guide/), [GitHub Actions Security](https://docs.github.com/en/actions/security-for-github-actions), [OpenSSF](https://openssf.org/), [OWASP](https://owasp.org/), [NIST CSF](https://www.nist.gov/cyberframework), [WCAG](https://www.w3.org/TR/WCAG22/).
 
