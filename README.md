@@ -6,6 +6,8 @@ Checklist extensivo, genérico e reutilizável de práticas de open source, enge
 
 **Aplicabilidade:** o checklist é um catálogo de controles, não um conjunto de obrigações para todos os projetos. Avalie cada item como obrigatório para o contexto, recomendado, pendente ou não aplicável. Um repositório de documentação não precisa de todos os controles de uma aplicação produtiva.
 
+**Fonte única de documentação:** todos os guias e metadados de avaliação foram integrados neste README. Não existem mais páginas auxiliares em `docs/` ou catálogos paralelos em `catalog/`; arquivos de automação e templates permanecem onde necessário.
+
 ## Navegação por área
 
 Este README é o **checklist central**. Os guias vinculados aprofundam configurações, exemplos e evidências.
@@ -19,19 +21,19 @@ Este README é o **checklist central**. Os guias vinculados aprofundam configura
 - [ISO/IEC 25010, NIST CSF, SP 800-53, SSDF e demais normas](#18-controles-derivados-de-nist-isoiecieee-e-requisitos-não-funcionais)
 - [Pré-implantação, hardening de produção, Go/No-Go, logs, CVEs e observabilidade contínua](#19-pré-implantação-production-readiness-e-operação-contínua)
 - [CI, Delivery, Deployment, supply chain, reprodutibilidade, CSPRNG, probes, migrações e workers](#20-cicd-supply-chain-reprodutibilidade-aleatoriedade-probes-migrações-e-workers)
-- [Contratos, ASVS, SAMM, OpenSSF, resiliência e monitoramento](docs/contracts-assurance-resilience.md)
-- [FinOps, DNS/e-mail, descomissionamento e portabilidade](docs/finops-domains-retirement-portability.md)
-- [Testes avançados, acessibilidade, privacidade e IA](docs/advanced-testing-accessibility-privacy-ai.md)
-- [Catálogo de controles, schema e perfis por projeto](docs/control-catalog-and-profiles.md)
+- [Contratos, ASVS, SAMM, OpenSSF, resiliência e monitoramento](#anexo-b)
+- [FinOps, DNS/e-mail, descomissionamento e portabilidade](#anexo-e)
+- [Testes avançados, acessibilidade, privacidade e IA](#anexo-a)
+- [Catálogo de controles, schema e perfis por projeto](#anexo-c)
 - [Diátaxis, documentação orientada ao leitor, guias de escrita técnica e Vale](#25-arquitetura-da-documentação-diátaxis-escrita-técnica-e-voz-editorial)
 
-**Guias aprofundados:** [GitHub e README](docs/github-repository-setup.md) · [Hardening](docs/security-hardening.md) · [Normas em controles e requisitos não funcionais](docs/standards-to-controls.md) · [Ferramentas](docs/tooling-configurations.md) · [Créditos e licenças](docs/credits-and-licenses.md) · [Pré-implantação e operação contínua](docs/production-readiness-and-operations.md) · [Entrega segura e processamento em segundo plano](docs/secure-delivery-and-background-processing.md) · [Contratos/ASVS/SAMM e resiliência](docs/contracts-assurance-resilience.md) · [FinOps, DNS e descomissionamento](docs/finops-domains-retirement-portability.md) · [Testes, acessibilidade, privacidade e IA](docs/advanced-testing-accessibility-privacy-ai.md) · [Catálogo e perfis](docs/control-catalog-and-profiles.md).
+**Guias aprofundados:** [GitHub e README](#anexo-f) · [Hardening](#anexo-i) · [Normas em controles e requisitos não funcionais](#anexo-j) · [Ferramentas](#anexo-k) · [Créditos e licenças](#anexo-d) · [Pré-implantação e operação contínua](#anexo-g) · [Entrega segura e processamento em segundo plano](#anexo-h) · [Contratos/ASVS/SAMM e resiliência](#anexo-b) · [FinOps, DNS e descomissionamento](#anexo-e) · [Testes, acessibilidade, privacidade e IA](#anexo-a) · [Catálogo e perfis](#anexo-c).
 
 **Aplicação:** classificar controles como aplicáveis, não aplicáveis ou pendentes de análise; vincular risco, prioridade, responsável, evidência e data de revisão. A existência de um item ou de uma configuração não comprova sua implementação.
 
 ## Configurações práticas de ferramentas
 
-O [catálogo de configurações reais dos repositórios de guesant](docs/tooling-configurations.md) reúne exemplos, critérios de adoção e checklists adicionais para ESLint, Biome, Prettier, Stylelint, ast-grep, jscpd, Knip, actionlint, zizmor, Hadolint, Gitleaks, Renovate e outras ferramentas. Qlty está identificado como alternativa ainda sem configuração própria verificada.
+O [catálogo de configurações reais dos repositórios de guesant](#anexo-k) reúne exemplos, critérios de adoção e checklists adicionais para ESLint, Biome, Prettier, Stylelint, ast-grep, jscpd, Knip, actionlint, zizmor, Hadolint, Gitleaks, Renovate e outras ferramentas. Qlty está identificado como alternativa ainda sem configuração própria verificada.
 
 ## Como acompanhar
 
@@ -98,7 +100,7 @@ O [catálogo de configurações reais dos repositórios de guesant](docs/tooling
 
 ## 3.1. Créditos, atribuições, licenças de terceiros e transparência
 
-**Referências:** [Open Source Guides: aspectos jurídicos](https://opensource.guide/legal/), [SPDX](https://spdx.dev/), [REUSE](https://reuse.software/) e [ClearlyDefined](https://clearlydefined.io/). Consulte também o [guia prático de créditos e licenças](docs/credits-and-licenses.md).
+**Referências:** [Open Source Guides: aspectos jurídicos](https://opensource.guide/legal/), [SPDX](https://spdx.dev/), [REUSE](https://reuse.software/) e [ClearlyDefined](https://clearlydefined.io/). Consulte também o [guia prático de créditos e licenças](#anexo-d).
 
 - [ ] Criar uma página pública de **Créditos**, acessível pelo README, site ou documentação, para projetos, ferramentas, bibliotecas, recursos e pessoas que contribuíram.
 - [ ] Manter inventário atualizado dos componentes de terceiros utilizados, incluindo dependências diretas, runtime, build, desenvolvimento, CI/CD, imagens de contêiner e serviços externos relevantes.
@@ -1053,7 +1055,6 @@ jobs:
 - [ ] Documentar exclusões e falsos positivos, com responsáveis e justificativas.
 - [ ] Reavaliar periodicamente configurações e atualizar ferramentas.
 
-
 ---
 
 ## 15. Guia de adoção por perfil
@@ -1079,7 +1080,7 @@ jobs:
 
 ## 16. Perfil de configurações do GitHub e arquivos obrigatórios por contexto
 
-Checklist operacional condensado a partir do [guia de GitHub](docs/github-repository-setup.md). O perfil de merge e o padrão visual são **preferências configuráveis**, não exigências normativas. Itens continuam desmarcados até validação do repositório.
+Checklist operacional condensado a partir do [guia de GitHub](#anexo-f). O perfil de merge e o padrão visual são **preferências configuráveis**, não exigências normativas. Itens continuam desmarcados até validação do repositório.
 
 ### 1. Settings → General: perfil preferido
 - [ ] Definir descrição curta, URL do projeto, tópicos, imagem social e visibilidade intencional.
@@ -1192,7 +1193,7 @@ Checklist operacional condensado a partir do [guia de GitHub](docs/github-reposi
 
 ## 17. Hardening operacional: identidades, YubiKey, SSH, sandbox e infraestrutura
 
-Controles de hardening detalhados em [segurança operacional](docs/security-hardening.md). Preferir chaves protegidas por hardware e não manter chaves privadas SSH em disco é um **perfil de segurança elevado**, não uma regra universal.
+Controles de hardening detalhados em [segurança operacional](#anexo-i). Preferir chaves protegidas por hardware e não manter chaves privadas SSH em disco é um **perfil de segurança elevado**, não uma regra universal.
 
 ### 1. Inventário, risco e delimitação de confiança
 - [ ] Identificar ativos, fluxos de dados, dependências, provedores e suas criticidades.
@@ -1357,7 +1358,7 @@ Controles de hardening detalhados em [segurança operacional](docs/security-hard
 
 ## 18. Controles derivados de NIST, ISO/IEC/IEEE e requisitos não funcionais
 
-Itens detalhados no [mapeamento de normas para requisitos verificáveis](docs/standards-to-controls.md). Esta lista interpreta temas de NIST/ISO como controles aplicáveis por risco; **não reproduz integralmente normas proprietárias nem equivale a certificação**. Os IDs abaixo são próprios deste checklist e não números oficiais de cláusulas.
+Itens detalhados no [mapeamento de normas para requisitos verificáveis](#anexo-j). Esta lista interpreta temas de NIST/ISO como controles aplicáveis por risco; **não reproduz integralmente normas proprietárias nem equivale a certificação**. Os IDs abaixo são próprios deste checklist e não números oficiais de cláusulas.
 
 ### 1. Requisitos não funcionais: ISO/IEC 25010:2023
 
@@ -1770,7 +1771,7 @@ Itens detalhados no [mapeamento de normas para requisitos verificáveis](docs/st
 
 ## 19. Pré-implantação, production readiness e operação contínua
 
-**Checklist prático com 214 controles e classificação de prioridade**: [guia de production readiness, Go/No-Go, comandos de verificação, evidências e rotinas pós-implantação](docs/production-readiness-and-operations.md).
+**Checklist prático com 214 controles e classificação de prioridade**: [guia de production readiness, Go/No-Go, comandos de verificação, evidências e rotinas pós-implantação](#anexo-g).
 
 **P0** = bloqueador antes de publicar, se aplicável; **P1** = fortemente recomendado e sujeito a planejamento/riscos; **P2** = aprimoramento opcional. O status real depende de evidência verificada, e itens inaplicáveis devem ter justificativa. Este sistema de prioridades é **uma política editorial de boas práticas**, não uma obrigação universal imposta por NIST ou ISO.
 
@@ -2044,7 +2045,7 @@ Itens detalhados no [mapeamento de normas para requisitos verificáveis](docs/st
 
 ## 20. CI/CD, supply chain, reprodutibilidade, aleatoriedade, probes, migrações e workers
 
-**Guia:** [entrega segura, minimum release age, Socket.dev, builds reproduzíveis, CSPRNG, probes e processamento assíncrono](docs/secure-delivery-and-background-processing.md).
+**Guia:** [entrega segura, minimum release age, Socket.dev, builds reproduzíveis, CSPRNG, probes e processamento assíncrono](#anexo-h).
 
 **P0:** critério de bloqueio quando aplicável. **P1:** recomendação forte. **P2:** controle avançado. A equipe deve saber explicar a diferença entre Continuous Integration, Continuous Delivery e Continuous Deployment, não apenas repetir nomes de pipelines.
 
@@ -2165,10 +2166,9 @@ Itens detalhados no [mapeamento de normas para requisitos verificáveis](docs/st
 - [ ] **SC-07-15 [P1]** Ter alternativas síncronas simples quando o trabalho for rápido, limitado e precisar de resposta imediata; não criar fila por dogma.
 - [ ] **SC-07-16 [P2]** Executar testes de carga com fluxo completo de fila + banco + workers, simulando retry storm e gargalos.
 
-
 ## 21. API, OWASP ASVS, SAMM, OpenSSF, resiliência e monitoramento
 
-Esta seção é um subconjunto do [guia detalhado](docs/contracts-assurance-resilience.md) e do [catálogo estruturado](catalog/). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
+Esta seção é um subconjunto do [guia detalhado](#anexo-b) e do [catálogo estruturado](#anexo-l). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
 
 ### Contratos de API, compatibilidade e integrações
 
@@ -2261,7 +2261,7 @@ Esta seção é um subconjunto do [guia detalhado](docs/contracts-assurance-resi
 
 ## 22. FinOps, domínios, e-mail, descomissionamento e portabilidade
 
-Esta seção é um subconjunto do [guia detalhado](docs/finops-domains-retirement-portability.md) e do [catálogo estruturado](catalog/). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
+Esta seção é um subconjunto do [guia detalhado](#anexo-e) e do [catálogo estruturado](#anexo-l). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
 
 ### Custos, quotas e FinOps / segurança econômica
 
@@ -2335,7 +2335,7 @@ Esta seção é um subconjunto do [guia detalhado](docs/finops-domains-retiremen
 
 ## 23. Testes avançados, acessibilidade, privacidade e segurança de IA
 
-Esta seção é um subconjunto do [guia detalhado](docs/advanced-testing-accessibility-privacy-ai.md) e do [catálogo estruturado](catalog/). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
+Esta seção é um subconjunto do [guia detalhado](#anexo-a) e do [catálogo estruturado](#anexo-l). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
 
 ### Testes avançados, concorrência e qualidade de verificação
 
@@ -2415,7 +2415,7 @@ Esta seção é um subconjunto do [guia detalhado](docs/advanced-testing-accessi
 
 ## 24. Catálogo de controles e perfis de aplicação
 
-Os metadados completos dos controles novos ficam em [catalog/](catalog/) e o processo de aplicação está descrito em [Controles e perfis de aplicação](docs/control-catalog-and-profiles.md). Para avaliar um projeto real, utilize o [template de avaliação por projeto](templates/project-assessment.md), com responsáveis, evidências, exceções e decisão GO/NO-GO. O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
+Os metadados completos dos controles novos ficam em [catalog/](#anexo-l) e o processo de aplicação está descrito em [Controles e perfis de aplicação](#anexo-c). Para avaliar um projeto real, utilize o [template de avaliação por projeto](templates/project-assessment.md), com responsáveis, evidências, exceções e decisão GO/NO-GO. O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
 
 - [ ] Determinar o perfil principal: documentação, biblioteca open source, site estático/SPA, API/backend, SaaS, dados, IA, infraestrutura ou mobile.
 - [ ] Aplicar overlays de open source e dados sensíveis quando pertinentes ao mesmo projeto.
@@ -2616,7 +2616,1926 @@ A organização das tarefas abaixo é uma sugestão de implementação, não uma
 
 O [Open Source Guides](https://opensource.guide/) oferece orientações para comunidades e mantenedores de software livre. Este documento **resume e adapta** recomendações dos guias temáticos, sem reproduzi-los integralmente nem transformar sugestões em obrigações universais. A seção 10 é condicional e aplicável a projetos orientados a dados, conteúdo, transparência ou IA. As recomendações deverão ser confrontadas com a legislação aplicável, as políticas institucionais e as características de cada projeto.
 
-
 **Referências principais:** [Open Source Guides](https://opensource.guide/), [GitHub Actions Security](https://docs.github.com/en/actions/security-for-github-actions), [OpenSSF](https://openssf.org/), [OWASP](https://owasp.org/), [NIST CSF](https://www.nist.gov/cyberframework), [WCAG](https://www.w3.org/TR/WCAG22/).
 
 **Origem editorial:** catálogo adaptado e generalizado a partir do checklist público de [Rondoscopio/conformidade](https://github.com/Rondoscopio/conformidade). Regras e ferramentas não são universalmente obrigatórias. Documente escopo, evidência e exceções para cada projeto.
+
+
+---
+
+# Material consolidado dos guias e do catálogo
+
+Os anexos abaixo incorporam o conteúdo antes distribuído em documentos complementares. A lista de requisitos verificáveis permanece nas seções 1 a 25, e estas partes guardam exemplos de configuração, fundamentos, modelos, referências e metadados para avaliação. Nada precisa ser consultado em `docs/` ou `catalog/`.
+
+## Anexo A
+
+**Conteúdo integrado:** advanced testing accessibility privacy ai. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Testes avançados, acessibilidade, privacidade e IA confiável
+
+Guia de controles com verificação e evidência; os P0 são bloqueadores apenas quando aplicáveis ao projeto. Ferramentas automatizadas reduzem trabalho, mas **não substituem revisão humana**, avaliações contextuais e testes de acessibilidade com tecnologia assistiva.
+
+#### Testes avançados, concorrência e qualidade de verificação
+
+Fonte temática: [https://owasp.org/www-project-web-security-testing-guide/](https://owasp.org/www-project-web-security-testing-guide/). Perfis: all.
+
+
+#### Acessibilidade real e inclusão digital
+
+Fonte temática: [https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/). Perfis: web, saas, docs, mobile.
+
+
+#### Privacidade por concepção, ciclo de vida e minimização de dados
+
+Fonte temática: [https://www.nist.gov/privacy-framework](https://www.nist.gov/privacy-framework). Perfis: saas, api, data, web, ai, sensitive.
+
+
+#### Segurança, qualidade e governança de IA e agentes
+
+Fonte temática: [https://genai.owasp.org/llm-top-10/](https://genai.owasp.org/llm-top-10/). Perfis: ai.
+
+
+#### Notas de aplicação
+
+**Testes avançados:** cobertura de linhas não equivale a qualidade. Use fuzzing para parsers e superfícies de entrada, mutation testing para verificar força do conjunto de testes e property-based testing para invariantes. Registre o escopo, seeds, corpus e ambiente.
+
+**Acessibilidade:** [WCAG 2.2](https://www.w3.org/TR/WCAG22/) contém níveis A, AA e AAA; AA é uma meta comum, não promessa automática de conformidade. axe-core e Pa11y ajudam a detectar alguns problemas. Teclado e leitor de tela exigem revisão manual e testes representativos.
+
+**Privacidade:** distinguir exclusão lógica de exclusão efetiva. Em backups imutáveis, pode haver retenção legítima; registre o prazo, o controle de acesso e o tratamento após eventual restauração. Tratamento de dados pessoais exige revisão da legislação pertinente, como LGPD, quando aplicável.
+
+**IA:** o [OWASP Top 10 para LLMs 2025](https://genai.owasp.org/llm-top-10/) destaca prompt injection, vazamento de informação sensível, supply chain, poisoning, output handling, agência excessiva, vazamento de system prompt, fraquezas em vetores/embeddings, desinformação e consumo não limitado. Um prompt de sistema não é mecanismo de autorização.
+
+## Anexo B
+
+**Conteúdo integrado:** contracts assurance resilience. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Contratos, verificação de segurança, maturidade, resiliência e observabilidade
+
+Este guia é parte do [checklist principal](#good-practices-checklist-geral-de-engenharia-de-software-e-open-source). Cada controle possui **aplicabilidade, prioridade, verificação e evidência**, sem afirmar certificação ou substituir normas originais. `P0` bloqueia publicação apenas quando aplicável; `P1` é recomendação forte; `P2` é melhoria de maturidade. As fontes são referenciais temáticos, não atribuição de cada frase a uma cláusula.
+
+#### Contratos de API, compatibilidade e integrações
+
+Referência: [https://spec.openapis.org/oas/latest.html](https://spec.openapis.org/oas/latest.html). Perfis: api, saas, backend.
+
+
+#### Controles de segurança verificáveis inspirados no OWASP ASVS 5.0
+
+Referência: [https://asvs.owasp.org/](https://asvs.owasp.org/). Perfis: web, api, saas.
+
+
+#### Maturidade de segurança com OWASP SAMM
+
+Referência: [https://owaspsamm.org/model/](https://owaspsamm.org/model/). Perfis: all.
+
+
+#### OpenSSF Best Practices Badge e governança open source
+
+Referência: [https://openssf.org/projects/best-practices-badge/](https://openssf.org/projects/best-practices-badge/). Perfis: oss, library.
+
+
+#### Resiliência, falhas e operações degradadas
+
+Referência: [https://sre.google/workbook/](https://sre.google/workbook/). Perfis: api, saas, infra, backend.
+
+
+#### Observabilidade da observabilidade e alertas
+
+Referência: [https://sre.google/workbook/alerting-on-slos/](https://sre.google/workbook/alerting-on-slos/). Perfis: api, saas, infra, backend.
+
+
+#### Notas para implementação
+
+**ASVS:** use a versão estável 5.0.0 publicada pela OWASP e importe o CSV oficial na avaliação específica. Não atribua os IDs deste guia aos IDs oficiais do ASVS. Considere os testes do [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/) e o escopo autorizado.
+
+**SAMM:** as cinco funções são Governance, Design, Implementation, Verification e Operations. Avalie práticas e capacidade operacional, não apenas um scanner instalado.
+
+**OpenSSF:** Best Practices Badge é uma autoavaliação voluntária, distinta do Scorecard. Badge Passing, Silver e Gold e OpenSSF Baseline têm critérios diferentes. Não publicar badge que não foi efetivamente obtida.
+
+**Resiliência:** nunca faça fault injection em sistemas de terceiros ou em produção sem autorização, plano de contenção e capacidade de recuperação. Primeiro execute em ambiente isolado.
+
+**Observabilidade:** monitoração in-band não cobre falha total do próprio sistema de observabilidade. Estabeleça caminho independente para alertas críticos.
+
+## Anexo C
+
+**Conteúdo integrado:** control catalog and profiles. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Catálogo de controles e perfis de aplicabilidade
+
+O `README.md` é a **visão humana consolidada**. Para os controles novos, os arquivos `catalog/*-controls.json` fornecem IDs estáveis, prioridade, perfis, verificação e evidência em formato legível por máquinas. O catálogo é **incremental**: os controles antigos do README ainda não foram integralmente convertidos em dados estruturados. Não afirme que todos os itens do README possuem metadata estruturada.
+
+#### Definição de controle
+
+| Campo | Finalidade | Exemplo |
+| --- | --- | --- |
+| `id` | Identificador estável e próprio do catálogo | `ASVS-03` |
+| `priority` | Prioridade de implantação, condicional à aplicabilidade | `P0` |
+| `text` | O resultado esperado, sem impor uma ferramenta específica | Verificar autorização no backend |
+| `profiles` | Tags de ambientes ou produtos onde costuma ser relevante | `api`, `saas` |
+| `verify` | Como testar de modo independente | Executar acesso cruzado com usuários distintos |
+| `evidence` | O que anexar à avaliação | Teste automatizado + relatório |
+| `reference` | Fonte temática oficial ou autorizada | Site da OWASP |
+| `section` | Agrupamento editorial | Segurança verificável |
+
+**IDs próprios não equivalem a cláusulas normativas.** Se houver ID de ASVS/ISO/NIST específico, registre-o separadamente, com edição e conferência no texto oficial. A simples proximidade temática não autoriza alegar conformidade.
+
+#### Prioridades e estados
+
+**P0 – bloqueador de publicação se aplicável:** exige verificação e evidência. Uma exceção temporária deve informar risco aceito, dono, mitigação compensatória, expiração e revisão.
+
+**P1 – recomendado:** definir responsável e prioridade; pode ser gate para produtos críticos.
+
+**P2 – aprimoramento opcional:** adotar quando custo/benefício e risco justificarem.
+
+Estados de avaliação sugeridos: `pending`, `applicable`, `not_applicable`, `passed`, `failed`, `exception`. Não marque como `passed` com base somente em um arquivo, tool instalada ou workflow que não executou testes reais.
+
+#### Perfis por tipo de projeto
+
+| Perfil | Escopo | Priorizar |
+| --- | --- | --- |
+| **Base geral** | Todos | Documentação, licença, rastreabilidade, supply chain |
+| **Open source** | Projetos com colaboração | OpenSSF, políticas e transparência |
+| **Biblioteca/SDK** | Componentes públicos reutilizados | Contratos, SemVer, suporte e dependências |
+| **Documentação** | Docs/SSG de conteúdo | Links, acessibilidade, reprodução, atribuições |
+| **Site estático/SPA** | Frontend e ativos públicos | DNS, HTTPS, CSP, acessibilidade, custo |
+| **API/backend** | Serviço com endpoints/filas | Autorização, contrato, jobs, logs e resiliência |
+| **SaaS autenticado** | Usuários e dados persistentes | Tenant, privacidade, observabilidade e backups |
+| **Dados sensíveis** | Overlay sobre tipo de aplicação | Proteção de dados, segurança reforçada e auditoria |
+| **Dados/pipelines** | Processamentos e datasets | Proveniência, retenção e integridade |
+| **IA/agentes** | Sistemas com modelos | Prompt injection, custos, ferramentas, avaliações |
+| **Infraestrutura** | Cloud, on-prem, GitOps | Recuperação, hardening, DNS, monitoramento |
+| **Aplicativo móvel** | Dispositivos e apps | Privacidade, acessibilidade, backend seguro |
+
+Perfil é ponto de partida e **não substitui avaliação de aplicabilidade**. Um site estático pode ter custos por provedor e um SaaS pode usar SMS; ambos devem habilitar controles contextuais além das tags sugeridas. Tags não determinam obrigação legal.
+
+#### Fluxo de aplicação a um projeto
+
+1. Registrar projeto, estágio, responsáveis, dados, criticidade, ambientes e provedores.
+2. Selecionar tipo principal, overlays (sensível, IA, open source) e categorias de risco.
+3. Filtrar controles de `all` e tags selecionadas; acrescentar riscos específicos.
+4. Para cada controle, registrar aplicabilidade, P0/P1/P2, responsável, verificação, evidência e data da última execução.
+5. Executar checks automatizados e revisões humanas; anexar artefato ou URL identificável.
+6. Bloquear release quando houver P0 aplicável não atendido sem exceção aprovada.
+7. Revisar escopo após incidente, introdução de fornecedor, mudança de arquitetura ou alteração regulatória.
+
+#### Exemplo de registro de avaliação
+
+```json
+{
+  "project": "exemplo-api",
+  "control_id": "ASVS-03",
+  "profile": "saas",
+  "applicability": "applicable",
+  "status": "passed",
+  "owner": "equipe-backend",
+  "method": "testes de acesso cruzado entre usuários",
+  "evidence": "link para execução de CI com testes de autorização",
+  "reviewed_at": "2026-11-13",
+  "next_review": "2026-12-13",
+  "exception": null
+}
+```
+
+#### Qualidade do catálogo
+
+- [ ] IDs exclusivos em todos os arquivos JSON.
+- [ ] Prioridades `P0`, `P1` ou `P2` explicitadas.
+- [ ] `profiles` existentes em [catalog/profiles.json](#anexo-m).
+- [ ] Toda regra inclui instrução testável e evidência distinguível de presença de arquivo.
+- [ ] Referências com URL verificável, evitando nomes de normas sem fonte.
+- [ ] Controles com IDs presentes também no README central.
+- [ ] Exceções aprovadas têm prazo, escopo, compensação, responsável e revisão.
+- [ ] Documentar o que o catálogo ainda não cobre, especialmente controles antigos sem metadata.
+- [ ] Não confundir passar no validador do catálogo com conformidade de um sistema operacional.
+
+O projeto disponibiliza [JSON Schema](#anexo-n) e [validador de catálogo](../scripts/validate-catalog.mjs). O validador verifica integridade de metadados, não a implantação real dos controles.
+
+## Anexo D
+
+**Conteúdo integrado:** credits and licenses. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Créditos, reconhecimento e licenças de terceiros
+
+Uma página de Créditos documenta **quem e o que tornou um projeto possível**. Deve ser útil para o usuário final, transparente sobre a cadeia de ferramentas e correta quanto às obrigações de licença.
+
+#### Checklist de implantação
+
+- [ ] Publicar `CREDITS.md` ou uma página `/credits` com link visível no README, site ou documentação.
+- [ ] Incluir seções identificáveis para mantenedores e colaboradores, frameworks e bibliotecas, ferramentas de desenvolvimento e CI, infraestrutura e serviços, conteúdos visuais, tipografia, dados e modelos.
+- [ ] Registrar, conforme aplicável, nome, função no projeto, autor ou mantenedor, URL oficial, versão, licença e URL do texto correspondente.
+- [ ] Distinguir uso direto, dependência transitiva, ferramenta de build, serviço externo e recurso efetivamente redistribuído.
+- [ ] Atribuir a autoria de imagens, fontes, ícones, documentação, datasets e outros recursos conforme as condições de cada licença.
+- [ ] Não copiar nomes de colaboradores sem observar suas preferências ou políticas de privacidade.
+- [ ] Incluir todas as licenças e avisos de copyright cuja reprodução seja exigida pela forma de uso e distribuição.
+- [ ] Preservar textos `NOTICE` e outros avisos exigidos por licenças específicas.
+- [ ] Fornecer o código-fonte e informações necessárias à conformidade com licenças copyleft, quando exigido.
+- [ ] Garantir que o pacote distribuído contenha os avisos necessários, mesmo sem acesso ao site do projeto.
+- [ ] Criar inventário ou SBOM para identificar os componentes distribuídos e revisar as obrigações aplicáveis.
+- [ ] Automatizar coleta quando possível e revisar manualmente incompatibilidades e detecções erradas.
+- [ ] Revisar e atualizar créditos e avisos a cada release e alteração relevante de dependências.
+
+#### Modelo sugerido de CREDITS.md
+
+```markdown
+# Créditos e reconhecimentos
+
+Este projeto utiliza software, serviços e recursos produzidos por terceiros.
+As atribuições abaixo são informativas e não implicam endosso ou parceria.
+
+## Colaboradores
+
+Reconhecimento das contribuições com autorização ou segundo as preferências públicas dos autores.
+
+## Ferramentas de desenvolvimento
+
+| Ferramenta | Finalidade | Autor/organização | Licença | Site |
+| --- | --- | --- | --- | --- |
+| Nome | Lint/testes/build | Organização | Identificador SPDX, se disponível | URL |
+
+## Bibliotecas, frameworks e dependências
+
+Consulte o inventário de dependências e o SBOM versionado, quando disponível.
+
+## Recursos visuais e dados
+
+Relacione autoria, origem, alterações e atribuição exigida por cada recurso.
+
+## Licenças de terceiros
+
+Os textos de licença e avisos obrigatórios dos componentes distribuídos
+estão em LICENSES/ ou THIRD_PARTY_NOTICES.md, conforme aplicável.
+```
+
+#### Estrutura sugerida
+
+```text
+CREDITS.md
+LICENSE
+LICENSES/
+  ...
+THIRD_PARTY_NOTICES.md
+sbom/
+  ...
+```
+
+Essa estrutura é **uma opção**, não uma obrigação universal. Para projetos que não redistribuem certas ferramentas de desenvolvimento, não há obrigação automática de incorporar o texto de todas as licenças dessas ferramentas aos artefatos finais. Ainda assim, a página pode reconhecê-las como boa prática de transparência.
+
+#### Precisões importantes
+
+**Creditar não é cumprir automaticamente a licença.** Licenças permissivas frequentemente exigem preservação de avisos de copyright e termos; licenças copyleft podem exigir também oferta de código-fonte ou outras condições, a depender da licença e do tipo de distribuição.
+
+**Créditos não são propaganda de endosso.** Nomear uma ferramenta utilizada não implica patrocínio, parceria ou aprovação do projeto por seus autores.
+
+**Cuidado com uso de marca.** Uma atribuição textual costuma ser diferente do direito de utilizar logotipos e outras marcas em material promocional.
+
+**Nem tudo precisa ser reproduzido indiscriminadamente.** Os textos e avisos legalmente exigidos precisam ser incluídos onde aplicável; reproduzir termos contratuais proprietários ou licenças sem verificar o contexto não é uma regra genérica válida.
+
+**Ferramentas úteis:** [SPDX](https://spdx.dev/), [REUSE](https://reuse.software/), [ScanCode Toolkit](https://github.com/aboutcode-org/scancode-toolkit), [Syft](https://github.com/anchore/syft), [CycloneDX](https://cyclonedx.org/) e [ClearlyDefined](https://clearlydefined.io/).
+
+## Anexo E
+
+**Conteúdo integrado:** finops domains retirement portability. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### FinOps, segurança econômica, DNS/e-mail, descomissionamento e portabilidade
+
+Controles aplicáveis conforme exposição, provedor e ciclo de vida. Os checks P0 são pré-requisitos apenas quando o cenário os exige; uma biblioteca sem domínio ou pagamentos não deve ser marcada como falha por não ter SPF ou alertas de custo.
+
+#### Custos, quotas e FinOps / segurança econômica
+
+Fonte temática: [https://www.finops.org/framework/](https://www.finops.org/framework/). Perfis: api, saas, infra, ai, backend.
+
+
+#### Domínios, DNS, HTTPS e e-mail confiável
+
+Fonte temática: [https://www.rfc-editor.org/rfc/rfc7489](https://www.rfc-editor.org/rfc/rfc7489). Perfis: web, api, saas, infra.
+
+
+#### Descomissionamento, retirada de sistemas e limpeza de acessos
+
+Fonte temática: [https://csrc.nist.gov/pubs/sp/800/88/r1/final](https://csrc.nist.gov/pubs/sp/800/88/r1/final). Perfis: all.
+
+
+#### Portabilidade, custos arquiteturais e vendor lock-in
+
+Fonte temática: [https://www.cncf.io/projects/](https://www.cncf.io/projects/). Perfis: api, saas, infra, backend, data.
+
+
+#### Notas de adoção
+
+**FinOps e abuso econômico:** um sistema pode estar disponível e protegido contra invasão e, mesmo assim, sofrer prejuízo por requisições excessivas. O [OWASP API4:2023](https://api-security.owasp.org/editions/2023/en/0xa4-unrestricted-resource-consumption/) reconhece consumo irrestrito de recursos. Alertas de custo são detectivos e **não representam hard limits** se o provedor continuar faturando; limitar cotas de aplicação é necessário onde o risco existe.
+
+**DNS e e-mail:** DNSSEC protege integridade de respostas DNS quando toda a cadeia funciona, mas não substitui HTTPS; CAA controla autoridades certificadoras; SPF, DKIM e DMARC cobrem mecanismos diferentes de autenticação de e-mail. Evolua DMARC somente após verificar remetentes legítimos para evitar bloquear mensagens.
+
+**Descomissionamento:** descarte de dados deve respeitar retenções legais/contratuais e backups. Não declare eliminação completa se existirem cópias sujeitas a retenção. A referência NIST SP 800-88 trata de sanitização de mídia; consulte a edição vigente ao adotar procedimentos.
+
+**Lock-in:** nenhuma arquitetura elimina todos os acoplamentos; registre custos e escolha o isolamento proporcional ao risco, sem transformar toda biblioteca em camada abstrata desnecessária.
+
+**Fontes complementares:** [FinOps Framework](https://www.finops.org/framework/), [RFC 7208 SPF](https://www.rfc-editor.org/rfc/rfc7208), [RFC 6376 DKIM](https://www.rfc-editor.org/rfc/rfc6376), [RFC 7489 DMARC](https://www.rfc-editor.org/rfc/rfc7489), [RFC 8659 CAA](https://www.rfc-editor.org/rfc/rfc8659), [ICANN domain management](https://www.icann.org/).
+
+## Anexo F
+
+**Conteúdo integrado:** github repository setup. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### GitHub: configurações, arquivos comunitários, proteção de branches e README
+
+Este guia contém um **perfil de preferência pessoal** e controles de segurança mais amplos. As escolhas de merge commit exclusivo, aparência dos badges e convenções de commits são preferências, **não exigências da ISO, do NIST ou do GitHub**.
+
+**Referências reais:** [guesant/.github](https://github.com/guesant/.github), [guesant/hl-infrastructure](https://github.com/guesant/hl-infrastructure), [guesant/lobby](https://github.com/guesant/lobby), [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml) e [CI do Lobby](https://github.com/guesant/lobby/blob/main/.github/workflows/ci.yml).
+
+#### 1. Settings → General: perfil preferido
+
+
+**Observação:** foram confirmadas suas **preferências declaradas**, mas não a configuração efetivamente ativa de merge nos repositórios existentes. A consulta de metadados não retornou esses valores; portanto, não declarar a verificação como concluída.
+
+Documentação: [GitHub: tipos de merge](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/configuring-pull-request-merges), [exclusão automática de branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-the-automatic-deletion-of-branches).
+
+#### 2. Rulesets, proteção de branch e política de pull requests
+
+
+#### 3. Repository settings: segurança e automações
+
+
+#### 4. Repositório especial `owner/.github`
+
+**Exemplo verificado:** [guesant/.github](https://github.com/guesant/.github).
+
+
+#### 5. Arquivos recomendados em cada repositório
+
+```text
+README.md
+LICENSE
+CREDITS.md
+CHANGELOG.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+SUPPORT.md
+AGENTS.md                    # somente se houver uso real
+.github/
+  CODEOWNERS
+  ISSUE_TEMPLATE/
+    bug.yml
+    feature.yml
+    config.yml
+  DISCUSSION_TEMPLATE/       # condicional
+  PULL_REQUEST_TEMPLATE.md
+  FUNDING.yml                # condicional
+  workflows/
+    ci.yml
+    scorecard.yml            # condicional
+    codeql.yml               # condicional
+  renovate.json              # quando Renovate for escolhido
+docs/
+  architecture/
+  decisions/
+LICENSES/                    # conforme obrigações
+THIRD_PARTY_NOTICES.md       # conforme obrigações
+```
+
+A lista é um **catálogo**, não a exigência de criar arquivos vazios. Algumas políticas podem ser herdadas de `owner/.github`.
+
+
+#### 6. README: apresentação, badges e transparência
+
+**Referências:** [HL Infrastructure README](https://github.com/guesant/hl-infrastructure/blob/main/README.md) e [Lobby README](https://github.com/guesant/lobby/blob/main/README.md).
+
+
+##### Badges de referência, adaptáveis
+
+Os exemplos abaixo seguem os padrões visuais encontrados nos READMEs; altere `OWNER`, `REPO`, workflow e cores conforme o projeto.
+
+```markdown
+[![CI](https://img.shields.io/github/actions/workflow/status/OWNER/REPO/ci.yml?branch=main&label=CI&style=for-the-badge&labelColor=0b1120&color=2563eb&logo=githubactions&logoColor=white)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
+[![Licença](https://img.shields.io/github/license/OWNER/REPO?style=for-the-badge&labelColor=0b1120&color=7c3aed&logo=gnu&logoColor=white)](LICENSE)
+[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/OWNER/REPO?label=OpenSSF%20Scorecard&style=flat-square&labelColor=0b1120&color=2563eb)](https://scorecard.dev/viewer/?uri=github.com/OWNER/REPO)
+[![Último commit](https://img.shields.io/github/last-commit/OWNER/REPO/main?label=último%20commit&style=flat-square&labelColor=0b1120&color=b45309&logo=git&logoColor=white)](https://github.com/OWNER/REPO/commits/main)
+[![Issues abertas](https://img.shields.io/github/issues/OWNER/REPO?label=Issues%20Abertas&style=flat-square&labelColor=0b1120&color=b45309&logo=github&logoColor=white)](https://github.com/OWNER/REPO/issues)
+[![Feito no Brasil](https://img.shields.io/badge/Feito%20no-Brasil-009440?style=flat-square&labelColor=0b1120)](https://pt.wikipedia.org/wiki/Brasil)
+```
+
+##### Disclaimer de licença e uso: modelo curto
+
+> Este projeto é disponibilizado nos termos da licença indicada em [LICENSE](LICENSE). A licença rege permissões, condições e limitações; esta seção não substitui seu texto integral. O software é fornecido sem garantias na extensão prevista em sua licença e na legislação aplicável. Ferramentas, marcas e materiais de terceiros mantêm seus próprios direitos e licenças. Consulte [Créditos](CREDITS.md) e os avisos de terceiros quando aplicáveis.
+
+**Não copie este disclaimer para substituir cláusulas da licença original.** Adeque a redação ao produto, jurisdição e obrigações reais.
+
+#### 7. Checklist de auditoria inicial
+
+## Anexo G
+
+**Conteúdo integrado:** production readiness and operations. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Production readiness: antes do deploy e operação contínua
+
+Checklist completo de **Go/No-Go**, segurança de produção, disponibilidade, arquitetura, observabilidade e operação. Adequado a aplicações web, APIs, serviços de backend, infraestrutura de containers e projetos hospedados em servidores. Aplicar controles conforme o perfil técnico e a criticidade.
+
+#### Como interpretar a obrigatoriedade
+
+- **P0 — bloqueador de implantação quando aplicável:** não publicar um serviço real sem atendimento verificável ou exceção formal de risco, temporalmente delimitada, com medidas compensatórias. Este nível é uma **política interna recomendada** para o repositório, não uma obrigação jurídica universal.
+- **P1 — fortemente recomendado:** implantar antes do go-live para serviços sensíveis ou públicos, ou registrar responsável, justificativa e prazo.
+- **P2 — endurecimento avançado/opcional:** selecionar conforme exposição, impacto, maturidade e custo operacional.
+- **N/A — não aplicável:** registrar justificativa. Exemplo: um site estático em hosting gerenciado não precisa instalar Fail2Ban no servidor do provedor.
+- **Status real:** marcar apenas depois de testar e anexar evidência. Um Dockerfile, firewall ou dashboard existente não comprova que o controle funciona.
+
+**Princípio de arquitetura:** o frontend pode coexistir com backend no mesmo repositório, BFF ou runtime quando a arquitetura justificar; o ponto obrigatório é preservar **fronteiras de confiança, autorização no servidor, sigilo de credenciais e isolamento de privilégios**. A preferência do perfil pessoal é manter deployables distintos para frontend e backend sempre que fizer sentido.
+
+**Fail2Ban:** protege serviços expostos que geram eventos compatíveis de autenticação, como SSH. Não é requisito universal para apps nem substitui MFA, regras de firewall, eliminação de serviços expostos, rate limiting e proteção de endpoint. Deve ser instalado e testado somente onde existe controle do host e benefício concreto.
+
+**Referenciais:** [CIS Controls v8.1](https://www.cisecurity.org/controls/cis-controls-list), [CIS Control 4](https://cas8.docs.cisecurity.org/en/latest/source/Controls4/), [CIS Control 8](https://cas8.docs.cisecurity.org/en/latest/source/Controls8/), [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/), [OWASP Access Controls](https://devguide.owasp.org/en/04-design/02-web-app-checklist/07-access-controls/), [OWASP Logging/Monitoring](https://devguide.owasp.org/en/04-design/02-web-app-checklist/09-logging-monitoring/), [NIST CSF 2.0](https://www.nist.gov/cyberframework), [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final), [CISA KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog), [FIRST EPSS](https://www.first.org/epss/), [Fail2Ban](https://github.com/fail2ban/fail2ban).
+
+#### Checklist adicional: supply chain, CSPRNG e processamento
+
+As verificações adicionais para **Continuous Integration vs Continuous Delivery vs Continuous Deployment**, análise comportamental das dependências (Socket.dev), minimum release age, build reproduzível, CSPRNG, probes, migrações progressivas e filas/workers foram incluídas no [guia de entrega segura](#anexo-h). O [README principal](#good-practices-checklist-geral-de-engenharia-de-software-e-open-source) integra os 96 controles à lista de verificação única.
+
+#### Lista completa
+
+
+##### 01. Governança do deploy e classificação de risco
+
+
+##### 02. Arquitetura e fronteiras frontend/backend
+
+
+##### 03. Host, serviços, portas e perímetro
+
+
+##### 04. Proteção contra brute force, abuso e DDoS
+
+
+##### 05. Identidade, autenticação, sessão e autorização
+
+
+##### 06. Segredos, criptografia e dados
+
+
+##### 07. Aplicação, API e proteção de superfície web
+
+
+##### 08. Containers, runtime e isolamento
+
+
+##### 09. Dependências, CVE e cadeia de suprimentos
+
+
+##### 10. Logging, trilhas de auditoria e preservação
+
+
+##### 11. Monitoramento, telemetria e alertas
+
+
+##### 12. Disponibilidade, backup, rollback e recuperação
+
+
+##### 13. Qualidade, testes, performance e experiência
+
+
+##### 14. Proteção de dados, conformidade e transparência
+
+
+##### 15. Aprovação final: GO / NO-GO
+
+
+##### 16. Pós-deploy imediato: smoke tests e observação
+
+
+##### 17. Operação contínua: rotina diária, semanal, mensal e periódica
+
+
+##### 18. Controles aprimorados conforme nível de risco
+
+
+#### Verificações locais e evidências técnicas (exemplos)
+
+Rode **somente em sistemas que você administra ou tem autorização para testar**. Estes comandos são de inspeção. Não altere firewall ou SSH remoto sem garantir um canal alternativo de recuperação, pois erros podem interromper seu acesso. Verifique disponibilidade de comandos na distribuição.
+
+```sh
+# Serviços TCP/UDP em escuta: não esqueça IPv6
+ss -tulpen
+
+# Daemons ativados em sistemas systemd
+systemctl list-unit-files --type=service --state=enabled
+
+# Firewall (usar o comando que pertence ao seu host)
+sudo firewall-cmd --list-all
+sudo ufw status verbose
+sudo nft list ruleset
+
+# Fail2Ban: somente se instalado e aplicável
+sudo fail2ban-client status
+sudo fail2ban-client status sshd
+
+# Versão da aplicação e containers em execução, se forem usados
+docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}'
+
+# Últimos eventos de SSH (quando systemd/journal disponíveis)
+sudo journalctl -u sshd --since '24 hours ago'
+```
+
+**Validação externa:** testar portas a partir de outra rede autorizada, incluindo IPv6, e comparar o resultado com a configuração de firewall no host, load balancer, security groups e ingress. Inspeção local com `ss` não substitui o teste externo.
+
+**Fail2Ban:** validar configuração/jails, formato dos eventos e regex antes de ativar bloqueios. Evitar testes agressivos contra o próprio SSH remoto se não houver console de recuperação disponível. Quando SSH estiver acessível exclusivamente por rede privada, a necessidade de Fail2Ban pode ser baixa.
+
+**Exemplos de evidência aceitável:** saída redigida de `ss`, `nft` ou UFW; relatório de scan autorizado; teste de autorização; evidência de rotação de secrets; restauração documentada; screenshot de alertas entregues; link para relatórios de CI; dashboard com eventos de produção; avaliação de CVEs com justificativas.
+
+#### Gate técnico sugerido
+
+A decisão **GO** exige todos os P0 aplicáveis verificados e inexistência de vulnerabilidade crítica explorável ou exposição involuntária sem mitigação aceita. Exceções só devem ser concedidas por responsável com autoridade, mitigação explícita, prazo e monitoramento reforçado.
+
+| Condição | Decisão padrão |
+| --- | --- |
+| P0 aplicável sem evidência | NO-GO |
+| Porta administrativa ou banco exposto indevidamente | NO-GO |
+| Autorização permite acesso entre usuários sem permissão | NO-GO |
+| Segredo de produção exposto | NO-GO e revogação/rotação |
+| CVE com exploração conhecida e exposição efetiva sem mitigação | NO-GO |
+| Ausência de alertas para serviço crítico | NO-GO |
+| Backup não restaurável para dados não reproduzíveis | NO-GO |
+| P1 pendente com risco documentado e compensações | GO condicional, se aceito |
+| P2 não implementado e sem obrigação específica | Não bloquear automaticamente |
+
+#### Cadência operacional sugerida
+
+| Quando | Verificar |
+| --- | --- |
+| Antes de cada deploy | CI, autorização, portas alteradas, segredos, CVEs, migradores, backup, rollback e alertas |
+| Logo após deploy | Smoke tests externos, erros, latência, logs, segurança, versão e telemetria |
+| Continuamente | Alertas de disponibilidade, erros, vulnerabilidades exploradas e backups críticos |
+| Diariamente em serviços críticos | Alertas, autenticação anômala, logs relevantes e saturação |
+| Semanalmente | Revisão de logs, Fail2Ban/firewall, CVEs, patches, dashboards e capacidade |
+| Mensalmente | Atualizações, permissões, configuração drift, portas e testes de recuperação proporcionais ao risco |
+| Trimestralmente / mudança relevante | Threat model, ensaio de incidentes, RPO/RTO, arquitetura e maturidade dos controles |
+
+A cadência é **um ponto de partida**, não um prazo universal. Em serviços críticos, alertas precisam funcionar continuamente; uma análise manual apenas semanal pode ser insuficiente.
+
+#### Modelo de registro de evidências
+
+| Campo | Exemplo |
+| --- | --- |
+| ID | PR-05-05 |
+| Controle | Testar IDOR/BOLA |
+| Aplicabilidade | Aplicável |
+| Prioridade | P0 |
+| Status | Verificado / Falhou / Pendente / N/A |
+| Evidência | Link para testes e logs sanitizados |
+| Responsável | Pessoa ou equipe |
+| Revisado em | Data |
+| Risco residual | Descrição |
+| Próxima revisão | Data |
+
+**Limitação:** este checklist estabelece uma baseline de engenharia recomendada e não comprova, por si, conformidade com ISO, PCI DSS ou legislação. Para auditorias regulatórias, mapear requisitos à edição oficial aplicável e documentar controles adicionais.
+
+## Anexo H
+
+**Conteúdo integrado:** secure delivery and background processing. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Engenharia de releases, supply chain, CSPRNG, probes, migrações e workers
+
+Guia complementar ao [checklist geral](#good-practices-checklist-geral-de-engenharia-de-software-e-open-source) e à [preparação para produção](#anexo-g). A abordagem é pragmática: controles críticos são obrigatórios **quando aplicáveis**, recomendações devem ser documentadas e exceções precisam de justificativa verificável.
+
+**P0** = gate de publicação onde aplicável. **P1** = prática forte, considerar antes do deploy. **P2** = maturidade adicional. A classificação é recomendação editorial, não imposição formal de ISO/NIST.
+
+#### Glossário de integração, entrega e implantação contínuas
+
+| Termo | Significado | Pergunta que distingue |
+| --- | --- | --- |
+| Continuous Integration (CI) | Integra mudanças pequenas e executa validações frequentes | O código é integrado e testado automaticamente? |
+| Continuous Delivery (CD) | Mantém a versão testada pronta para produção; a liberação pode exigir ato humano | Conseguimos publicar uma versão validada a qualquer momento? |
+| Continuous Deployment (CD) | Publica automaticamente toda alteração que passa pelo pipeline até produção | Há deploy em produção sem aprovação manual por release? |
+
+Ambas as duas últimas costumam ser abreviadas como **CD**. Não confundir um workflow chamado `cd.yml` com a prática efetivamente adotada.
+
+#### Checklist por controle
+
+
+##### Maturidade de CI, Continuous Delivery e Continuous Deployment
+
+
+##### Minimum release age, procedência e riscos de supply chain
+
+
+##### Reprodutibilidade e integridade do build
+
+
+##### Aleatoriedade criptograficamente segura e geração de identificadores
+
+
+##### Liveness, readiness e startup probes
+
+
+##### Migrações seguras, DDL, transações e mudanças compatíveis
+
+
+##### Tarefas pesadas, workers, filas e processamento em lotes
+
+
+#### Exemplos e decisões técnicas
+
+##### Minimum release age no Renovate
+
+**Configuração adaptável (não copiar sem verificar a versão do Renovate):**
+
+```json
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict"
+}
+```
+
+O valor de sete dias é ilustrativo e aparece em [guesant/hl-infrastructure](https://github.com/guesant/hl-infrastructure/blob/main/.github/renovate.json). Renovate pode reter uma atualização por versão com base no timestamp informado pelo registry. **Atualizações de segurança reconhecidas por Renovate contornam o minimum release age**, conforme sua documentação. Isso não dispensa revisão do patch e mitigação urgente de vulnerabilidades exploráveis.
+
+**Limitações:** registries sem timestamp, tags móveis, digest pinning e manutenção de lockfile podem exigir exceções explícitas. Em gerenciadores de pacotes que suportam cooldown, configure-o também para que resoluções transitivas não contornem a política. Não bloquear indefinidamente correções de segurança por configurações de maturação.
+
+##### Socket.dev ou alternativa
+
+[Socket for GitHub](https://docs.socket.dev/docs/socket-for-github) analisa manifests e lockfiles em PRs e sinaliza comportamentos de dependências potencialmente perigosos, como instalação com scripts, ofuscação ou uso de APIs privilegiadas. O objetivo é reduzir ataques **maliciosos de supply chain**, não substituir scanners de CVEs nem a revisão de código.
+
+Avalie serviços equivalentes por análise comportamental, segurança de PR, permissões da integração, privacidade, ecossistemas suportados, capacidade de bloqueio e taxa de falsos positivos. Diferencie descoberta de malware, SCA/CVEs e análise de licenças.
+
+##### Reprodutibilidade: dois níveis distintos
+
+1. **Ambiente e resultado funcional reproduzíveis:** runtime, toolchain e dependências fixados; builds em ambiente limpo têm o mesmo comportamento esperado.
+2. **Reprodutibilidade bit a bit:** executar duas builds controladas com mesmo material de entrada produz **hashes idênticos**. Requer controle de timestamps, ordem de arquivos, caminhos, compressores e ferramentas.
+
+Um lockfile sozinho não garante builds bit a bit idênticos. O ideal para deploy é **construir uma vez, promover o mesmo artefato** entre staging e produção, com hash, provenance e SBOM.
+
+##### Random criptográfico: escolha de APIs
+
+| Ambiente | Para segredos, nonces e tokens |
+| --- | --- |
+| Node.js | `node:crypto.randomBytes()` ou `crypto.randomUUID()` quando o objetivo for UUID |
+| Web Crypto em contexto compatível | `crypto.getRandomValues()` |
+| Python | `secrets.token_bytes()`, `secrets.token_urlsafe()` |
+| Go | `crypto/rand` |
+| PHP | `random_bytes()`, `random_int()` |
+| Rust | gerador seguro via biblioteca mantida e integração com entropy do SO |
+
+Nunca usar `Math.random()`, `random.random()` ou seed baseado em timestamp/PID para tokens de autenticação ou material criptográfico. Não confundir unicidade de identificador com autorização. Referências: [NIST SP 800-90A Rev.1](https://csrc.nist.gov/pubs/sp/800/90/a/r1/final), [NIST SP 800-90B](https://csrc.nist.gov/pubs/sp/800/90/b/final) e [NIST SP 800-90C](https://csrc.nist.gov/pubs/sp/800/90/c/final).
+
+##### Kubernetes: probes com responsabilidades distintas
+
+- **Liveness:** responde "o processo está irrecuperavelmente travado e precisa ser reiniciado?". Falhas repetidas podem reiniciar o container.
+- **Readiness:** responde "este Pod pode atender requisições agora?". Falha retira o Pod dos endpoints do Service; não é motivo automático de restart.
+- **Startup:** dá tempo ao processo para inicializar sem sofrer avaliação prematura de liveness/readiness. Falha persistente pode causar restart.
+
+**Atenção:** uma liveness que falha toda vez que o banco oscila pode causar cascata de reinícios e agravar uma pane. Leia [Kubernetes: Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) e teste as falhas no ambiente usado.
+
+Exemplo **ilustrativo** para um HTTP server com inicialização lenta, ajustável aos resultados de testes:
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /startup
+    port: 8080
+  periodSeconds: 10
+  failureThreshold: 30
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  periodSeconds: 5
+  failureThreshold: 3
+
+livenessProbe:
+  httpGet:
+    path: /live
+    port: 8080
+  periodSeconds: 10
+  failureThreshold: 3
+```
+
+Os endpoints precisam ser implementados na aplicação. Um `/live` deve refletir saúde do próprio processo, e um `/ready` pode verificar dependências realmente essenciais sem realizar operações custosas. Ajustar `timeoutSeconds`, success threshold e outros parâmetros ao SLO.
+
+##### Migração de banco de dados sem paralisar a aplicação
+
+Uma transação ou DDL pode bloquear outros processos por locks, consumir conexões, I/O ou causar lag de replicação. **Não é verdade que adicionar qualquer coluna com default sempre reescreve toda a tabela**: versões atuais do PostgreSQL normalmente adicionam colunas com DEFAULT não volátil sem reescrita completa; ainda assim, `ALTER TABLE` frequentemente exige locks de tabela e a duração/contenda devem ser avaliadas. Defaults voláteis, certas alterações de tipo e operações com constraints podem implicar reescrita. [Referência PostgreSQL ALTER TABLE](https://www.postgresql.org/docs/current/sql-altertable.html).
+
+Estratégia genérica **expand → backfill → contract**:
+
+1. **Expand:** adicionar schema compatível com ambas as versões da aplicação, preferindo operações rápidas ou online.
+2. **Compatibilidade:** implantar código que lê/escreve as duas representações quando necessário.
+3. **Backfill:** executar atualizações em lotes pequenos com checkpoints, métricas, limites de taxa e retries.
+4. **Contract:** depois de verificar o resultado e retirar versões antigas, ativar constraints ou remover campos legados de modo controlado.
+
+Para backfills grandes, preferir **transações curtas por lote**, respeitando consistência, unicidade, isolamento e consumo de recursos. É preciso saber quando operações atômicas exigem uma transação curta e única: **nem toda transação deve ser dividida**, e dividir uma transferência financeira sem um protocolo adequado pode corromper consistência.
+
+##### Workers e filas não são obrigatórios para qualquer tarefa
+
+Uma operação rápida, pequena, atômica e necessária para produzir a resposta HTTP pode ser síncrona. Jobs demorados, repetitivos, pesados ou sujeitos a retries independentes devem, em geral, ser enviados a workers com limites, checkpoints, idempotência, controle de concorrência e monitoramento de backlog.
+
+- Estabelecer tempo máximo de requisição e orçamento de latência.
+- Quando a execução exceder o orçamento, usar job assíncrono com ID para consulta de status e retries seguros.
+- **Backfill volumoso:** chunks por chave/cursor, commit por lote, recomeço e checkpoints.
+- **Fila:** semântica de ack, retry, DLQ, idempotência, throughput, backpressure e ordenação quando aplicável.
+- **Atomicidade entre DB e fila:** avaliar transactional outbox ou modelo equivalente.
+- **Deploy:** garantir graceful shutdown e recuperação dos jobs in-flight.
+- **Observabilidade:** medir duração, falhas, duplicações, retries, fila em espera e idade do job mais antigo.
+
+#### Fontes de referência
+
+- [Renovate: Minimum release age](https://docs.renovatebot.com/key-concepts/minimum-release-age/)
+- [Socket.dev: GitHub integration](https://docs.socket.dev/docs/socket-for-github)
+- [Kubernetes: probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+- [PostgreSQL: ALTER TABLE](https://www.postgresql.org/docs/current/sql-altertable.html)
+- [NIST SP 800-90A Rev. 1](https://csrc.nist.gov/pubs/sp/800/90/a/r1/final)
+- [NIST SP 800-90C](https://csrc.nist.gov/pubs/sp/800/90/c/final)
+
+## Anexo I
+
+**Conteúdo integrado:** security hardening. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Hardening: identidades, endpoints, chaves, ambientes, CI e produção
+
+Checklist genérico adaptável a projetos pessoais, organizações, repositórios open source, serviços e infraestrutura. **Nenhum destes controles é universalmente obrigatório**: selecionar a baseline a partir do modelo de ameaças, dados e risco. Um arquivo de configuração presente não comprova sua eficácia.
+
+**Referências centrais:** [NIST CSF 2.0](https://www.nist.gov/cyberframework), [NIST SP 800-53 Rev. 5](https://csrc.nist.gov/pubs/sp/800/53/r5/final), [NIST SP 800-63B-4](https://csrc.nist.gov/pubs/sp/800/63/b/4/final), [NIST SP 800-57 Part 1 Rev. 5](https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final), [NIST SP 800-207](https://csrc.nist.gov/pubs/sp/800/207/final), [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final), [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/), [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks).
+
+#### 1. Inventário, risco e delimitação de confiança
+
+
+#### 2. Identidade, MFA, FIDO2 e YubiKey
+
+
+#### 3. SSH, Git, certificados e proteção de chaves privadas
+
+**Preferência de alto rigor:** não persistir **chaves privadas SSH de trabalho** em arquivos de `~/.ssh` quando houver armazenamento resistente à extração ou agente seguro. **Não é uma proibição universal estabelecida pelo NIST** e não se aplica à chave pública, `config`, `known_hosts` ou outros arquivos normais desse diretório.
+
+
+#### 4. Ciclo de vida de secrets, PKI e criptografia
+
+
+#### 5. Workstation, laptop e endpoints de desenvolvimento
+
+
+#### 6. Sandboxing e isolamento de código não confiável
+
+
+#### 7. SSH server, hosts, cloud e Kubernetes
+
+
+#### 8. Aplicação, API e banco de dados
+
+
+#### 9. CI/CD e supply chain
+
+
+#### 10. Monitoração, incidentes e recuperação
+
+
+#### 11. Verificação e evidências
+
+Para cada controle, registrar **ID, risco, categoria, escopo, responsável, evidência, procedimento de teste, resultado, exceção, validade e data da revisão**.
+
+
+**Observação:** orientações específicas sobre YubiKey, storage da chave SSH e sandbox de desenvolvimento são opções de implementação para atingir objetivos de autenticação, proteção de chaves e isolamento. Elas não são exigências textuais universais do NIST ou da ISO.
+
+## Anexo J
+
+**Conteúdo integrado:** standards to controls. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Requisitos verificáveis inspirados em NIST, ISO/IEC/IEEE e outros referenciais
+
+**Objetivo:** converter temas dos referenciais em um checklist de engenharia, desenvolvimento, segurança, arquitetura, qualidade e operação, útil mesmo sem intenção de certificação.
+
+**Limites e honestidade normativa:** esta é uma **síntese autoral, operacional e não exaustiva**. Não reproduz literalmente normas protegidas por direitos autorais, nem substitui versões oficiais licenciadas, anexos, tabelas de controles, avaliações, auditorias ou análise de aplicabilidade. Os IDs abaixo são **locais deste guia, não números oficiais de cláusulas**. Uma prática associada a uma norma pode ser uma implementação sugerida de um objetivo, e não uma obrigação explícita da norma. Em caso de auditoria, mapear cada controle à cláusula oficial e à edição correta.
+
+**Evidência mínima por requisito:** responsável, aplicabilidade, riscos, critério de aceite mensurável, como testar, configuração/procedimento, última evidência, resultado e exceções.
+
+Referências oficiais gerais: [NIST CSF 2.0](https://www.nist.gov/cyberframework), [NIST SP 800-53 Rev. 5](https://csrc.nist.gov/pubs/sp/800/53/r5/final), [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final), [Catálogo ISO](https://www.iso.org/standards.html), [IEC](https://webstore.iec.ch/), [IEEE](https://standards.ieee.org/).
+
+#### 1. Requisitos não funcionais: ISO/IEC 25010:2023
+
+A [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) define nove características de qualidade de produto. Os itens abaixo são desdobramentos práticos **propostos para especificação e avaliação**, não transcrições normativas.
+
+##### NFR-FS: Adequação funcional
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-PE: Eficiência de desempenho
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-CO: Compatibilidade
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-IC: Capacidade de interação
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-RE: Confiabilidade
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-SE: Segurança
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-MA: Manutenibilidade
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-FL: Flexibilidade
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+##### NFR-SA: Segurança contra danos (safety)
+
+**Referência temática:** ISO/IEC 25010:2023.
+
+
+#### 2. NIST Cybersecurity Framework 2.0: seis funções
+
+O [NIST CSF 2.0](https://www.nist.gov/cyberframework) organiza resultados de segurança em Govern, Identify, Protect, Detect, Respond e Recover. As verificações seguintes são **exemplos de implementação** desses resultados.
+
+##### CSF-GV: Governar (GV)
+
+**Referência temática:** NIST CSF 2.0.
+
+
+##### CSF-ID: Identificar (ID)
+
+**Referência temática:** NIST CSF 2.0.
+
+
+##### CSF-PR: Proteger (PR)
+
+**Referência temática:** NIST CSF 2.0.
+
+
+##### CSF-DE: Detectar (DE)
+
+**Referência temática:** NIST CSF 2.0.
+
+
+##### CSF-RS: Responder (RS)
+
+**Referência temática:** NIST CSF 2.0.
+
+
+##### CSF-RC: Recuperar (RC)
+
+**Referência temática:** NIST CSF 2.0.
+
+
+#### 3. NIST SP 800-53 Rev. 5: vinte famílias de controles
+
+O [NIST SP 800-53](https://csrc.nist.gov/pubs/sp/800/53/r5/final) contém um catálogo amplo de controles de segurança e privacidade. **Esta matriz tematicamente cobre as 20 famílias**, mas não cada controle ou enhancement. Para conformidade formal, selecionar baseline e consultar o catálogo oficial, inclusive parâmetros definidos pela organização.
+
+##### 53-AC: Controle de acesso
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (AC).
+
+
+##### 53-AT: Conscientização e treinamento
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (AT).
+
+
+##### 53-AU: Auditoria e responsabilização
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (AU).
+
+
+##### 53-CA: Avaliação, autorização e monitoramento
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (CA).
+
+
+##### 53-CM: Gestão de configuração
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (CM).
+
+
+##### 53-CP: Planejamento de contingência
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (CP).
+
+
+##### 53-IA: Identificação e autenticação
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (IA).
+
+
+##### 53-IR: Resposta a incidentes
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (IR).
+
+
+##### 53-MA: Manutenção
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (MA).
+
+
+##### 53-MP: Proteção de mídia
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (MP).
+
+
+##### 53-PE: Proteção física e ambiental
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (PE).
+
+
+##### 53-PL: Planejamento
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (PL).
+
+
+##### 53-PM: Gestão do programa
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (PM).
+
+
+##### 53-PS: Segurança de pessoal
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (PS).
+
+
+##### 53-PT: Tratamento e transparência de dados pessoais
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (PT).
+
+
+##### 53-RA: Avaliação de risco
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (RA).
+
+
+##### 53-SA: Aquisição de sistemas e serviços
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (SA).
+
+
+##### 53-SC: Proteção de sistemas e comunicações
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (SC).
+
+
+##### 53-SI: Integridade de sistemas e informações
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (SI).
+
+
+##### 53-SR: Gestão de risco da cadeia de suprimentos
+
+**Referência temática:** NIST SP 800-53 Rev. 5 (SR).
+
+
+#### 4. NIST SSDF: desenvolvimento seguro e proteção da supply chain
+
+[NIST SP 800-218](https://csrc.nist.gov/pubs/sp/800/218/final) organiza práticas em quatro grupos: PO, PS, PW, RV.
+
+##### SSDF-PO: Preparar a organização
+
+**Referência temática:** NIST SSDF PO.
+
+
+##### SSDF-PS: Proteger o software
+
+**Referência temática:** NIST SSDF PS.
+
+
+##### SSDF-PW: Produzir software bem protegido
+
+**Referência temática:** NIST SSDF PW.
+
+
+##### SSDF-RV: Responder às vulnerabilidades
+
+**Referência temática:** NIST SSDF RV.
+
+
+#### 5. Normas ISO/IEC/IEEE: desdobramento operacional por assunto
+
+Os controles a seguir **não são cópias de cláusulas normativas**. São traduções práticas dos temas tratados nas normas. A versão e o status devem ser verificados nas fontes oficiais antes de qualquer alegação de conformidade.
+
+##### ISO-27001: Gestão de segurança da informação
+
+**Referência temática:** [ISO/IEC 27001:2022](https://www.iso.org/standard/27001).
+
+
+##### ISO-27002: Controles organizacionais, pessoas, físicos e tecnológicos
+
+**Referência temática:** [ISO/IEC 27002:2022](https://www.iso.org/standard/75652.html).
+
+
+##### ISO-27005: Risco de segurança da informação
+
+**Referência temática:** [ISO/IEC 27005:2022](https://www.iso.org/standard/80585.html).
+
+
+##### ISO-27701: Gestão de privacidade
+
+**Referência temática:** [ISO/IEC 27701:2025](https://www.iso.org/standards.html).
+
+
+##### ISO-27017: Segurança de serviços cloud
+
+**Referência temática:** [ISO/IEC 27017:2025](https://www.iso.org/standards.html).
+
+
+##### ISO-27018: Proteção de dados pessoais em cloud
+
+**Referência temática:** [ISO/IEC 27018:2025](https://www.iso.org/standards.html).
+
+
+##### ISO-20000: Gestão de serviços de TI
+
+**Referência temática:** [ISO/IEC 20000-1:2018](https://www.iso.org/standard/70636.html).
+
+
+##### ISO-9001: Gestão da qualidade
+
+**Referência temática:** [ISO 9001:2026](https://www.iso.org/standard/9001).
+
+
+##### ISO-90003: Qualidade aplicada a software
+
+**Referência temática:** [ISO/IEC/IEEE 90003:2018](https://www.iso.org/standard/74348.html).
+
+
+##### ISO-12207: Ciclo de vida do software
+
+**Referência temática:** [ISO/IEC/IEEE 12207:2026](https://www.iso.org/standard/90219.html).
+
+
+##### ISO-29148: Engenharia de requisitos
+
+**Referência temática:** [ISO/IEC/IEEE 29148:2018](https://www.iso.org/standard/72089.html).
+
+
+##### ISO-42010: Descrição de arquitetura
+
+**Referência temática:** [ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html).
+
+
+##### ISO-29119: Testes de software
+
+**Referência temática:** [Série ISO/IEC/IEEE 29119](https://www.iso.org/standard/81291.html).
+
+
+##### ISO-5055: Qualidade estrutural
+
+**Referência temática:** [ISO/IEC 5055:2021](https://www.iso.org/standard/80623.html).
+
+
+##### ISO-38500: Governança de TI
+
+**Referência temática:** [ISO/IEC 38500:2024](https://www.iso.org/standard/81684.html).
+
+
+##### ISO-31000: Gestão de riscos geral
+
+**Referência temática:** [ISO 31000:2018](https://www.iso.org/standard/65694.html).
+
+
+##### ISO-42001: Sistema de gestão de IA
+
+**Referência temática:** [ISO/IEC 42001:2023](https://www.iso.org/standard/42001).
+
+
+##### ISO-42005: Avaliação de impacto de IA
+
+**Referência temática:** [ISO/IEC 42005:2025](https://www.iso.org/standards.html).
+
+
+##### ISO-23894: Riscos de IA
+
+**Referência temática:** [ISO/IEC 23894:2023](https://www.iso.org/standard/77304.html).
+
+
+##### ISO-5259: Qualidade de dados para IA
+
+**Referência temática:** [Série ISO/IEC 5259](https://www.iso.org/standards.html).
+
+
+##### ISO-25012: Qualidade de dados
+
+**Referência temática:** [ISO/IEC 25012](https://www.iso.org/standards.html).
+
+
+##### ISO-330: Avaliação da capacidade de processos
+
+**Referência temática:** [Série ISO/IEC 330xx](https://www.iso.org/standards.html).
+
+
+##### ISO-24183: Terminologia em comunicação técnica
+
+**Referência temática:** [ISO 24183:2024](https://www.iso.org/standard/78009.html).
+
+
+##### ISO-IEC-19770: Gestão de ativos de software
+
+**Referência temática:** [Série ISO/IEC 19770](https://www.iso.org/standards.html).
+
+
+#### 6. Referências complementares e setoriais: decidir aplicabilidade
+
+A seção de normas do README também cita documentos de documentação, experiência do usuário, modelagem, cloud, IoT, segurança e normas setoriais. Não se deve presumir que uma linguagem de modelagem ou vocabulário seja um conjunto de controles de segurança.
+
+##### REF-UX: Usabilidade e comunicação
+
+**Referência temática:** ISO 9241; ISO/IEC 25066 (histórica/retirada); ISO/IEC 2502x e 2504x.
+
+
+##### REF-DOC: Documentação e ciclo de vida
+
+**Referência temática:** ISO/IEC/IEEE 15289; 24748-1; 14764; 15939; 24765; série 29110.
+
+
+##### REF-MODEL: Modelagem
+
+**Referência temática:** UML (ISO/IEC 19505); SysML (ISO/IEC 19514); BPMN (ISO/IEC 19510).
+
+
+##### REF-SEC: Outros referenciais de segurança
+
+**Referência temática:** ISO/IEC 27000; série 27034; 27035; 27036; 15408 (Common Criteria).
+
+
+##### REF-CLOUD: Cloud e IoT
+
+**Referência temática:** ISO/IEC 22123; ISO/IEC 27400; ISO/IEC 30141; ISO/IEC 17788/17789 (históricas).
+
+
+##### REF-AI: Vocabulário, ciclo de vida e governança de IA
+
+**Referência temática:** ISO/IEC 22989; 23053; 5338; 38507; série ISO 8000; série 38505.
+
+
+##### REF-PCI: Pagamentos e dados de cartão
+
+**Referência temática:** PCI DSS 4.0.1.
+
+
+##### REF-SECTOR: Setores críticos
+
+**Referência temática:** IEC 61508; ISO 26262; IEC 62304; ISO 14971; EN 50128; DO-178C; ARP4754A; Automotive SPICE.
+
+
+#### 7. NIST especializado: identidade, chaves, Zero Trust e processos
+
+##### NIST-63: Identidade e autenticação
+
+**Referência temática:** [NIST SP 800-63B-4](https://csrc.nist.gov/pubs/sp/800/63/b/4/final).
+
+
+##### NIST-57: Gestão de chaves criptográficas
+
+**Referência temática:** [NIST SP 800-57 Part 1 Rev. 5](https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final).
+
+
+##### NIST-207: Arquitetura Zero Trust
+
+**Referência temática:** [NIST SP 800-207](https://csrc.nist.gov/pubs/sp/800/207/final).
+
+
+#### 8. Matriz de evidências e gestão contínua
+
+
+##### Modelo de definição de requisito não funcional
+
+- **ID**: NFR-PE-01
+- **Fonte temática**: ISO/IEC 25010:2023, eficiência de desempenho.
+- **Contexto**: endpoint de consulta mais utilizado.
+- **Critério mensurável (ilustrativo, não universal)**: p95 de latência inferior a 300 ms com 100 usuários concorrentes no ambiente de referência.
+- **Método**: executar teste de carga versionado e gerar relatório com versão, hardware e dataset usados.
+- **Evidência**: resultado de CI ou relatório de benchmark.
+- **Revisão**: quando houver alteração relevante de workload, infraestrutura ou versão.
+
+**Outros exemplos:** confiabilidade = porcentagem de disponibilidade em janela definida; privacidade = dados retidos por prazo definido; recuperação = RTO/RPO explicitados; manutenibilidade = tempo de execução de testes e mudanças com regressões; segurança = zero autorização indevida nos casos de teste de isolamento.
+
+##### Revisão normativa
+
+Conferir a situação vigente de cada edição no [catálogo ISO](https://www.iso.org/standards.html) e nas publicações NIST. Em novembro de 2026, referências atualizadas incluem [ISO 9001:2026](https://www.iso.org/standard/9001), [ISO/IEC/IEEE 12207:2026](https://www.iso.org/standard/90219.html), [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) e [NIST SP 800-63B-4 (2025)](https://csrc.nist.gov/pubs/sp/800/63/b/4/final).
+
+**Importante:** para mapeamento controle-a-controle de ISO proprietárias, é necessário consultar uma cópia autorizada das edições integrais. Este documento deliberadamente não pretende reproduzir essas normas.
+
+## Anexo K
+
+**Conteúdo integrado:** tooling configurations. Os checkboxes já reproduzidos no checklist principal foram suprimidos aqui para evitar duplicações. As explicações, referências, exemplos e controles adicionais permanecem abaixo.
+
+### Configurações de ferramentas: referências de projetos reais
+
+Catálogo reutilizável de configurações identificadas nos repositórios de `guesant`. Este documento **não declara que todas as configurações foram testadas neste repositório**. Os exemplos são pontos de partida, extraídos de arquivos existentes em outros projetos. Verifique a versão instalada da ferramenta, o formato de configuração, a compatibilidade dos plugins e o escopo de cada projeto antes de copiar.
+
+#### Checklist de adoção
+
+- [ ] Definir quais linguagens, extensões, diretórios e artefatos devem ser examinados.
+- [ ] Escolher uma ferramenta principal de formatação por tipo de arquivo.
+- [ ] Escolher um linter principal e adicionar regras especializadas somente para lacunas concretas.
+- [ ] Manter configurações versionadas, com globs de inclusão e exclusão revisados.
+- [ ] Fixar versões das ferramentas e manter lockfiles quando disponíveis.
+- [ ] Separar verificações rápidas de PR de verificações completas e demoradas.
+- [ ] Executar localmente as mesmas verificações que bloqueiam merge no CI.
+- [ ] Incluir testes das regras personalizadas e documentar as razões de cada restrição.
+- [ ] Evitar suppressions globais e documentar exceções com justificativa.
+- [ ] Exigir resultados verificáveis, não apenas jobs de exemplo com saída bem-sucedida.
+
+#### ESLint e TypeScript: análise tipada, imports e regras arquiteturais
+
+**Origem:** [guesant/lobby: configuração central ESLint](https://github.com/guesant/lobby/blob/main/.config/eslint.config.ts).
+
+O projeto usa Flat Config, `@eslint/js`, `typescript-eslint` com presets `strictTypeChecked` e `stylisticTypeChecked`, `eslint-plugin-svelte`, `eslint-plugin-sonarjs`, `eslint-plugin-import-x`, `eslint-plugin-simple-import-sort`, `@stylistic/eslint-plugin` e um conjunto de regras próprias em `.config/eslint-rules/`.
+
+- [ ] Usar Flat Config em projetos com versões compatíveis do ESLint.
+- [ ] Habilitar regras TypeScript com informações de tipo quando o custo for justificável.
+- [ ] Aplicar regras específicas de Svelte, React ou outro framework somente quando utilizado.
+- [ ] Organizar imports com um único mecanismo, sem conflito com formatadores.
+- [ ] Configurar `--max-warnings 0` para um quality gate estrito, quando a política exigir.
+- [ ] Incluir regras próprias somente quando convenções do projeto não forem atendidas por plugins estabelecidos.
+- [ ] Adicionar testes automatizados para cada regra própria.
+- [ ] Evitar copiar restrições subjetivas (por exemplo, proibir ternários ou limitar funções por arquivo) como se fossem universais.
+- [ ] Validar custo e compatibilidade de análises type-aware e dos plugins na versão escolhida.
+
+**Referência de execução:** [lint-code.ts](https://github.com/guesant/lobby/blob/main/.config/scripts/quality/lint-code.ts) executa `eslint --config website/eslint.config.js . --max-warnings 0` e Knip em etapa própria.
+
+#### Biome: alternativa integrada para lint e formatação
+
+**Origem:** [guesant/fabricjs-object-fit: src/biome.json](https://github.com/guesant/fabricjs-object-fit/blob/main/src/biome.json).
+
+A configuração encontrada define `files.includes` para os fontes dos pacotes, formatação com espaços de dois caracteres e largura de 80, regras recomendadas do linter, `noUnusedVariables` como erro e estilo JavaScript de aspas duplas e ponto e vírgula.
+
+```json
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.9/schema.json",
+  "files": {
+    "includes": ["packages/*/src/**"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": { "noUnusedVariables": "error" }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "always"
+    }
+  }
+}
+```
+
+- [ ] Avaliar Biome como ferramenta integrada de lint/formatação para as linguagens suportadas.
+- [ ] Definir explicitamente diretórios analisados e gerados.
+- [ ] Usar o schema correspondente à versão instalada; não copiar cegamente o schema 2.4.9.
+- [ ] Evitar conflito entre Biome e ESLint/Prettier sobre o mesmo conjunto de regras.
+- [ ] Complementar Biome com análise tipada, SAST ou plugins específicos quando necessário.
+
+O exemplo acima é uma **adaptação mínima** do arquivo original: omite `experimentalScannerIgnores`, que precisa de avaliação conforme a versão e os diretórios do projeto.
+
+#### Prettier e Stylelint: formatação e CSS
+
+**Origens:** [Prettier no lobby](https://github.com/guesant/lobby/blob/main/.config/prettier.config.ts), [Stylelint no lobby](https://github.com/guesant/lobby/blob/main/.config/.stylelintrc.json) e [Stylelint no blog](https://github.com/guesant/blog/blob/main/.stylelintrc.json).
+
+O Prettier do lobby usa plugins para Svelte e arrays multilinha, aspas simples, vírgulas finais, `objectWrap: preserve` e tratamento específico de whitespace em `.svelte`. O Stylelint usa `stylelint-config-standard`; uma configuração mais rigorosa restringe unidades físicas e tamanhos rígidos.
+
+- [ ] Configurar Prettier quando suas linguagens e opções forem adequadas.
+- [ ] Habilitar plugin de framework somente quando necessário.
+- [ ] Escolher uma única fonte de verdade para formatação.
+- [ ] Adotar `stylelint-config-standard` como ponto de partida para CSS.
+- [ ] Avaliar restrições adicionais de unidades e propriedades conforme o design system, sem presumir que proibir `px` seja adequado para qualquer interface.
+- [ ] Excluir bundles, assets gerados e dependências do lint.
+- [ ] Verificar regras CSS em código fonte, não em saídas compiladas.
+
+#### ast-grep: política estrutural personalizada
+
+**Origens:** [configuração do lobby](https://github.com/guesant/lobby/blob/main/.config/ast-grep/sgconfig.yml), [regra TypeScript](https://github.com/guesant/lobby/blob/main/.config/ast-grep/rules/no-narrative-comments-typescript.yml), [testes CSS](https://github.com/guesant/lobby/blob/main/.config/ast-grep/tests/no-narrative-comments-css.yml) e [configuração da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.config/ast-grep/sgconfig.yml).
+
+```yaml
+ruleDirs:
+  - rules
+testConfigs:
+  - testDir: tests
+```
+
+Comandos observados nos projetos:
+
+```sh
+ast-grep test --config .config/ast-grep/sgconfig.yml
+ast-grep scan --config .config/ast-grep/sgconfig.yml .
+```
+
+O lobby possui regras para comentários narrativos em TypeScript, JavaScript, CSS e YAML, com casos válidos e inválidos. Na infraestrutura há `languageGlobs` para arquivos de template `*.j2`.
+
+- [ ] Criar regras estruturais para invariantes verificáveis e repetitivos.
+- [ ] Incluir testes positivos e negativos para cada regra.
+- [ ] Documentar o motivo de cada regra e as exceções legítimas.
+- [ ] Evitar que regras de estilo específicas sejam impostas a todos os projetos.
+- [ ] Verificar se o parser cobre a linguagem e o formato efetivo dos arquivos.
+- [ ] Rodar testes das regras antes de executá-las como bloqueio de CI.
+
+#### jscpd: detecção de duplicação
+
+**Origens:** [configuração YAML da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.config/jscpd.json) e [scripts de tooling do lobby](https://github.com/guesant/lobby/blob/main/.config/package.json).
+
+Configuração real encontrada na infraestrutura:
+
+```json
+{
+  "path": ["../ansible/roles"],
+  "ignore": ["**/templates/**"],
+  "format": ["yaml"],
+  "minLines": 8,
+  "minTokens": 70,
+  "reporters": ["console", "json"],
+  "output": "./.build/jscpd-report"
+}
+```
+
+O lobby executa `jscpd` com `--min-tokens 50 --min-lines 5 --skip-comments`, filtragem de fontes e testes, além de um baseline versionado e `--fail-on-new-clones=0`. Consulte o [baseline efetivo](https://github.com/guesant/lobby/blob/main/.config/jscpd-baseline.json).
+
+- [ ] Definir linguagens, diretórios e formatos a escanear.
+- [ ] Excluir código gerado, dependências e duplicações deliberadas justificadas.
+- [ ] Ajustar `minLines` e `minTokens` para reduzir falsos positivos.
+- [ ] Considerar baseline para repositórios legados.
+- [ ] Bloquear novas duplicações, em vez de criar uma meta irreal de zerar imediatamente todo o legado.
+- [ ] Investigar a semântica antes de refatorar trechos semelhantes.
+- [ ] Atualizar baseline somente após revisão consciente.
+
+#### Knip: arquivos, exports e dependências não utilizados
+
+**Origens:** [configuração do lobby](https://github.com/guesant/lobby/blob/main/.config/knip.json) e [executor do lobby](https://github.com/guesant/lobby/blob/main/.config/scripts/quality/lint-code.ts).
+
+O arquivo do lobby define workspaces, `entry` e `project`, arquivos de configuração ESLint e `ignoreBinaries` para ferramentas invocadas externamente. O executor usa `--treat-config-hints-as-errors`.
+
+- [ ] Definir entrypoints reais, inclusive rotas e scripts de automação.
+- [ ] Informar workspaces e fontes sem incluir diretórios de build.
+- [ ] Configurar integrações de frameworks e ferramentas externas.
+- [ ] Investigar usos dinâmicos antes de remover exports considerados mortos.
+- [ ] Tratar warnings de configuração como erro em pipelines estabilizados.
+
+#### GitHub Actions: actionlint, zizmor e segregação de checks
+
+**Origens:** [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml), [script do blog](https://github.com/guesant/blog/blob/main/.config/check.sh).
+
+O CI da infraestrutura usa `actionlint` para validação dos workflows, `zizmor` para auditoria de segurança, jobs separados para outras ferramentas, checkout com `persist-credentials: false`, `permissions: contents: read` no escopo global e escalonamento de permissões por job quando necessário.
+
+No blog, `zizmor --format sarif` gera relatório, e `actionlint` roda sobre `.github/workflows/*.yml`.
+
+- [ ] Validar todos os workflows com actionlint.
+- [ ] Auditar exposição de segredos, injeção e permissões com zizmor.
+- [ ] Limitar `GITHUB_TOKEN` às permissões necessárias por job.
+- [ ] Fixar ações de terceiros por SHA integral e manter anotações de versão.
+- [ ] Impedir execução de código não confiável com credenciais privilegiadas.
+- [ ] Desabilitar persistência de credenciais no checkout quando não necessária.
+- [ ] Publicar SARIF quando desejado e configurar permissões apropriadas para upload.
+- [ ] Evitar configurações específicas de runner sem justificativa.
+- [ ] Documentar estratégia de jobs condicionais, jobs obrigatórios e resultado do gate agregador.
+- [ ] Exercitar o cenário em que um job é pulado ou falha, para evitar gate falsamente verde.
+
+#### Hadolint, ShellCheck, yamllint, markdownlint e Gitleaks
+
+**Origens:** [script agregador do blog](https://github.com/guesant/blog/blob/main/.config/check.sh), [configuração Hadolint do blog](https://github.com/guesant/blog/blob/main/.config/hadolint.yaml) e [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml).
+
+A configuração Hadolint recuperada do blog contém:
+
+```yaml
+failure-threshold: error
+```
+
+O CI da infraestrutura inclui exceções `DL3008` e `DL3018` para o Hadolint; essas exceções são **específicas daquele projeto**, não defaults recomendados.
+
+- [ ] Validar Dockerfiles com Hadolint.
+- [ ] Justificar cada regra ignorada de Hadolint.
+- [ ] Analisar shell scripts com ShellCheck e padronizar formatação com shfmt, quando aplicável.
+- [ ] Validar YAML com yamllint, respeitando sintaxe específica de templates e GitHub Actions.
+- [ ] Verificar Markdown com markdownlint-cli2 e links com um verificador dedicado.
+- [ ] Executar Gitleaks no conteúdo apropriado e considerar análise de histórico.
+- [ ] Proteger relatórios SARIF contra vazamento de segredos e informação sensível.
+- [ ] Não confundir a geração de um relatório com uma política efetiva de bloqueio.
+
+#### Renovate e gestão automatizada de dependências
+
+**Origem:** [guesant/hl-infrastructure: renovate.json](https://github.com/guesant/hl-infrastructure/blob/main/.github/renovate.json).
+
+A configuração usa `config:recommended`, janela mínima de maturação de sete dias (com exceções), `pinDigests` para imagens, regras por gerenciador, grupos de atualizações, custom managers regex para ferramentas em YAML e comandos pós-atualização para checksums.
+
+- [ ] Habilitar atualizações automáticas com Renovate ou Dependabot.
+- [ ] Escolher política explícita para agrupamento, frequência e versão mínima.
+- [ ] Avaliar `minimumReleaseAge` conforme risco e urgência de patches.
+- [ ] Fixar imagens por digest quando reprodutibilidade e segurança exigirem.
+- [ ] Incluir dependências fora de manifests convencionais via custom managers.
+- [ ] Testar managers regex para evitar updates errados.
+- [ ] Proteger execução de scripts pós-atualização e avaliar permissões do bot.
+- [ ] Rodar testes e análise de segurança em PRs gerados automaticamente.
+- [ ] Evitar atualização automática de arquivos cuja versão é gerida por outro controlador.
+
+#### Testes e relatórios de segurança
+
+**Origens:** [tooling do lobby](https://github.com/guesant/lobby/blob/main/.config/package.json), [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml) e [verificações do blog](https://github.com/guesant/blog/blob/main/.config/check.sh).
+
+Nos repositórios aparecem Vitest, fast-check, Trivy, scanners OSV, SBOM, SARIF, além de tarefas de testes e qualidade. A combinação depende do tipo de entrega.
+
+- [ ] Garantir testes unitários, de integração e de contrato onde necessários.
+- [ ] Empregar testes baseados em propriedades com fast-check para invariantes úteis.
+- [ ] Escanear dependências e artefatos com OSV-Scanner e/ou Trivy.
+- [ ] Produzir SBOM de artefatos relevantes.
+- [ ] Separar scanners com escopos complementares de scanners redundantes.
+- [ ] Centralizar relatórios e manter políticas claras de tratamento.
+- [ ] Evitar tratar código gerado, caches e lockfiles como fontes regulares de código-fonte.
+
+#### Qlty: candidato ainda não localizado nos repositórios pesquisados
+
+Não foi encontrada uma configuração `qlty.toml` ou uso confirmado de Qlty nas buscas efetuadas em `guesant`. Assim, **não existe exemplo próprio verificado para copiar aqui**.
+
+- [ ] Avaliar Qlty se a agregação de métricas ou a substituição de verificações já existentes trouxer benefício.
+- [ ] Comparar suas análises com ESLint, Biome, jscpd, Knip e scanners já adotados antes de adicionar mais uma etapa.
+- [ ] Registrar exemplo e versão somente após configurar e testar a ferramenta num projeto real.
+
+#### Guia rápido de seleção
+
+| Objetivo | Escolha principal | Complemento ou alternativa |
+| --- | --- | --- |
+| Lint JS/TS com regras avançadas | ESLint + typescript-eslint | Biome |
+| Lint e formatação integrados | Biome | ESLint + Prettier |
+| Formatação de Svelte | Prettier com plugin Svelte | Ferramenta compatível testada |
+| Lint CSS | Stylelint | Regras próprias conforme design system |
+| Regras AST específicas | ast-grep | Plugin ESLint customizado |
+| Duplicação | jscpd | Análise manual contextual |
+| Código morto | Knip | Inspeção de imports e build |
+| GitHub Actions (sintaxe) | actionlint | Validação de workflow |
+| GitHub Actions (segurança) | zizmor | Revisão de risco e permissões |
+| Dockerfile | Hadolint | Trivy para imagens |
+| Segredos | Gitleaks | Proteções do provedor |
+| Dependências | Renovate | Dependabot |
+| Vulnerabilidades | OSV-Scanner | Trivy |
+| Visão consolidada de qualidade | Avaliar Qlty | Relatórios dos scanners existentes |
+
+#### Análise comportamental e maturação de releases
+
+- [ ] Configurar `minimumReleaseAge` no Renovate para reduzir adoção imediata de versões recém-publicadas.
+- [ ] Preferir cooldown no gerenciador de pacotes quando suportado, protegendo resolução transitiva em lockfiles.
+- [ ] Verificar suporte a timestamps por registry/datasource, considerando que algumas atualizações de digest não admitem maturação.
+- [ ] Confirmar fluxo de atualização emergencial de segurança, sem bloquear correções críticas pela janela de espera.
+- [ ] Avaliar Socket.dev (ou ferramenta equivalente) para análise comportamental de dependências e PRs.
+- [ ] Combinar sinais de scripts de instalação, ofuscação, filesystem, rede, execução de processos e mudanças de comportamento com scanners de CVE.
+- [ ] Documentar permissões do aplicativo de terceiros, dados enviados, revisão dos alertas e política de falsos positivos.
+- [ ] Fixar toolchain, versões transitivas e lockfiles para builds limpos e repetíveis.
+- [ ] Promover o mesmo artefato entre ambientes e verificar hashes, SBOM e atestação quando necessária.
+
+**Referência própria:** [Renovate em guesant/hl-infrastructure](https://github.com/guesant/hl-infrastructure/blob/main/.github/renovate.json), com `minimumReleaseAge: "7 days"`. O guia [entrega segura e processamento](#anexo-h) apresenta configurações, limitações e critérios de escolha.
+
+**Referências oficiais:** [Renovate Minimum Release Age](https://docs.renovatebot.com/key-concepts/minimum-release-age/), [Socket for GitHub](https://docs.socket.dev/docs/socket-for-github).
+
+#### Critério de qualidade das recomendações
+
+Uma recomendação de configuração só deve ser promovida a template reutilizável se incluir:
+
+1. Arquivo de origem e commit ou tag de referência.
+2. Objetivo do controle e problemas que pretende detectar.
+3. Linguagens e versões de ferramentas suportadas.
+4. Exemplo mínimo de configuração.
+5. Comando local de execução e comando usado no CI.
+6. Critério de sucesso e política de falha.
+7. Testes e exemplos válidos/inválidos para regras próprias.
+8. Limitações, sobreposições e falsos positivos conhecidos.
+9. Restrições de segurança e permissões exigidas.
+10. Motivos para não aplicar aquela ferramenta a determinado projeto.
+
+**Nota:** os links acima apontam para os arquivos nas branches padrão dos repositórios de origem; versões e conteúdo podem evoluir. Para auditorias e templates estáveis, prefira referenciar commits imutáveis.
+## Anexo L
+
+### Convenções do antigo catálogo de controles
+
+Os arquivos `*-controls.json` complementam o [checklist central](#good-practices-checklist-geral-de-engenharia-de-software-e-open-source) e permitem aplicar filtros por perfil, prioridade e verificação. Os controles são identificados por IDs **próprios do projeto**, não pelos identificadores oficiais de ASVS, NIST ou ISO.
+
+## Conteúdo
+
+- [Contratos, ASVS/SAMM/OpenSSF, resiliência e observabilidade](assurance-resilience-controls.json)
+- [Custos, domínios/e-mail, descomissionamento e portabilidade](operations-lifecycle-controls.json)
+- [Testes, acessibilidade, privacidade e IA](quality-privacy-ai-controls.json)
+- [Perfis de aplicação](profiles.json)
+- [JSON Schema de controle](schema.json)
+- [Guia de adoção](#anexo-c)
+- [Template para avaliação por projeto](../templates/project-assessment.md)
+
+## Como usar
+
+1. Selecione um tipo de projeto e overlays de risco em `profiles.json`.
+2. Filtre por tags de perfil, mas avalie cada item manualmente; tags não são determinação legal de aplicabilidade.
+3. Registre prioridade, estado, responsável, evidência, data da última validação e exceções.
+4. Execute `node scripts/validate-catalog.mjs` na raiz do repositório.
+5. Não confunda validação de metadados com execução dos requisitos sobre uma aplicação.
+
+**Cobertura:** este é um catálogo incremental dos controles adicionados na expansão mais recente. Os controles históricos do README não estão todos normalizados em JSON. A migração futura deve manter seus IDs e evitar duplicações.
+
+## Anexo M
+
+### Perfis estruturados de aplicabilidade
+
+As descrições e os exemplos abaixo preservam o conteúdo dos perfis estruturados. As tags representam relevância inicial, não obrigação automática.
+
+#### Base geral (`all`)
+
+Políticas e controles independentes de linguagem. É sempre selecionado junto do perfil principal.
+
+**Tags de aplicabilidade:** `all`. **Exemplos:** Documentação do projeto; responsáveis; licença; gestão de mudanças.
+
+#### Projeto open source (`oss`)
+
+Bibliotecas, ferramentas ou aplicações abertas que aceitam contribuição.
+
+**Tags de aplicabilidade:** `all`, `oss`. **Exemplos:** políticas de contribuição; vulnerabilidades; governança; licenças.
+
+#### Biblioteca/SDK (`library`)
+
+Pacotes consumidos por terceiros, inclusive com versões compatíveis.
+
+**Tags de aplicabilidade:** `all`, `oss`, `library`. **Exemplos:** semver; contratos; depreciação; suporte.
+
+#### Documentação ou site de conteúdo (`docs`)
+
+Repositório de documentação, estático ou gerador de sites.
+
+**Tags de aplicabilidade:** `all`, `docs`, `web`. **Exemplos:** acessibilidade; links; licenças; segurança do build.
+
+#### Site estático ou frontend SPA (`web`)
+
+Interface no navegador sem autenticação ou backend próprio.
+
+**Tags de aplicabilidade:** `all`, `web`. **Exemplos:** headers; acessibilidade; domínio; assets.
+
+#### API ou backend (`api`)
+
+Serviço HTTP, gRPC ou mensageria.
+
+**Tags de aplicabilidade:** `all`, `api`, `backend`. **Exemplos:** autorização; contratos; resiliência; logs.
+
+#### SaaS autenticado (`saas`)
+
+Aplicação com usuários, autenticação e dados persistentes.
+
+**Tags de aplicabilidade:** `all`, `web`, `api`, `backend`, `saas`. **Exemplos:** isolamento tenant; custos; privacidade; observabilidade.
+
+#### Aplicação com dados sensíveis (`sensitive`)
+
+Camada de exigência adicional, acumulada ao tipo de aplicação.
+
+**Tags de aplicabilidade:** `all`, `sensitive`, `data`. **Exemplos:** privacidade; autorização; criptografia; riscos elevados.
+
+#### Dados e pipelines (`data`)
+
+Processamentos ETL/ELT, coleta, análise e armazenamento.
+
+**Tags de aplicabilidade:** `all`, `data`, `backend`. **Exemplos:** qualidade de dados; retenção; portabilidade.
+
+#### Sistemas e agentes de IA (`ai`)
+
+Produtos com LLM, modelos, RAG, agentes e ferramentas.
+
+**Tags de aplicabilidade:** `all`, `ai`, `api`, `backend`, `saas`. **Exemplos:** prompt injection; permissões de ferramentas; avaliações; custos.
+
+#### Infraestrutura, homelab, cloud e GitOps (`infra`)
+
+Infraestrutura como código, provisionamento e operação.
+
+**Tags de aplicabilidade:** `all`, `infra`, `backend`. **Exemplos:** continuidade; segurança de domínio; observabilidade; custos.
+
+#### Aplicativo móvel (`mobile`)
+
+Apps com interfaces e recursos nativos.
+
+**Tags de aplicabilidade:** `all`, `mobile`. **Exemplos:** acessibilidade; persistência segura; privacidade; testes.
+
+## Anexo N
+
+### Contrato de metadados dos controles
+
+O antigo schema JSON validava os campos `schema_version` (= 1), `description` e `controls`. Cada controle contém `id` (padrão de identificação único), `priority` (P0, P1, P2), `text`, `profiles`, `verify`, `evidence`, `reference` e `section`. Valores de texto precisam estar preenchidos, os perfis não devem se repetir e a referência deve ser uma URL. O conteúdo central do README deve continuar sendo validado mesmo após a remoção dos arquivos JSON intermediários.
+
+**Especificação original preservada como referência histórica, não como arquivo necessário ao build:**
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Good Practices – controle verificável",
+  "description": "Schema de documentos catalog/*.json contendo controle editorial próprio; não implica certificação ou representação integral de normas.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "description",
+    "controls"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/control"
+      }
+    }
+  },
+  "$defs": {
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "priority",
+        "text",
+        "profiles",
+        "verify",
+        "evidence",
+        "reference",
+        "section"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9]{1,8}-[0-9]{2}$"
+        },
+        "priority": {
+          "enum": [
+            "P0",
+            "P1",
+            "P2"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 12
+        },
+        "profiles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "all",
+              "oss",
+              "library",
+              "docs",
+              "web",
+              "api",
+              "backend",
+              "saas",
+              "infra",
+              "data",
+              "ai",
+              "mobile",
+              "sensitive"
+            ]
+          }
+        },
+        "verify": {
+          "type": "string",
+          "minLength": 6
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 6
+        },
+        "reference": {
+          "type": "string",
+          "format": "uri"
+        },
+        "section": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    }
+  }
+}
+```
+
+## Anexo O
+
+### Metadados de aplicabilidade e fontes dos 204 controles estruturados
+
+As verificações e evidências individuais já estão integralmente nas seções 21 a 23 do checklist. A tabela preserva os campos adicionais de cada controle do antigo catálogo: perfis de aplicabilidade e referência temática. Os IDs são locais do Good Practices e não identificadores oficiais de cláusulas de normas.
+
+| Controle | Perfil(is) | Referência temática |
+| --- | --- | --- |
+| `API-01` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-02` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-03` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-04` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-05` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-06` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-07` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-08` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-09` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-10` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-11` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `API-12` | `api`, `saas`, `backend` | https://spec.openapis.org/oas/latest.html |
+| `ASVS-01` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-02` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-03` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-04` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-05` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-06` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-07` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-08` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-09` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-10` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-11` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-12` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-13` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `ASVS-14` | `web`, `api`, `saas` | https://asvs.owasp.org/ |
+| `SAMM-01` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-02` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-03` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-04` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-05` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-06` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-07` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-08` | `all` | https://owaspsamm.org/model/ |
+| `SAMM-09` | `all` | https://owaspsamm.org/model/ |
+| `OSF-01` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `OSF-02` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `OSF-03` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `OSF-04` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `OSF-05` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `OSF-06` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `OSF-07` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `OSF-08` | `oss`, `library` | https://openssf.org/projects/best-practices-badge/ |
+| `RES-01` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-02` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-03` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-04` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-05` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-06` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-07` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-08` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-09` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-10` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-11` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-12` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-13` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-14` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-15` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-16` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-17` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-18` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `RES-19` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/ |
+| `OBS-01` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-02` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-03` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-04` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-05` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-06` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-07` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-08` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-09` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-10` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-11` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-12` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-13` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `OBS-14` | `api`, `saas`, `infra`, `backend` | https://sre.google/workbook/alerting-on-slos/ |
+| `FIN-01` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-02` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-03` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-04` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-05` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-06` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-07` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-08` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-09` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-10` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-11` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-12` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-13` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-14` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `FIN-15` | `api`, `saas`, `infra`, `ai`, `backend` | https://www.finops.org/framework/ |
+| `DNS-01` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-02` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-03` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-04` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-05` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-06` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-07` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-08` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-09` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-10` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-11` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-12` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-13` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-14` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-15` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-16` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `DNS-17` | `web`, `api`, `saas`, `infra` | https://www.rfc-editor.org/rfc/rfc7489 |
+| `RET-01` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-02` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-03` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-04` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-05` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-06` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-07` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-08` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-09` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-10` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-11` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-12` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-13` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-14` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-15` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `RET-16` | `all` | https://csrc.nist.gov/pubs/sp/800/88/r1/final |
+| `PORT-01` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-02` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-03` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-04` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-05` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-06` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-07` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-08` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-09` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-10` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-11` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-12` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `PORT-13` | `api`, `saas`, `infra`, `backend`, `data` | https://www.cncf.io/projects/ |
+| `TEST-01` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-02` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-03` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-04` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-05` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-06` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-07` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-08` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-09` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-10` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-11` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-12` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-13` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-14` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-15` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-16` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `TEST-17` | `all` | https://owasp.org/www-project-web-security-testing-guide/ |
+| `A11Y-01` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-02` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-03` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-04` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-05` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-06` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-07` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-08` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-09` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-10` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-11` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-12` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-13` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-14` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `A11Y-15` | `web`, `saas`, `docs`, `mobile` | https://www.w3.org/TR/WCAG22/ |
+| `PRIV-01` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-02` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-03` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-04` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-05` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-06` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-07` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-08` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-09` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-10` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-11` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-12` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-13` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-14` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-15` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `PRIV-16` | `saas`, `api`, `data`, `web`, `ai`, `sensitive` | https://www.nist.gov/privacy-framework |
+| `AIG-01` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-02` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-03` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-04` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-05` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-06` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-07` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-08` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-09` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-10` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-11` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-12` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-13` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-14` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-15` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-16` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-17` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-18` | `ai` | https://genai.owasp.org/llm-top-10/ |
+| `AIG-19` | `ai` | https://genai.owasp.org/llm-top-10/ |
+
