@@ -480,8 +480,7 @@
       "text": "Comparar projeto elegível aos critérios OpenSSF Baseline e Best Practices Badge.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Preencher autoavaliação com links de evidências.",
       "evidence": "Matriz de critérios",
@@ -494,8 +493,7 @@
       "text": "Distinguir OpenSSF Scorecard, OpenSSF Baseline e Best Practices Badge.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Conferir o objetivo, método e cobertura de cada avaliação.",
       "evidence": "Documentação de comparação",
@@ -508,8 +506,7 @@
       "text": "Avaliar progressão Passing → Silver → Gold somente para projetos adequados.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Verificar critérios por nível e capacidade de manutenção.",
       "evidence": "Plano de progresso",
@@ -522,8 +519,7 @@
       "text": "Documentar contribuição, governança, reporte de bugs, política de vulnerabilidades e suporte.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Verificar arquivos e canais públicos.",
       "evidence": "Links para documentos",
@@ -536,8 +532,7 @@
       "text": "Documentar manutenção, releases, práticas de teste e controle de mudanças.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Executar release de teste e revisar processos.",
       "evidence": "Histórico de release",
@@ -550,8 +545,7 @@
       "text": "Revisar bus factor, sucessão e diversidade de mantenedores para reduzir risco de abandono.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Simular ausência do mantenedor.",
       "evidence": "Plano de continuidade",
@@ -564,8 +558,7 @@
       "text": "Declarar status real das badges; não exibir badge como certificação independente automática.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Validar link e critérios reportados.",
       "evidence": "URL pública verificável",
@@ -578,8 +571,7 @@
       "text": "Submeter o projeto a programa de badge somente após evidências suficientes.",
       "profiles": [
         "oss",
-        "library",
-        "all"
+        "library"
       ],
       "verify": "Preencher avaliação oficial quando elegível.",
       "evidence": "Link do formulário de avaliação",
