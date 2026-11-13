@@ -253,6 +253,22 @@ Não foi encontrada uma configuração `qlty.toml` ou uso confirmado de Qlty nas
 | Vulnerabilidades | OSV-Scanner | Trivy |
 | Visão consolidada de qualidade | Avaliar Qlty | Relatórios dos scanners existentes |
 
+## Análise comportamental e maturação de releases
+
+- [ ] Configurar `minimumReleaseAge` no Renovate para reduzir adoção imediata de versões recém-publicadas.
+- [ ] Preferir cooldown no gerenciador de pacotes quando suportado, protegendo resolução transitiva em lockfiles.
+- [ ] Verificar suporte a timestamps por registry/datasource, considerando que algumas atualizações de digest não admitem maturação.
+- [ ] Confirmar fluxo de atualização emergencial de segurança, sem bloquear correções críticas pela janela de espera.
+- [ ] Avaliar Socket.dev (ou ferramenta equivalente) para análise comportamental de dependências e PRs.
+- [ ] Combinar sinais de scripts de instalação, ofuscação, filesystem, rede, execução de processos e mudanças de comportamento com scanners de CVE.
+- [ ] Documentar permissões do aplicativo de terceiros, dados enviados, revisão dos alertas e política de falsos positivos.
+- [ ] Fixar toolchain, versões transitivas e lockfiles para builds limpos e repetíveis.
+- [ ] Promover o mesmo artefato entre ambientes e verificar hashes, SBOM e atestação quando necessária.
+
+**Referência própria:** [Renovate em guesant/hl-infrastructure](https://github.com/guesant/hl-infrastructure/blob/main/.github/renovate.json), com `minimumReleaseAge: "7 days"`. O guia [entrega segura e processamento](secure-delivery-and-background-processing.md) apresenta configurações, limitações e critérios de escolha.
+
+**Referências oficiais:** [Renovate Minimum Release Age](https://docs.renovatebot.com/key-concepts/minimum-release-age/), [Socket for GitHub](https://docs.socket.dev/docs/socket-for-github).
+
 ## Critério de qualidade das recomendações
 
 Uma recomendação de configuração só deve ser promovida a template reutilizável se incluir:
