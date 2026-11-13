@@ -6,6 +6,22 @@ Checklist extensivo, genérico e reutilizável de práticas de open source, enge
 
 **Aplicabilidade:** o checklist é um catálogo de controles, não um conjunto de obrigações para todos os projetos. Avalie cada item como obrigatório para o contexto, recomendado, pendente ou não aplicável. Um repositório de documentação não precisa de todos os controles de uma aplicação produtiva.
 
+## Navegação por área
+
+Este README é o **checklist central**. Os guias vinculados aprofundam configurações, exemplos e evidências.
+
+- [Fundamentos, documentação, licenças, créditos, comunidade e governança](#1-identidade-e-preparação-do-projeto)
+- [Conformidade técnica, tooling e quality gates](#11-conformidade-técnica-automatizada)
+- [Referenciais de qualidade, segurança e gestão](#12-normas-e-referenciais-de-qualidade-e-conformidade)
+- [Serviços, APIs, dados e operação](#13-operação-apis-dados-e-entrega-quando-aplicável)
+- [GitHub: merges, rulesets, .github, CODEOWNERS, badges e políticas](#16-perfil-de-configurações-do-github-e-arquivos-obrigatórios-por-contexto)
+- [Hardening: YubiKey, passkeys, SSH, sandbox, segredos e infraestrutura](#17-hardening-operacional-identidades-yubikey-ssh-sandbox-e-infraestrutura)
+- [ISO/IEC 25010, NIST CSF, SP 800-53, SSDF e demais normas](#18-controles-derivados-de-nist-isoiecieee-e-requisitos-não-funcionais)
+
+**Guias aprofundados:** [GitHub e README](docs/github-repository-setup.md) · [Hardening](docs/security-hardening.md) · [Normas em controles e requisitos não funcionais](docs/standards-to-controls.md) · [Ferramentas](docs/tooling-configurations.md) · [Créditos e licenças](docs/credits-and-licenses.md).
+
+**Aplicação:** classificar controles como aplicáveis, não aplicáveis ou pendentes de análise; vincular risco, prioridade, responsável, evidência e data de revisão. A existência de um item ou de uma configuração não comprova sua implementação.
+
 ## Configurações práticas de ferramentas
 
 O [catálogo de configurações reais dos repositórios de guesant](docs/tooling-configurations.md) reúne exemplos, critérios de adoção e checklists adicionais para ESLint, Biome, Prettier, Stylelint, ast-grep, jscpd, Knip, actionlint, zizmor, Hadolint, Gitleaks, Renovate e outras ferramentas. Qlty está identificado como alternativa ainda sem configuração própria verificada.
