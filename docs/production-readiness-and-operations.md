@@ -16,6 +16,10 @@ Checklist completo de **Go/No-Go**, segurança de produção, disponibilidade, a
 
 **Referenciais:** [CIS Controls v8.1](https://www.cisecurity.org/controls/cis-controls-list), [CIS Control 4](https://cas8.docs.cisecurity.org/en/latest/source/Controls4/), [CIS Control 8](https://cas8.docs.cisecurity.org/en/latest/source/Controls8/), [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/), [OWASP Access Controls](https://devguide.owasp.org/en/04-design/02-web-app-checklist/07-access-controls/), [OWASP Logging/Monitoring](https://devguide.owasp.org/en/04-design/02-web-app-checklist/09-logging-monitoring/), [NIST CSF 2.0](https://www.nist.gov/cyberframework), [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final), [CISA KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog), [FIRST EPSS](https://www.first.org/epss/), [Fail2Ban](https://github.com/fail2ban/fail2ban).
 
+## Checklist adicional: supply chain, CSPRNG e processamento
+
+As verificações adicionais para **Continuous Integration vs Continuous Delivery vs Continuous Deployment**, análise comportamental das dependências (Socket.dev), minimum release age, build reproduzível, CSPRNG, probes, migrações progressivas e filas/workers foram incluídas no [guia de entrega segura](secure-delivery-and-background-processing.md). O [README principal](../README.md) integra os 96 controles à lista de verificação única.
+
 ## Lista completa
 
 
