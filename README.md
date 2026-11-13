@@ -1029,6 +1029,700 @@ jobs:
 - [ ] Documentar exclusões e falsos positivos, com responsáveis e justificativas.
 - [ ] Reavaliar periodicamente configurações e atualizar ferramentas.
 
+
+---
+
+## 16. Perfil de configurações do GitHub e arquivos obrigatórios por contexto
+
+Checklist operacional condensado a partir do [guia de GitHub](docs/github-repository-setup.md). O perfil de merge e o padrão visual são **preferências configuráveis**, não exigências normativas. Itens continuam desmarcados até validação do repositório.
+
+### 1. Settings → General: perfil preferido
+- [ ] Definir descrição curta, URL do projeto, tópicos, imagem social e visibilidade intencional.
+- [ ] Confirmar a branch padrão, preferencialmente `main`, se esta for a convenção adotada.
+- [ ] **Allow merge commits: ativado**, preferencialmente com mensagem padrão consistente.
+- [ ] **Allow squash merging: desativado** no perfil pessoal, preservando o histórico dos commits.
+- [ ] **Allow rebase merging: desativado** no perfil pessoal, usando merge commits explícitos.
+- [ ] **Automatically delete head branches: ativado** após o merge.
+- [ ] Avaliar **Allow auto-merge** de modo separado, conforme permissões, checks e revisão.
+- [ ] Decidir se issues, Discussions, Projects e Wiki serão usados; desativar superfícies desnecessárias.
+- [ ] Impedir edição irrestrita de repositórios por automações e colaboradores sem necessidade.
+- [ ] Preferir não criar repositórios com arquivos duplicados de políticas compartilhadas, salvo quando precisarem de regras próprias.
+- [ ] Verificar se branches protegidas ou rulesets impedem a remoção automática das branches de trabalho.
+- [ ] Avaliar configurações de forks, permissões de colaboradores externos e outras superfícies do repositório.
+
+### 2. Rulesets, proteção de branch e política de pull requests
+- [ ] Proteger a branch padrão contra exclusão e force push.
+- [ ] Impedir push direto na branch protegida, usando pull requests por padrão.
+- [ ] Configurar checks obrigatórios realmente existentes, com nomes estáveis.
+- [ ] Exigir que o job agregador `gate` valide falhas e jobs indevidamente pulados.
+- [ ] Exigir resolução de conversas de revisão quando houver revisão em equipe.
+- [ ] Definir número de aprovações de acordo com o tamanho da equipe, risco e capacidade operacional.
+- [ ] Exigir revisão de CODEOWNERS para áreas críticas quando possível.
+- [ ] Invalidar aprovações antigas quando commits novos alterarem a revisão de risco.
+- [ ] Restringir bypass de rulesets a identidades e cenários indispensáveis, com registro de auditoria.
+- [ ] Avaliar exigência de commits assinados e validação da cadeia de confiança.
+- [ ] Avaliar bloqueio de históricos lineares: **não exigir linear history** se a preferência é merge commit.
+- [ ] Não impor simultaneamente regras incompatíveis com a estratégia de merge escolhida.
+- [ ] Avaliar merge queue para equipes de alta concorrência e conferir sua compatibilidade com os workflows.
+- [ ] Controlar criação de branches e tags protegidas, incluindo padrões de release.
+- [ ] Configurar políticas diferentes para `main`, branches de release e tags quando necessário.
+- [ ] Verificar se checks são executados nos eventos relevantes, inclusive `merge_group` se houver merge queue.
+- [ ] Testar uma PR de exemplo com sucesso, erro, job cancelado e job skipped.
+- [ ] Documentar exceções temporárias, responsável e prazo de revisão.
+
+### 3. Repository settings: segurança e automações
+- [ ] Habilitar MFA e preferir passkeys/FIDO2 resistentes a phishing para administradores.
+- [ ] Revisar App installations, OAuth grants, deploy keys e tokens pessoais.
+- [ ] Habilitar dependency graph, alertas de dependências e atualizações de segurança quando disponíveis.
+- [ ] Avaliar Dependabot ou Renovate sem permitir aprovações e merges automáticos indiscriminados.
+- [ ] Ativar secret scanning, push protection e Private Vulnerability Reporting conforme disponibilidade.
+- [ ] Configurar CodeQL/code scanning e alertas SARIF para o código que realmente se aplica.
+- [ ] Limitar permissões padrão de `GITHUB_TOKEN` e do GitHub Actions a leitura.
+- [ ] Conceder `contents: write`, `packages: write`, `security-events: write` e `id-token: write` somente a jobs que necessitem.
+- [ ] Fixar GitHub Actions externas pelo SHA completo do commit, mantendo comentários com a versão.
+- [ ] Utilizar `persist-credentials: false` no checkout quando as credenciais não forem necessárias.
+- [ ] Evitar `pull_request_target` executando código de PR não confiável com segredos.
+- [ ] Definir política de Actions autorizadas e permissões para criação de PRs por workflows.
+- [ ] Preferir OIDC com credenciais de curta duração para implantações em provedores externos.
+- [ ] Separar ambientes de produção, proteger secrets e exigir aprovação para deploys sensíveis.
+- [ ] Configurar `concurrency` e `cancel-in-progress` de acordo com o tipo de job.
+- [ ] Definir prazo de retenção e permissões de leitura de artefatos e logs.
+- [ ] Verificar ações inseguras de `workflow_run`, uploads, caches e artefatos não confiáveis.
+- [ ] Executar `actionlint`, `zizmor` e, quando aplicável, OpenSSF Scorecard.
+- [ ] Configurar branch protection, rulesets e checks de acordo com os recursos disponíveis no plano.
+
+### 4. Repositório especial `owner/.github`
+- [ ] Criar e manter `owner/.github` para políticas comunitárias reutilizáveis entre repositórios elegíveis.
+- [ ] Documentar claramente quais arquivos funcionam como defaults e quando arquivos locais prevalecem.
+- [ ] Manter `CONTRIBUTING.md` com fluxo de contribuição, testes, documentação, licenças e revisão.
+- [ ] Manter `CODE_OF_CONDUCT.md` com canais de denúncia e tratamento de conduta.
+- [ ] Manter `SECURITY.md` com canal privado e política de versões suportadas.
+- [ ] Manter `SUPPORT.md` diferenciando dúvidas, bugs, propostas e vulnerabilidades.
+- [ ] Manter `.github/ISSUE_TEMPLATE/bug.yml` para bugs reproduzíveis.
+- [ ] Manter `.github/ISSUE_TEMPLATE/feature.yml` para propostas de funcionalidade.
+- [ ] Manter `.github/ISSUE_TEMPLATE/config.yml` para links de suporte e opções de issues.
+- [ ] Manter `.github/DISCUSSION_TEMPLATE/` para ideias, perguntas e discussões quando pertinente.
+- [ ] Adicionar `.github/FUNDING.yml` quando houver opções reais de apoio financeiro.
+- [ ] Revisar o escopo de herança das community health files: defaults de `.github` não substituem todas as configurações do repositório.
+- [ ] Não copiar dados sensíveis, endereços privados ou canais internos nos defaults públicos.
+
+### 5. Arquivos recomendados em cada repositório
+- [ ] Adicionar `CODEOWNERS` em um dos locais reconhecidos (`.github/`, raiz ou `docs/`) quando houver responsáveis aptos a revisar.
+- [ ] Cobrir código-fonte, infraestrutura, workflows, arquivos de segurança e regras de CI com CODEOWNERS quando aplicável.
+- [ ] Confirmar sintaxe, precedência de padrões e permissão de escrita dos owners.
+- [ ] Criar template de PR com descrição, motivação, teste, impacto, riscos e checklist de publicação.
+- [ ] Usar GitHub Issue Forms para informações estruturadas quando úteis, sem tornar burocrático o relato.
+- [ ] Referenciar políticas globais de `.github` e sobrescrever somente por necessidade explícita.
+- [ ] Manter licença própria do projeto em `LICENSE` e licenças de terceiros separadas.
+- [ ] Manter arquivos editoriais de configurações como `.editorconfig`, `.gitignore`, `.gitattributes` e configurações de lint.
+- [ ] Evitar duplicar instruções conflitantes entre README, CONTRIBUTING e documentação.
+
+### 6. README: apresentação, badges e transparência
+- [ ] Iniciar com nome, propósito, estado do projeto, principais recursos e público.
+- [ ] Mostrar badges significativas, com legenda e link de destino correto.
+- [ ] Preferir Shields.io com estilos consistentes, como `for-the-badge` para cabeçalho e `flat-square` para informações detalhadas.
+- [ ] Manter `labelColor=0b1120` e cores por função no perfil visual inspirado nos repositórios de referência.
+- [ ] Incluir status real de CI e documentação, quando existentes.
+- [ ] Incluir licença com destino para o texto integral no repositório.
+- [ ] Considerar OpenSSF Scorecard, Renovate, versão das ferramentas e último run, sem sugerir avaliação não executada.
+- [ ] Incluir badges de último commit, atividade mensal, PRs, issues, stars e forks quando fizerem sentido.
+- [ ] Incluir badge de local de produção ou autoria ("Feito no Brasil") somente quando verdadeiro e útil.
+- [ ] Manter rótulos em português quando o README tiver público lusófono.
+- [ ] Não incluir badges dinâmicas que exponham dados privados, tokens ou endpoints internos.
+- [ ] Conferir se o badge não quebra com rate limiting ou alteração de API de terceiros.
+- [ ] Evitar poluição visual e agrupar badges por operação, qualidade, tecnologia e comunidade.
+- [ ] Ter resumo de instalação, comandos locais, testes e links para documentação e suporte.
+- [ ] Incluir disclaimer explícito sobre estágio, limitações, riscos, ausência de garantias e licença, quando necessário.
+- [ ] Adicionar seção **Licença** com link para o texto integral, inclusive distinção entre código, documentação e assets.
+- [ ] Adicionar **Créditos e agradecimentos** com link para `CREDITS.md` e licenças de terceiros.
+- [ ] Informar ferramentas, serviços e dados de terceiros utilizados sem sugerir endosso desses fornecedores.
+- [ ] Manter links de `SECURITY.md`, `CONTRIBUTING.md` e `SUPPORT.md` visíveis.
+
+### 7. Checklist de auditoria inicial
+- [ ] Registrar screenshot/export das configurações de General, Branches, Rulesets, Actions e Security, sem revelar segredos.
+- [ ] Fazer PR de teste para verificar revisão, gates, merge commit e exclusão automática de branch.
+- [ ] Testar canal privado de reporte de vulnerabilidade.
+- [ ] Verificar que badges, links, licenças e créditos correspondem ao estado real.
+- [ ] Agendar revisão de permissões, bots, tokens e arquivos comunitários.
+
+## 17. Hardening operacional: identidades, YubiKey, SSH, sandbox e infraestrutura
+
+Controles de hardening detalhados em [segurança operacional](docs/security-hardening.md). Preferir chaves protegidas por hardware e não manter chaves privadas SSH em disco é um **perfil de segurança elevado**, não uma regra universal.
+
+### 1. Inventário, risco e delimitação de confiança
+- [ ] Identificar ativos, fluxos de dados, dependências, provedores e suas criticidades.
+- [ ] Classificar informações conforme sensibilidade, necessidade de integridade e disponibilidade.
+- [ ] Definir ameaças, atores, superfícies de ataque, fronteiras de confiança e pressupostos.
+- [ ] Registrar ameaças internas, acesso indevido, ransomware, roubo e comprometimento da cadeia de suprimentos.
+- [ ] Elaborar diagrama de fluxo de dados e identificar exposição de informações sensíveis.
+- [ ] Definir controles mínimos proporcionais a risco, criticidade e estágio.
+- [ ] Definir prioridades, responsáveis, risco residual, evidências e prazos.
+- [ ] Reavaliar após mudanças de arquitetura, dependências, permissões e incidentes.
+- [ ] Revisar requisitos legais e contratuais sobre retenção, logs e tratamento de dados.
+
+### 2. Identidade, MFA, FIDO2 e YubiKey
+- [ ] Inventariar todas as identidades humanas, técnicas, de bots e service accounts.
+- [ ] Preferir passkeys com WebAuthn/FIDO2 resistentes a phishing em contas críticas.
+- [ ] Avaliar YubiKey ou outra chave física FIDO2 como autenticador de alta segurança.
+- [ ] Cadastrar no mínimo um método independente de recuperação, preferindo chave de segurança reserva sob custódia segura.
+- [ ] Proteger códigos de recuperação, evitando mesma localização que dispositivo primário.
+- [ ] Evitar depender exclusivamente de SMS e OTP quando autenticação resistente a phishing for viável.
+- [ ] Aplicar MFA forte a GitHub, email, registradores DNS, provedores cloud, gerenciadores de senhas e outros control planes.
+- [ ] Distinguir passkeys sincronizáveis de credenciais restritas a hardware, conforme risco.
+- [ ] Exigir autenticação recente para operações sensíveis e gestão de credenciais.
+- [ ] Evitar compartilhamento de contas; utilizar identidades individuais, trilhas de auditoria e autorização por função.
+- [ ] Revogar prontamente acessos, sessões, passkeys e tokens de colaboradores desligados.
+- [ ] Reavaliar MFA e privilégios de contas de emergência sem criar ponto único de falha.
+
+### 3. SSH, Git, certificados e proteção de chaves privadas
+- [ ] Preferir chaves SSH não exportáveis geradas em token físico (por exemplo, FIDO2) quando o ambiente oferecer suporte.
+- [ ] Alternativamente, considerar SSH agent de gerenciador de credenciais, Secure Enclave, TPM ou solução equivalente, conforme suporte real.
+- [ ] Se armazenar chave privada em disco, exigir proteção por senha forte quando suportada, permissões restritas, criptografia de disco e política de backup adequada.
+- [ ] Evitar incluir chaves privadas em dotfiles, backups não criptografados, repositórios, screenshots ou logs.
+- [ ] Não copiar a mesma chave privada para múltiplos hosts sem motivo documentado.
+- [ ] Separar chaves por escopo ou ambiente quando isso reduzir impacto de comprometimento.
+- [ ] Aplicar validade curta de certificados SSH quando há autoridade certificadora e infraestrutura apropriadas.
+- [ ] Validar identidade do host SSH, manter `known_hosts` e investigar alterações inesperadas.
+- [ ] Evitar `StrictHostKeyChecking=no` como configuração global.
+- [ ] Restringir `ForwardAgent` e agent forwarding a ambientes confiáveis e casos justificados.
+- [ ] Proteger o socket do agente e evitar exposição em containers, VMs e sessões remotas não confiáveis.
+- [ ] Registrar inventário de chaves públicas, acessos concedidos, data de criação e revogação.
+- [ ] Definir processos de rotação e revogação ao perder token ou comprometer conta.
+- [ ] Avaliar assinatura de commits/tags e proteção de tags de release sem confundir assinatura com revisão.
+- [ ] Proteger chaves de assinatura e aplicar política de rotação e recuperação.
+
+### 4. Ciclo de vida de secrets, PKI e criptografia
+- [ ] Inventariar secrets, chaves, certificados, tokens, credenciais de deploy e credenciais de terceiros.
+- [ ] Reduzir secrets de longa duração; preferir identidades federadas, OIDC e credenciais temporárias.
+- [ ] Usar vault ou secret manager com controles de acesso específicos.
+- [ ] Usar SOPS/age ou mecanismos equivalentes para segredos versionados somente criptografados, quando necessário.
+- [ ] Não armazenar segredos em variáveis públicas de CI, artefatos, imagens de container ou logs.
+- [ ] Separar chaves por função: criptografia de dados, assinatura, autenticação e wrapping.
+- [ ] Proteger root CA, intermediárias, chaves de recuperação e trust anchors.
+- [ ] Planejar geração, distribuição, ativação, rotação, revogação, expiração e descarte de chaves.
+- [ ] Controlar backup e recuperação das chaves de dados, diferenciando chaves recuperáveis das de assinatura.
+- [ ] Definir regras e exceções para exportação e armazenamento de chaves privadas.
+- [ ] Usar algoritmos, protocolos, tamanhos de chave e bibliotecas mantidas e apropriadas ao risco.
+- [ ] Exigir TLS e validação correta de certificados nos pontos de comunicação.
+- [ ] Monitorar vencimento de certificados e planejar renovação.
+- [ ] Considerar mTLS para comunicação entre serviços com forte requisito de identidade.
+- [ ] Evitar criar criptografia própria ou usar hashes de senha sem algoritmos próprios para armazenamento de senhas.
+- [ ] Revisar política de criptografia em repouso, backups, bancos e campos sensíveis.
+- [ ] Considerar criptografia por campo na aplicação quando o risco não for resolvido por criptografia de volume.
+- [ ] Aplicar separação de funções e aprovação múltipla a operações com chaves especialmente críticas.
+- [ ] Ensaiar cenários de perda de chave, comprometimento, recuperação e recriptografia de dados.
+
+### 5. Workstation, laptop e endpoints de desenvolvimento
+- [ ] Utilizar sistema operacional suportado e aplicar atualizações de segurança.
+- [ ] Ativar criptografia integral de disco quando houver dados de trabalho.
+- [ ] Configurar bloqueio automático de sessão e autenticação resistente a ataques triviais.
+- [ ] Executar trabalho cotidiano sem privilégios administrativos.
+- [ ] Restringir instalação de software, drivers, extensões e agentes desnecessários.
+- [ ] Revisar extensões do navegador e do editor com acesso a código, arquivos e credenciais.
+- [ ] Manter firewall ativo, portas de entrada mínimas e serviços dispensáveis desabilitados.
+- [ ] Utilizar proteção de execução e isolamento oferecidos pelo sistema operacional.
+- [ ] Verificar integridade de downloads e proveniência de binários antes de executar.
+- [ ] Evitar copiar tokens, secrets e credenciais para clipboard compartilhado ou logs de terminal.
+- [ ] Reduzir a exposição de metadados e segredos em gravações de tela, relatórios e bug reports.
+- [ ] Definir backup criptografado e testado para arquivos e configurações necessários à recuperação.
+- [ ] Revisar permissões de dispositivos USB e mídias removíveis quando pertinentes ao risco.
+
+### 6. Sandboxing e isolamento de código não confiável
+- [ ] Executar builds, scripts externos, testes desconhecidos e ferramentas pouco confiáveis em ambiente isolado quando possível.
+- [ ] Avaliar sandboxing por containers, VMs, namespaces e mecanismos nativos do SO.
+- [ ] Usar rootless containers ou usuário não privilegiado quando possível.
+- [ ] Impedir execução de container com `--privileged` sem justificativa.
+- [ ] Minimizar capabilities Linux e usar `no-new-privileges` quando disponível.
+- [ ] Aplicar seccomp, AppArmor ou SELinux conforme ambiente.
+- [ ] Evitar montar `/var/run/docker.sock` e diretórios de credenciais em containers não confiáveis.
+- [ ] Montar arquivos necessários somente leitura e limitar escrita a diretórios temporários.
+- [ ] Limitar memória, CPU, tempo, disco e processos quando código não confiável puder consumir recursos.
+- [ ] Controlar saída de rede e DNS em jobs não confiáveis, evitando exfiltração.
+- [ ] Desabilitar acesso ao host, namespaces privilegiados e dispositivos desnecessários.
+- [ ] Eliminar estado do sandbox após executar código potencialmente hostil.
+- [ ] Não assumir que qualquer container representa fronteira de segurança equivalente a VM.
+- [ ] Testar comportamento de fuga de isolamento e atualizar runtimes e kernels relevantes.
+- [ ] Isolar a execução de código gerado por IA e comandos sugeridos por terceiros antes de acesso a repositórios ou segredos.
+
+### 7. SSH server, hosts, cloud e Kubernetes
+- [ ] Remover serviços e portas não utilizados; configurar firewall de entrada com política restritiva.
+- [ ] Restringir login de root, autenticação de senha e usuários SSH conforme risco e política.
+- [ ] Configurar logs persistentes e sincronização segura de horário.
+- [ ] Aplicar baselines CIS ou equivalentes selecionadas para distribuição e versão.
+- [ ] Monitorar atualizações críticas e vulnerabilidades do host, firmware e hipervisor.
+- [ ] Manter contas de serviço separadas e privilégios mínimos.
+- [ ] Segregar redes administrativas, produção e desenvolvimento quando aplicável.
+- [ ] Definir controles explícitos de egress para workloads sensíveis.
+- [ ] Restringir acesso à API do cluster e aos consoles de administração.
+- [ ] Aplicar RBAC, policies de rede, Pod Security e controles do admission quando adequado.
+- [ ] Evitar containers root, hostNetwork e mounts privilegiados desnecessários.
+- [ ] Fixar versões/digests de imagens e verificar procedência.
+- [ ] Proteger armazenamento persistente, credenciais de infraestrutura e volumes.
+- [ ] Validar manifests e IaC com scanners, política como código e revisão.
+- [ ] Definir alertas de indisponibilidade, alteração de configuração e atividade suspeita.
+- [ ] Testar backup e disaster recovery, inclusive cópia fora do cluster.
+- [ ] Registrar mudanças e separar credenciais de operações rotineiras das emergenciais.
+
+### 8. Aplicação, API e banco de dados
+- [ ] Validar dados de entrada, codificação de saída e proteção contra injeção.
+- [ ] Implementar autorização em servidor por recurso, operação, tenant e dono dos dados.
+- [ ] Usar sessão e cookies seguros (HttpOnly, Secure, SameSite quando apropriado).
+- [ ] Proteger operações contra CSRF, SSRF, upload malicioso, path traversal e deserialização insegura conforme exposição.
+- [ ] Definir CSP e cabeçalhos HTTP defensivos de maneira compatível com a aplicação.
+- [ ] Evitar logs com tokens, payloads secretos ou dados pessoais desnecessários.
+- [ ] Proteger credenciais de conexão e segregar permissões administrativas, migrações, leitura e escrita.
+- [ ] Planejar rate limiting, quotas e prevenção de abuso de recursos.
+- [ ] Tratar erros sem vazar stack traces ou detalhes internos para usuários não autorizados.
+- [ ] Definir proteção contra enumeração e ataques de força bruta onde houver autenticação.
+- [ ] Testar isolamento entre contas, ambientes e tenants.
+- [ ] Incluir verificação de vulnerabilidades e testes automatizados relevantes para cada fronteira de confiança.
+
+### 9. CI/CD e supply chain
+- [ ] Aplicar permissões mínimas por workflow e por job.
+- [ ] Fixar ações de terceiros por SHA e verificar alterações antes de atualizar.
+- [ ] Desativar persistência de credenciais do checkout quando desnecessária.
+- [ ] Isolar execução de PRs externos, sem acesso a segredos e tokens privilegiados.
+- [ ] Evitar injeção em `run:` a partir de expressões não confiáveis; usar variáveis de ambiente e validação.
+- [ ] Executar lint de workflow (`actionlint`) e avaliação de risco (`zizmor`).
+- [ ] Habilitar secret scanning, SAST, SCA e análise de imagens conforme stack.
+- [ ] Inventariar componentes por SBOM e avaliar licenças e CVEs.
+- [ ] Usar build reproduzível e proveniência/atestação quando o artefato justificar.
+- [ ] Proteger políticas de publicação, tokens de registry, assinaturas e ambientes de deployment.
+- [ ] Separar jobs não confiáveis de jobs que fazem release e deployment.
+- [ ] Criar mecanismos de bloqueio por severidade com exceções temporárias rastreáveis.
+
+### 10. Monitoração, incidentes e recuperação
+- [ ] Registrar eventos de autenticação, mudanças administrativas, violações de acesso e incidentes relevantes.
+- [ ] Definir retenção de logs, controles de acesso e proteção contra adulteração.
+- [ ] Centralizar logs, métricas e tracing proporcionais ao escopo.
+- [ ] Detectar comportamentos anômalos, falhas de controle e indisponibilidade.
+- [ ] Preparar playbooks para credenciais comprometidas, token perdido, vazamento, malware e falha de infraestrutura.
+- [ ] Definir triagem, severidade, responsáveis, comunicação e escalonamento.
+- [ ] Testar revogação e substituição de credenciais após incidente.
+- [ ] Definir RPO/RTO e testar restauração de backup.
+- [ ] Fazer revisão pós-incidente, ações corretivas e reavaliação do modelo de ameaças.
+- [ ] Guardar evidências de segurança de modo proporcional à privacidade e obrigações legais.
+
+### 11. Verificação e evidências
+- [ ] Realizar testes independentes dos controles considerados mais críticos.
+- [ ] Separar check automatizado de avaliação manual e declarar limitações.
+- [ ] Guardar relatórios de execução e anotar ferramentas e versões.
+- [ ] Não declarar hardening ou conformidade efetivos apenas porque existe um arquivo de configuração.
+- [ ] Reavaliar os controles quando houver mudança material de tecnologia ou de ameaça.
+
+## 18. Controles derivados de NIST, ISO/IEC/IEEE e requisitos não funcionais
+
+Itens detalhados no [mapeamento de normas para requisitos verificáveis](docs/standards-to-controls.md). Esta lista interpreta temas de NIST/ISO como controles aplicáveis por risco; **não reproduz integralmente normas proprietárias nem equivale a certificação**. Os IDs abaixo são próprios deste checklist e não números oficiais de cláusulas.
+
+### 1. Requisitos não funcionais: ISO/IEC 25010:2023
+
+#### NFR-FS: Adequação funcional
+- [ ] **NFR-FS-01** Identificar funcionalidades prometidas e mapear cada uma às necessidades de usuários e stakeholders.
+- [ ] **NFR-FS-02** Definir critérios de aceite para completude, correção e adequação dos resultados.
+- [ ] **NFR-FS-03** Especificar comportamentos normais, casos-limite, falhas e condições de entrada.
+- [ ] **NFR-FS-04** Executar testes de comportamento e de regressão sobre requisitos críticos.
+
+#### NFR-PE: Eficiência de desempenho
+- [ ] **NFR-PE-01** Definir latência e percentis de resposta (por exemplo, p95 e p99) por operação crítica.
+- [ ] **NFR-PE-02** Definir throughput, tempo de processamento, capacidade e consumo máximo de recursos.
+- [ ] **NFR-PE-03** Executar carga, estresse e testes de degradação representativos.
+- [ ] **NFR-PE-04** Medir desempenho com cargas e ambiente reproduzíveis, comparando com limites de aceite.
+
+#### NFR-CO: Compatibilidade
+- [ ] **NFR-CO-01** Definir versões suportadas de SO, navegador, linguagem, protocolos e dependências.
+- [ ] **NFR-CO-02** Validar interoperabilidade, formatos abertos e contratos entre sistemas.
+- [ ] **NFR-CO-03** Testar coexistência com outros serviços sem interferência indevida.
+- [ ] **NFR-CO-04** Documentar compatibilidade retroativa e política de mudanças incompatíveis.
+
+#### NFR-IC: Capacidade de interação
+- [ ] **NFR-IC-01** Identificar públicos, tarefas, capacidades e necessidades de acessibilidade.
+- [ ] **NFR-IC-02** Testar clareza, orientação, consistência, prevenção de erro e facilidade de aprendizado.
+- [ ] **NFR-IC-03** Verificar navegação por teclado, tecnologias assistivas e feedback de ações.
+- [ ] **NFR-IC-04** Usar testes com pessoas representativas quando o produto exigir validação de usabilidade.
+
+#### NFR-RE: Confiabilidade
+- [ ] **NFR-RE-01** Definir meta de disponibilidade e janela de observação para serviços.
+- [ ] **NFR-RE-02** Especificar comportamento sob falhas de dependências, rede, processos e dados.
+- [ ] **NFR-RE-03** Implementar recuperação, retries controlados, tolerância a falhas e failover quando necessários.
+- [ ] **NFR-RE-04** Testar recuperação, integridade de estado e comportamento em condições degradadas.
+
+#### NFR-SE: Segurança
+- [ ] **NFR-SE-01** Definir requisitos de confidencialidade, integridade, autenticidade e responsabilização.
+- [ ] **NFR-SE-02** Modelar ameaças, fronteiras de confiança, perfis de acesso e abuso.
+- [ ] **NFR-SE-03** Estabelecer critérios testáveis para autenticação, autorização, auditoria e proteção de dados.
+- [ ] **NFR-SE-04** Verificar segurança por testes automatizados, revisão e avaliação manual proporcional ao risco.
+
+#### NFR-MA: Manutenibilidade
+- [ ] **NFR-MA-01** Documentar arquitetura, decisões, interfaces e responsabilidades.
+- [ ] **NFR-MA-02** Estabelecer testes e métricas de cobertura relevantes, sem perseguir cobertura como fim.
+- [ ] **NFR-MA-03** Controlar complexidade, dependências, duplicação e acoplamento excessivo.
+- [ ] **NFR-MA-04** Verificar facilidade de modificação e diagnóstico por meio de revisão, refatoração e testes.
+
+#### NFR-FL: Flexibilidade
+- [ ] **NFR-FL-01** Definir pontos de configuração e adaptação que evitam alterações desnecessárias do código.
+- [ ] **NFR-FL-02** Verificar instalação, substituição de dependências e portabilidade para ambientes suportados.
+- [ ] **NFR-FL-03** Documentar escalabilidade horizontal/vertical apenas onde o produto requer.
+- [ ] **NFR-FL-04** Testar mudanças planejadas de ambiente e capacidade sem quebra de funcionalidades essenciais.
+
+#### NFR-SA: Segurança contra danos (safety)
+- [ ] **NFR-SA-01** Identificar riscos de danos físicos, financeiros, sociais ou a pessoas causados por falhas do produto.
+- [ ] **NFR-SA-02** Estabelecer limites seguros, modos de falha previsíveis e controles de contenção.
+- [ ] **NFR-SA-03** Avaliar riscos de uso indevido, operações irreversíveis e decisões automatizadas.
+- [ ] **NFR-SA-04** Exigir revisão especializada em contextos médicos, industriais, automotivos ou de risco elevado.
+
+### 2. NIST Cybersecurity Framework 2.0: seis funções
+
+#### CSF-GV: Governar (GV)
+- [ ] **CSF-GV-01** Definir política de segurança, apetite de risco, responsabilidades e prestação de contas.
+- [ ] **CSF-GV-02** Mapear obrigações legais, compromissos contratuais e requisitos de stakeholders.
+- [ ] **CSF-GV-03** Estabelecer governança de fornecedores, dependências e mudanças de risco.
+- [ ] **CSF-GV-04** Revisar efetividade dos controles, decisões e exceções com periodicidade definida.
+
+#### CSF-ID: Identificar (ID)
+- [ ] **CSF-ID-01** Inventariar hardware, software, serviços, usuários, dependências e informações críticas.
+- [ ] **CSF-ID-02** Mapear processos, fluxos, riscos e superfícies de exposição.
+- [ ] **CSF-ID-03** Avaliar criticidade, impacto, vulnerabilidades e ameaças.
+- [ ] **CSF-ID-04** Manter registro e revisão periódica de riscos e ativos.
+
+#### CSF-PR: Proteger (PR)
+- [ ] **CSF-PR-01** Aplicar identidade, MFA, autorização mínima e gestão de segredos.
+- [ ] **CSF-PR-02** Configurar hardening, treinamento e segurança das plataformas.
+- [ ] **CSF-PR-03** Proteger dados em repouso, trânsito, backup e descarte.
+- [ ] **CSF-PR-04** Reduzir superfícies de ataque por isolamento, segmentação e configurações seguras.
+
+#### CSF-DE: Detectar (DE)
+- [ ] **CSF-DE-01** Instrumentar eventos de segurança com logs e métricas pertinentes.
+- [ ] **CSF-DE-02** Definir casos de uso de detecção com alertas acionáveis.
+- [ ] **CSF-DE-03** Proteger integridade, acesso e retenção dos logs.
+- [ ] **CSF-DE-04** Testar detecções e reduzir falsos positivos relevantes.
+
+#### CSF-RS: Responder (RS)
+- [ ] **CSF-RS-01** Definir severidade, responsáveis, comunicação e procedimentos de resposta.
+- [ ] **CSF-RS-02** Preparar isolamento, revogação de credenciais e contenção de incidentes.
+- [ ] **CSF-RS-03** Preservar evidências respeitando privacidade e cadeia de custódia.
+- [ ] **CSF-RS-04** Registrar causas, danos, correções e comunicação de incidentes.
+
+#### CSF-RC: Recuperar (RC)
+- [ ] **CSF-RC-01** Definir RPO, RTO e prioridades de recuperação.
+- [ ] **CSF-RC-02** Manter backups, redundância e planos de reconstrução necessários.
+- [ ] **CSF-RC-03** Executar testes periódicos de restauração e continuidade.
+- [ ] **CSF-RC-04** Revisar resiliência, lições aprendidas e condições de retorno à operação.
+
+### 3. NIST SP 800-53 Rev. 5: vinte famílias de controles
+
+#### 53-AC: Controle de acesso
+- [ ] **53-AC-01** Definir RBAC/ABAC ou modelo apropriado e políticas de acesso por recurso.
+- [ ] **53-AC-02** Aplicar menor privilégio, segregação de funções e revisão periódica de permissões.
+
+#### 53-AT: Conscientização e treinamento
+- [ ] **53-AT-01** Treinar equipe sobre phishing, engenharia social e tratamento de segredos.
+- [ ] **53-AT-02** Registrar treinamento proporcional às funções e riscos.
+
+#### 53-AU: Auditoria e responsabilização
+- [ ] **53-AU-01** Definir eventos auditáveis e retenção compatível com riscos e privacidade.
+- [ ] **53-AU-02** Proteger logs contra adulteração e restringir sua leitura.
+
+#### 53-CA: Avaliação, autorização e monitoramento
+- [ ] **53-CA-01** Manter calendário de revisão e teste dos controles selecionados.
+- [ ] **53-CA-02** Registrar falhas, autorizações, exceções e ações corretivas.
+
+#### 53-CM: Gestão de configuração
+- [ ] **53-CM-01** Versionar baselines e configurações críticas, incluindo IaC.
+- [ ] **53-CM-02** Revisar mudanças, hardening, configurações-padrão e configuração drift.
+
+#### 53-CP: Planejamento de contingência
+- [ ] **53-CP-01** Definir cenários de interrupção, RPO/RTO e plano de continuidade.
+- [ ] **53-CP-02** Testar restauração e capacidade de recuperação com dados representativos.
+
+#### 53-IA: Identificação e autenticação
+- [ ] **53-IA-01** Usar identidades individuais, MFA e autenticação apropriada ao risco.
+- [ ] **53-IA-02** Proteger autenticadores, sessões, dispositivos e mecanismos de recuperação.
+
+#### 53-IR: Resposta a incidentes
+- [ ] **53-IR-01** Criar playbooks para vazamento, ransomware, perda de chaves e comprometimento de contas.
+- [ ] **53-IR-02** Realizar exercícios e registrar lições aprendidas.
+
+#### 53-MA: Manutenção
+- [ ] **53-MA-01** Planejar atualizações, correções de vulnerabilidades e mudanças controladas.
+- [ ] **53-MA-02** Restringir acesso de manutenção e registrar atividades críticas.
+
+#### 53-MP: Proteção de mídia
+- [ ] **53-MP-01** Criptografar e proteger mídias e backups com dados relevantes.
+- [ ] **53-MP-02** Aplicar retenção e descarte seguro de dispositivos e arquivos.
+
+#### 53-PE: Proteção física e ambiental
+- [ ] **53-PE-01** Proteger equipamentos e dispositivos com chaves e dados sensíveis.
+- [ ] **53-PE-02** Avaliar energia, incêndio, acesso físico e contingências quando houver infraestrutura própria.
+
+#### 53-PL: Planejamento
+- [ ] **53-PL-01** Definir plano de segurança e responsabilidade por sistemas e dados.
+- [ ] **53-PL-02** Revisar o plano com mudanças de escopo e ameaças.
+
+#### 53-PM: Gestão do programa
+- [ ] **53-PM-01** Definir estratégia de risco e responsabilidades institucionais.
+- [ ] **53-PM-02** Medir maturidade, prioridades e eficácia dos controles de segurança.
+
+#### 53-PS: Segurança de pessoal
+- [ ] **53-PS-01** Definir acesso no ingresso, mudança de função e desligamento.
+- [ ] **53-PS-02** Orientar colaboradores e terceiros quanto a confidencialidade e responsabilidades.
+
+#### 53-PT: Tratamento e transparência de dados pessoais
+- [ ] **53-PT-01** Documentar base, finalidade, minimização, retenção e acesso a dados pessoais.
+- [ ] **53-PT-02** Oferecer transparência e mecanismos de exercício de direitos quando aplicáveis.
+
+#### 53-RA: Avaliação de risco
+- [ ] **53-RA-01** Avaliar ameaças, probabilidade, impacto e vulnerabilidades.
+- [ ] **53-RA-02** Registrar risco residual, exceções, responsáveis e reavaliação.
+
+#### 53-SA: Aquisição de sistemas e serviços
+- [ ] **53-SA-01** Definir critérios de segurança em aquisições, integrações e desenvolvimento.
+- [ ] **53-SA-02** Avaliar riscos de bibliotecas, fornecedores, produtos e serviços externos.
+
+#### 53-SC: Proteção de sistemas e comunicações
+- [ ] **53-SC-01** Aplicar TLS, segmentação, isolamento e proteção de fronteiras de confiança.
+- [ ] **53-SC-02** Proteger integridade e confidencialidade nos canais e nos dados.
+
+#### 53-SI: Integridade de sistemas e informações
+- [ ] **53-SI-01** Monitorar atualizações, malware, vulnerabilidades e eventos anormais.
+- [ ] **53-SI-02** Testar integridade de dados, artefatos e dependências.
+
+#### 53-SR: Gestão de risco da cadeia de suprimentos
+- [ ] **53-SR-01** Inventariar componentes e verificar procedência, licenças e vulnerabilidades.
+- [ ] **53-SR-02** Aplicar pinning, SBOM, revisão de releases e critérios de fornecedores.
+
+### 4. NIST SSDF: desenvolvimento seguro e proteção da supply chain
+
+#### SSDF-PO: Preparar a organização
+- [ ] **SSDF-PO-01** Definir objetivos e requisitos de segurança no SDLC.
+- [ ] **SSDF-PO-02** Criar política de ferramentas, formação e governança de desenvolvimento seguro.
+- [ ] **SSDF-PO-03** Estabelecer ambientes de build e teste protegidos.
+- [ ] **SSDF-PO-04** Estabelecer rastreabilidade entre riscos, regras, testes e evidências.
+
+#### SSDF-PS: Proteger o software
+- [ ] **SSDF-PS-01** Restringir acesso a código, pipelines e artefatos.
+- [ ] **SSDF-PS-02** Proteger integridade de fontes, dependências e ambientes de build.
+- [ ] **SSDF-PS-03** Verificar procedência, assinaturas e atestações quando apropriadas.
+- [ ] **SSDF-PS-04** Controlar releases e impedir substituição não autorizada de artefatos.
+
+#### SSDF-PW: Produzir software bem protegido
+- [ ] **SSDF-PW-01** Realizar threat modeling de componentes e alterações críticas.
+- [ ] **SSDF-PW-02** Adotar padrões seguros e testar casos de abuso.
+- [ ] **SSDF-PW-03** Executar análises estáticas, composição de dependências e revisão de código.
+- [ ] **SSDF-PW-04** Aplicar verificação de requisitos de segurança e testes de regressão.
+
+#### SSDF-RV: Responder às vulnerabilidades
+- [ ] **SSDF-RV-01** Oferecer canal privado e responsável de reporte de vulnerabilidades.
+- [ ] **SSDF-RV-02** Realizar triagem, priorização, remediação e avisos coordenados.
+- [ ] **SSDF-RV-03** Investigar causa raiz e padrões recorrentes.
+- [ ] **SSDF-RV-04** Revisar testes e controles para evitar reincidência.
+
+### 5. Normas ISO/IEC/IEEE: desdobramento operacional por assunto
+
+#### ISO-27001: Gestão de segurança da informação
+- [ ] **ISO-27001-01** Definir escopo, política, objetivos e governança de segurança.
+- [ ] **ISO-27001-02** Manter avaliação e tratamento de riscos, incluindo decisões e justificativas.
+- [ ] **ISO-27001-03** Definir Statement of Applicability quando houver implantação formal de SGSI.
+- [ ] **ISO-27001-04** Medir eficácia, conduzir análises críticas e corrigir não conformidades.
+
+#### ISO-27002: Controles organizacionais, pessoas, físicos e tecnológicos
+- [ ] **ISO-27002-01** Estabelecer controles organizacionais para políticas, ativos, fornecedores e incidentes.
+- [ ] **ISO-27002-02** Definir controles relativos a pessoas, capacitação e responsabilidades.
+- [ ] **ISO-27002-03** Proteger ambientes físicos, equipamentos e mídias.
+- [ ] **ISO-27002-04** Aplicar hardening, proteção de dados, gestão de credenciais, monitoramento e segurança de comunicações.
+
+#### ISO-27005: Risco de segurança da informação
+- [ ] **ISO-27005-01** Definir critérios de risco, impacto e probabilidade.
+- [ ] **ISO-27005-02** Identificar, analisar e avaliar cenários de risco.
+- [ ] **ISO-27005-03** Selecionar tratamento, responsável e aceitação de risco residual.
+
+#### ISO-27701: Gestão de privacidade
+- [ ] **ISO-27701-01** Inventariar dados pessoais, papéis e finalidades.
+- [ ] **ISO-27701-02** Implementar minimização, retenção, transparência e direitos de titulares.
+- [ ] **ISO-27701-03** Documentar avaliação de risco de privacidade, incidentes e gestão de terceiros.
+
+#### ISO-27017: Segurança de serviços cloud
+- [ ] **ISO-27017-01** Definir responsabilidade compartilhada entre cliente e provedor cloud.
+- [ ] **ISO-27017-02** Restringir acesso a consoles, redes, storage e credenciais cloud.
+- [ ] **ISO-27017-03** Revisar isolamento de tenants, configuração e descarte de recursos.
+
+#### ISO-27018: Proteção de dados pessoais em cloud
+- [ ] **ISO-27018-01** Avaliar obrigações de provedores sobre tratamento de dados pessoais.
+- [ ] **ISO-27018-02** Restringir uso, acesso e divulgação de dados pessoais conforme contratos e lei.
+- [ ] **ISO-27018-03** Validar descarte, localização, subprocessadores e gestão de incidentes.
+
+#### ISO-20000: Gestão de serviços de TI
+- [ ] **ISO-20000-01** Manter catálogo de serviços, responsabilidades e acordos.
+- [ ] **ISO-20000-02** Definir incidentes, problemas, mudanças, release e disponibilidade.
+- [ ] **ISO-20000-03** Medir nível de serviço e estabelecer melhoria contínua.
+
+#### ISO-9001: Gestão da qualidade
+- [ ] **ISO-9001-01** Estabelecer objetivos de qualidade e expectativas de stakeholders.
+- [ ] **ISO-9001-02** Definir processos, papéis, registros e gestão de mudanças.
+- [ ] **ISO-9001-03** Medir satisfação, desempenho, não conformidades e melhoria contínua.
+- [ ] **ISO-9001-04** Considerar riscos, oportunidades, liderança e cultura da qualidade.
+
+#### ISO-90003: Qualidade aplicada a software
+- [ ] **ISO-90003-01** Adaptar gestão de qualidade à especificação, desenvolvimento e manutenção.
+- [ ] **ISO-90003-02** Manter processo verificável de revisão e entrega.
+- [ ] **ISO-90003-03** Documentar critérios de controle de configuração e de testes.
+
+#### ISO-12207: Ciclo de vida do software
+- [ ] **ISO-12207-01** Definir atividades e responsabilidades de aquisição, desenvolvimento, entrega e operação.
+- [ ] **ISO-12207-02** Planejar sustentação, manutenção, suporte e retirada do produto.
+- [ ] **ISO-12207-03** Registrar resultados e evidências suficientes a cada etapa.
+- [ ] **ISO-12207-04** Adaptar processo ao porte e contexto sem impor metodologia ágil ou cascata.
+
+#### ISO-29148: Engenharia de requisitos
+- [ ] **ISO-29148-01** Identificar interessados, necessidades, restrições e objetivos.
+- [ ] **ISO-29148-02** Especificar requisitos funcionais e não funcionais claros e verificáveis.
+- [ ] **ISO-29148-03** Garantir rastreabilidade, gestão de mudanças e validação de requisitos.
+- [ ] **ISO-29148-04** Definir critérios de aceitação e prioridades por risco e valor.
+
+#### ISO-42010: Descrição de arquitetura
+- [ ] **ISO-42010-01** Identificar stakeholders e preocupações arquiteturais relevantes.
+- [ ] **ISO-42010-02** Manter visões apropriadas de componentes, dados, implantação e segurança.
+- [ ] **ISO-42010-03** Registrar decisões, opções, restrições, trade-offs e justificativas.
+- [ ] **ISO-42010-04** Verificar consistência das visões e atualizar após mudanças materiais.
+
+#### ISO-29119: Testes de software
+- [ ] **ISO-29119-01** Definir estratégia, técnicas e níveis de teste conforme risco.
+- [ ] **ISO-29119-02** Documentar casos, dados e oráculos de teste, além de resultados.
+- [ ] **ISO-29119-03** Registrar defeitos, severidade, reprodução e regressão.
+- [ ] **ISO-29119-04** Verificar requisitos não funcionais com testes específicos.
+
+#### ISO-5055: Qualidade estrutural
+- [ ] **ISO-5055-01** Investigar defeitos estruturais relevantes para confiabilidade, segurança e manutenibilidade.
+- [ ] **ISO-5055-02** Acompanhar métricas estruturalmente úteis sem presumir equivalência entre lint e a medida da norma.
+- [ ] **ISO-5055-03** Priorizar problemas pela exposição, impacto e tendência.
+
+#### ISO-38500: Governança de TI
+- [ ] **ISO-38500-01** Definir quem avalia, direciona e monitora decisões tecnológicas.
+- [ ] **ISO-38500-02** Atribuir responsabilidades e prestar contas sobre gastos, riscos e desempenho.
+- [ ] **ISO-38500-03** Relacionar decisões de TI aos resultados e necessidades do projeto.
+
+#### ISO-31000: Gestão de riscos geral
+- [ ] **ISO-31000-01** Manter critérios transparentes para avaliar riscos.
+- [ ] **ISO-31000-02** Incorporar risco ao planejamento e à tomada de decisões.
+- [ ] **ISO-31000-03** Revisar a efetividade de tratamentos e riscos residuais.
+
+#### ISO-42001: Sistema de gestão de IA
+- [ ] **ISO-42001-01** Inventariar sistemas e usos de IA por finalidade, responsáveis e dados.
+- [ ] **ISO-42001-02** Definir governança de IA, políticas, decisões e avaliação de riscos.
+- [ ] **ISO-42001-03** Monitorar resultados, desempenho, impactos, incidentes e melhorias.
+- [ ] **ISO-42001-04** Definir controle humano para decisões sensíveis.
+
+#### ISO-42005: Avaliação de impacto de IA
+- [ ] **ISO-42005-01** Avaliar como sistemas de IA podem afetar pessoas, direitos e oportunidades.
+- [ ] **ISO-42005-02** Identificar grupos afetados, danos potenciais e salvaguardas.
+- [ ] **ISO-42005-03** Documentar mitigação, monitoramento e reavaliação de impactos.
+
+#### ISO-23894: Riscos de IA
+- [ ] **ISO-23894-01** Avaliar vieses, robustez, privacidade, uso indevido e falhas de IA.
+- [ ] **ISO-23894-02** Selecionar e testar mitigação e monitoramento apropriados.
+- [ ] **ISO-23894-03** Registrar risco residual e responsáveis por revisões.
+
+#### ISO-5259: Qualidade de dados para IA
+- [ ] **ISO-5259-01** Verificar origem, autorização de uso, representatividade e qualidade de datasets.
+- [ ] **ISO-5259-02** Medir incompletude, inconsistência, desbalanceamento e drift.
+- [ ] **ISO-5259-03** Manter versionamento e documentação do pipeline de dados.
+
+#### ISO-25012: Qualidade de dados
+- [ ] **ISO-25012-01** Definir atributos de qualidade de dados relevantes ao sistema.
+- [ ] **ISO-25012-02** Validar correção, completude, consistência e atualidade.
+- [ ] **ISO-25012-03** Documentar linhagem e mecanismos de correção.
+
+#### ISO-330: Avaliação da capacidade de processos
+- [ ] **ISO-330-01** Definir processos críticos e evidências de capacidade.
+- [ ] **ISO-330-02** Avaliar execução, estabilidade e pontos de melhoria.
+- [ ] **ISO-330-03** Evitar declarar nível de maturidade sem metodologia e avaliação apropriadas.
+
+#### ISO-24183: Terminologia em comunicação técnica
+- [ ] **ISO-24183-01** Manter glossário de termos técnicos utilizados no projeto.
+- [ ] **ISO-24183-02** Usar terminologia coerente na interface, documentação e suporte.
+- [ ] **ISO-24183-03** Revisar linguagem com usuários representativos.
+
+#### ISO-IEC-19770: Gestão de ativos de software
+- [ ] **ISO-IEC-19770-01** Manter inventário de componentes e respectivas licenças.
+- [ ] **ISO-IEC-19770-02** Relacionar versão, proprietário, localização, suporte e estado.
+- [ ] **ISO-IEC-19770-03** Revisar uso, renovação e obsolescência de ativos.
+
+### 6. Referências complementares e setoriais: decidir aplicabilidade
+
+#### REF-UX: Usabilidade e comunicação
+- [ ] **REF-UX-01** Planejar testes de usabilidade com objetivos e participantes adequados.
+- [ ] **REF-UX-02** Reportar metodologia, contexto e achados de avaliações de experiência.
+- [ ] **REF-UX-03** Verificar edição/status antes de usar formatos retirados como referência formal.
+
+#### REF-DOC: Documentação e ciclo de vida
+- [ ] **REF-DOC-01** Definir documentos necessários para operação, manutenção e transferência de conhecimento.
+- [ ] **REF-DOC-02** Definir manutenção corretiva, adaptativa, perfectiva e preventiva.
+- [ ] **REF-DOC-03** Criar métricas com objetivo claro, unidade, fonte e regra de cálculo.
+- [ ] **REF-DOC-04** Adaptar processos e artefatos à dimensão da equipe.
+
+#### REF-MODEL: Modelagem
+- [ ] **REF-MODEL-01** Adotar diagramas somente quando reduzirem ambiguidades.
+- [ ] **REF-MODEL-02** Usar notação correta e manter modelos atualizados com o sistema.
+- [ ] **REF-MODEL-03** Explicar decisões por texto e exemplos quando diagramas não bastarem.
+
+#### REF-SEC: Outros referenciais de segurança
+- [ ] **REF-SEC-01** Definir segurança de aplicações ao longo do desenvolvimento.
+- [ ] **REF-SEC-02** Planejar tratamento de incidentes, aquisição e riscos de fornecedores.
+- [ ] **REF-SEC-03** Não alegar certificação de produto com base em simples uso de controles.
+
+#### REF-CLOUD: Cloud e IoT
+- [ ] **REF-CLOUD-01** Definir fronteiras e responsabilidades dos serviços cloud.
+- [ ] **REF-CLOUD-02** Avaliar identidade, atualização e proteção de dispositivos IoT, quando existirem.
+- [ ] **REF-CLOUD-03** Usar referências históricas somente com aviso de substituição ou status.
+
+#### REF-AI: Vocabulário, ciclo de vida e governança de IA
+- [ ] **REF-AI-01** Documentar componentes e papéis de IA e ML.
+- [ ] **REF-AI-02** Definir processos para treinamento, avaliação, publicação, monitoramento e retirada de modelos.
+- [ ] **REF-AI-03** Definir responsabilidades pela governança de dados e sistemas de IA.
+
+#### REF-PCI: Pagamentos e dados de cartão
+- [ ] **REF-PCI-01** Determinar se o projeto armazena, processa ou transmite dados de titulares de cartões.
+- [ ] **REF-PCI-02** Delimitar cardholder data environment e controles efetivamente aplicáveis.
+- [ ] **REF-PCI-03** Avaliar os doze grupos de requisitos e evidências se PCI DSS for aplicável.
+
+#### REF-SECTOR: Setores críticos
+- [ ] **REF-SECTOR-01** Identificar requisitos regulatórios e certificações do domínio antes de desenvolver sistemas críticos.
+- [ ] **REF-SECTOR-02** Revisar procedimentos formais de hazard analysis, segurança funcional, rastreabilidade e validação quando aplicáveis.
+- [ ] **REF-SECTOR-03** Consultar normas e especialistas setoriais, não substituir processos de safety por testes de software comuns.
+
+### 7. NIST especializado: identidade, chaves, Zero Trust e processos
+
+#### NIST-63: Identidade e autenticação
+- [ ] **NIST-63-01** Avaliar o nível de garantia de autenticação necessário ao risco.
+- [ ] **NIST-63-02** Preferir autenticação criptográfica resistente a phishing para contas críticas.
+- [ ] **NIST-63-03** Proteger vínculo, recuperação, substituição e revogação de autenticadores.
+- [ ] **NIST-63-04** Usar tokens FIDO2/passkeys ou outra tecnologia com propriedades equivalentes quando adequado.
+- [ ] **NIST-63-05** Diferenciar MFA genérica de resistência a phishing.
+
+#### NIST-57: Gestão de chaves criptográficas
+- [ ] **NIST-57-01** Inventariar chaves, certificados, trust anchors e responsáveis.
+- [ ] **NIST-57-02** Separar criação, distribuição, uso, rotação, backup e destruição de chaves.
+- [ ] **NIST-57-03** Preferir hardware seguro para chaves sensíveis, conforme ameaça e disponibilidade.
+- [ ] **NIST-57-04** Evitar expor chaves privadas em logs, repositórios e backups sem proteção.
+- [ ] **NIST-57-05** Testar revogação e recuperação, incluindo casos de perda de dispositivo.
+
+#### NIST-207: Arquitetura Zero Trust
+- [ ] **NIST-207-01** Não confiar automaticamente em identidades por localização de rede.
+- [ ] **NIST-207-02** Autenticar e autorizar acesso por recurso e contexto.
+- [ ] **NIST-207-03** Aplicar menor privilégio, monitoração e segmentação pertinentes.
+- [ ] **NIST-207-04** Reavaliar acesso e condições durante mudanças de risco.
+
+### 8. Matriz de evidências e gestão contínua
+- [ ] Construir registro com colunas ID, referencial, edição, tema, controle implementado, evidência, aplicabilidade e responsável.
+- [ ] Distinguir norma certificável, diretriz, vocabulário, modelo, padrão de teste e requisito regulatório.
+- [ ] Relacionar cada requisito não funcional a um teste, relatório, SLO ou outro resultado verificável.
+- [ ] Conectar testes de segurança a modelo de ameaças e riscos documentados.
+- [ ] Selecionar controles mínimos para repositórios simples e controles reforçados para serviços críticos.
+- [ ] Registrar controles não aplicáveis e justificativas, nunca ocultar omissões.
+- [ ] Manter revisões de versão e status da norma, incluindo edições históricas ou substituídas.
+- [ ] Fazer revisões humanas e técnicas; automações complementam, não comprovam conformidade integral.
+- [ ] Não afirmar certificação, conformidade integral ou auditoria independente sem procedimento apropriado.
+- [ ] Manter rastreabilidade de mudanças de requisitos, implementações, verificações e exceções.
+
 ## Prioridades sugeridas
 
 A organização das tarefas abaixo é uma sugestão de implementação, não uma ordem obrigatória do Open Source Guides.
