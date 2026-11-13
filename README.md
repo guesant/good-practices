@@ -6,6 +6,10 @@ Checklist extensivo, genérico e reutilizável de práticas de open source, enge
 
 **Aplicabilidade:** o checklist é um catálogo de controles, não um conjunto de obrigações para todos os projetos. Avalie cada item como obrigatório para o contexto, recomendado, pendente ou não aplicável. Um repositório de documentação não precisa de todos os controles de uma aplicação produtiva.
 
+## Configurações práticas de ferramentas
+
+O [catálogo de configurações reais dos repositórios de guesant](docs/tooling-configurations.md) reúne exemplos, critérios de adoção e checklists adicionais para ESLint, Biome, Prettier, Stylelint, ast-grep, jscpd, Knip, actionlint, zizmor, Hadolint, Gitleaks, Renovate e outras ferramentas. Qlty está identificado como alternativa ainda sem configuração própria verificada.
+
 ## Como acompanhar
 
 - [ ] Revisar a aplicabilidade deste checklist para cada repositório do projeto ou organização.
