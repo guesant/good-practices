@@ -2413,7 +2413,7 @@ Esta seção é um subconjunto do [guia detalhado](docs/advanced-testing-accessi
 
 ## 24. Catálogo de controles e perfis de aplicação
 
-Os metadados completos dos controles novos ficam em [catalog/](catalog/) e o processo de aplicação está descrito em [Controles e perfis de aplicação](docs/control-catalog-and-profiles.md). O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
+Os metadados completos dos controles novos ficam em [catalog/](catalog/) e o processo de aplicação está descrito em [Controles e perfis de aplicação](docs/control-catalog-and-profiles.md). Para avaliar um projeto real, utilize o [template de avaliação por projeto](templates/project-assessment.md), com responsáveis, evidências, exceções e decisão GO/NO-GO. O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
 
 - [ ] Determinar o perfil principal: documentação, biblioteca open source, site estático/SPA, API/backend, SaaS, dados, IA, infraestrutura ou mobile.
 - [ ] Aplicar overlays de open source e dados sensíveis quando pertinentes ao mesmo projeto.
