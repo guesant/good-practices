@@ -1,3 +1,5 @@
+![Good Practices: checklist, segurança, qualidade, código, CI/CD e observabilidade](assets/banner.webp)
+
 # Good Practices
 
 Checklist geral de engenharia de software e open source.
