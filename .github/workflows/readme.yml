@@ -1,4 +1,4 @@
-name: Control catalog validation
+name: README integrity
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  validate-catalog:
+  validate-readme:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -18,7 +18,5 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Verify Node.js version
-        run: node --version
-      - name: Validate control metadata and documentation
-        run: node scripts/validate-catalog.mjs
+      - name: Validate consolidated README
+        run: node scripts/validate-readme.mjs

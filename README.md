@@ -2415,7 +2415,7 @@ Esta seção é um subconjunto do [guia detalhado](#anexo-a) e do [catálogo est
 
 ## 24. Catálogo de controles e perfis de aplicação
 
-Os metadados completos dos controles novos ficam em [catalog/](#anexo-l) e o processo de aplicação está descrito em [Controles e perfis de aplicação](#anexo-c). Para avaliar um projeto real, utilize o [template de avaliação por projeto](templates/project-assessment.md), com responsáveis, evidências, exceções e decisão GO/NO-GO. O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
+Os metadados dos controles novos estão nos [Anexos L a O](#anexo-l), e o processo de aplicação está descrito em [Controles e perfis de aplicação](#anexo-c). Para avaliar um projeto real, utilize o [template de avaliação por projeto](templates/project-assessment.md), com responsáveis, evidências, exceções e decisão GO/NO-GO. O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
 
 - [ ] Determinar o perfil principal: documentação, biblioteca open source, site estático/SPA, API/backend, SaaS, dados, IA, infraestrutura ou mobile.
 - [ ] Aplicar overlays de open source e dados sensíveis quando pertinentes ao mesmo projeto.
@@ -2429,7 +2429,7 @@ Os metadados completos dos controles novos ficam em [catalog/](#anexo-l) e o pro
 - [ ] Reavaliar controles quando mudar arquitetura, fornecedor, risco, público, requisitos legais ou frequência de deploy.
 - [ ] Não bloquear sites estáticos por controles de bancos de dados, filas ou Kubernetes que não se aplicam.
 - [ ] Definir como um controle P0 não atendido bloqueia produção ou recebe exceção com responsável, prazo e compensação.
-- [ ] Executar o validador `node scripts/validate-catalog.mjs` e verificar que todos os controles estruturados estão no README.
+- [ ] Executar o validador `node scripts/validate-readme.mjs` e verificar que todos os controles estruturados estão no README.
 - [ ] Separar validação do catálogo (consistência documental) de testes de segurança/funcionalidade do projeto.
 - [ ] Definir periodicidade de revisão e uma evidência fresca para cada controle crítico.
 - [ ] Evitar acumular linters, scanners e regras sobrepostos sem ganho mensurável.
@@ -2721,7 +2721,7 @@ Referência: [https://sre.google/workbook/alerting-on-slos/](https://sre.google/
 
 ### Catálogo de controles e perfis de aplicabilidade
 
-O `README.md` é a **visão humana consolidada**. Para os controles novos, os arquivos `catalog/*-controls.json` fornecem IDs estáveis, prioridade, perfis, verificação e evidência em formato legível por máquinas. O catálogo é **incremental**: os controles antigos do README ainda não foram integralmente convertidos em dados estruturados. Não afirme que todos os itens do README possuem metadata estruturada.
+O `README.md` é a **fonte única consolidada**. Os controles novos têm identificadores estáveis, prioridade, perfis, verificação e evidência. A tabela do Anexo O preserva os metadados adicionais dos controles anteriormente estruturados. Os demais itens do README não possuem, necessariamente, todos esses metadados e não se deve afirmar o contrário.
 
 #### Definição de controle
 
@@ -2799,7 +2799,7 @@ Perfil é ponto de partida e **não substitui avaliação de aplicabilidade**. U
 
 - [ ] IDs exclusivos em todos os arquivos JSON.
 - [ ] Prioridades `P0`, `P1` ou `P2` explicitadas.
-- [ ] `profiles` existentes em [catalog/profiles.json](#anexo-m).
+- [ ] `profiles` existentes na tabela de perfis do [Anexo M](#anexo-m).
 - [ ] Toda regra inclui instrução testável e evidência distinguível de presença de arquivo.
 - [ ] Referências com URL verificável, evitando nomes de normas sem fonte.
 - [ ] Controles com IDs presentes também no README central.
@@ -2807,7 +2807,7 @@ Perfil é ponto de partida e **não substitui avaliação de aplicabilidade**. U
 - [ ] Documentar o que o catálogo ainda não cobre, especialmente controles antigos sem metadata.
 - [ ] Não confundir passar no validador do catálogo com conformidade de um sistema operacional.
 
-O projeto disponibiliza [JSON Schema](#anexo-n) e [validador de catálogo](../scripts/validate-catalog.mjs). O validador verifica integridade de metadados, não a implantação real dos controles.
+O [Anexo N](#anexo-n) preserva a especificação anterior de metadados para consulta. O [validador do README](scripts/validate-readme.mjs) verifica organização, identificadores e referências no arquivo único, mas não comprova implantação real dos controles.
 
 ## Anexo D
 
@@ -4117,7 +4117,7 @@ Uma recomendação de configuração só deve ser promovida a template reutiliz�
 
 ### Convenções do antigo catálogo de controles
 
-Os arquivos `*-controls.json` complementam o [checklist central](#good-practices-checklist-geral-de-engenharia-de-software-e-open-source) e permitem aplicar filtros por perfil, prioridade e verificação. Os controles são identificados por IDs **próprios do projeto**, não pelos identificadores oficiais de ASVS, NIST ou ISO.
+Os metadados preservados nos anexos complementam o [checklist central](#good-practices-checklist-geral-de-engenharia-de-software-e-open-source) e permitem consulta por perfil, prioridade e verificação. Os controles são identificados por IDs **próprios do projeto**, não pelos identificadores oficiais de ASVS, NIST ou ISO.
 
 ## Conteúdo
 
@@ -4131,10 +4131,10 @@ Os arquivos `*-controls.json` complementam o [checklist central](#good-practices
 
 ## Como usar
 
-1. Selecione um tipo de projeto e overlays de risco em `profiles.json`.
+1. Selecione um tipo de projeto e overlays de risco no Anexo M.
 2. Filtre por tags de perfil, mas avalie cada item manualmente; tags não são determinação legal de aplicabilidade.
 3. Registre prioridade, estado, responsável, evidência, data da última validação e exceções.
-4. Execute `node scripts/validate-catalog.mjs` na raiz do repositório.
+4. Execute `node scripts/validate-readme.mjs` na raiz do repositório.
 5. Não confunda validação de metadados com execução dos requisitos sobre uma aplicação.
 
 **Cobertura:** este é um catálogo incremental dos controles adicionados na expansão mais recente. Os controles históricos do README não estão todos normalizados em JSON. A migração futura deve manter seus IDs e evitar duplicações.
