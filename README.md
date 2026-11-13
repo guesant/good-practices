@@ -10,13 +10,13 @@ Checklist extensivo, genérico e reutilizável de práticas de open source, enge
 
 **Aplicabilidade:** o checklist é um catálogo de controles, não um conjunto de obrigações para todos os projetos. Avalie cada item como obrigatório para o contexto, recomendado, pendente ou não aplicável. Um repositório de documentação não precisa de todos os controles de uma aplicação produtiva.
 
-**Fonte única de documentação:** todos os guias e metadados de avaliação foram integrados neste README. Não existem mais páginas auxiliares em `docs/` ou catálogos paralelos em `catalog/`; arquivos de automação e templates permanecem onde necessário.
-
 ## Navegação por área
 
-Este README é o **checklist central**. Os guias vinculados aprofundam configurações, exemplos e evidências.
+Este README contém dois checklists: práticas gerais para projetos de código público ou privado e controles adicionais para projetos open source e comunitários. Os anexos apresentam exemplos, fundamentos e referências.
 
-- [Fundamentos, documentação, licenças, créditos, comunidade e governança](#1-identidade-e-preparação-do-projeto)
+- [Checklist I: boas práticas para projetos públicos ou privados](#checklist-i-boas-práticas-gerais-projetos-públicos-ou-privados)
+- [Checklist II: práticas para projetos open source e comunitários](#checklist-ii-projetos-open-source-e-comunitários)
+- [Fundamentos, documentação, licenças, créditos e governança de equipe](#1-identidade-e-preparação-do-projeto)
 - [Conformidade técnica, tooling e quality gates](#11-conformidade-técnica-automatizada)
 - [Referenciais de qualidade, segurança e gestão](#12-normas-e-referenciais-de-qualidade-e-conformidade)
 - [Serviços, APIs, dados e operação](#13-operação-apis-dados-e-entrega-quando-aplicável)
@@ -31,7 +31,7 @@ Este README é o **checklist central**. Os guias vinculados aprofundam configura
 - [Catálogo de controles, schema e perfis por projeto](#anexo-c)
 - [Diátaxis, documentação orientada ao leitor, guias de escrita técnica e Vale](#25-arquitetura-da-documentação-diátaxis-escrita-técnica-e-voz-editorial)
 
-**Guias aprofundados:** [GitHub e README](#anexo-f) · [Hardening](#anexo-i) · [Normas em controles e requisitos não funcionais](#anexo-j) · [Ferramentas](#anexo-k) · [Créditos e licenças](#anexo-d) · [Pré-implantação e operação contínua](#anexo-g) · [Entrega segura e processamento em segundo plano](#anexo-h) · [Contratos/ASVS/SAMM e resiliência](#anexo-b) · [FinOps, DNS e descomissionamento](#anexo-e) · [Testes, acessibilidade, privacidade e IA](#anexo-a) · [Catálogo e perfis](#anexo-c).
+**Anexos de referência:** [GitHub e README](#anexo-f) · [Hardening](#anexo-i) · [Normas em controles e requisitos não funcionais](#anexo-j) · [Ferramentas](#anexo-k) · [Créditos e licenças](#anexo-d) · [Pré-implantação e operação contínua](#anexo-g) · [Entrega segura e processamento em segundo plano](#anexo-h) · [Contratos/ASVS/SAMM e resiliência](#anexo-b) · [FinOps, DNS e descomissionamento](#anexo-e) · [Testes, acessibilidade, privacidade e IA](#anexo-a) · [Catálogo e perfis](#anexo-c).
 
 **Aplicação:** classificar controles como aplicáveis, não aplicáveis ou pendentes de análise; vincular risco, prioridade, responsável, evidência e data de revisão. A existência de um item ou de uma configuração não comprova sua implementação.
 
@@ -46,6 +46,10 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 - [ ] Definir responsáveis e prioridades para os itens aplicáveis.
 - [ ] Rever periodicamente o checklist e registrar mudanças relevantes.
 
+## Checklist I. Boas práticas gerais: projetos públicos ou privados
+
+Estes controles abrangem projetos pessoais, internos, proprietários, públicos e open source, independentemente da visibilidade do código. A aplicação de cada item depende dos riscos, da tecnologia e do contexto, e deve ser comprovada por evidências.
+
 ## 1. Identidade e preparação do projeto
 
 **Referência:** [Open Source Guides](https://opensource.guide/starting-a-project/).
@@ -54,12 +58,9 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 - [ ] Explicar o problema que o projeto pretende resolver.
 - [ ] Delimitar o escopo e os limites de atuação.
 - [ ] Identificar o público-alvo e os possíveis colaboradores.
-- [ ] Explicar a escolha pelo desenvolvimento open source.
-- [ ] Definir os tipos de contribuição externa aceitos.
 - [ ] Verificar nomes de projetos e eventuais conflitos de marca.
 - [ ] Manter um README acessível e atualizado em cada repositório.
 - [ ] Informar estágio de desenvolvimento, funcionalidades disponíveis e limitações.
-- [ ] Manter um roadmap público com prioridades e dependências.
 - [ ] Organizar issues com títulos, descrições e labels.
 - [ ] Identificar pessoas responsáveis pela manutenção.
 - [ ] Planejar redundância no acesso administrativo quando houver uma equipe.
@@ -70,13 +71,11 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 **Referência:** [Open Source Guides](https://opensource.guide/best-practices/).
 
 - [ ] Revisar o README para explicar finalidade, utilidade, início rápido e ajuda.
-- [ ] Publicar ou revisar CONTRIBUTING.md.
 - [ ] Explicar como reportar bugs e propor funcionalidades.
 - [ ] Documentar configuração do ambiente de desenvolvimento.
 - [ ] Descrever como executar testes e validar alterações.
 - [ ] Documentar convenções de código, commits e pull requests.
 - [ ] Definir critérios de avaliação e aceite de propostas.
-- [ ] Disponibilizar templates de issues e pull requests.
 - [ ] Separar bugs, ideias, dúvidas e discussões em canais apropriados.
 - [ ] Registrar decisões técnicas relevantes e suas justificativas.
 - [ ] Documentar arquiteturas, integrações e dependências quando existirem.
@@ -96,8 +95,6 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 - [ ] Registrar atribuições e avisos de direitos autorais pertinentes.
 - [ ] Verificar compatibilidade de licenças das dependências.
 - [ ] Conferir direitos de uso e redistribuição de materiais de terceiros.
-- [ ] Explicar sob qual licença as contribuições serão recebidas.
-- [ ] Avaliar se acordos adicionais de contribuição são realmente necessários.
 - [ ] Verificar restrições a nomes, logotipos e marcas de terceiros.
 - [ ] Documentar critérios para eventuais mudanças de licenciamento.
 - [ ] Não presumir que conteúdo público na internet seja livre para reutilização.
@@ -106,10 +103,8 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 
 **Referências:** [Open Source Guides: aspectos jurídicos](https://opensource.guide/legal/), [SPDX](https://spdx.dev/), [REUSE](https://reuse.software/) e [ClearlyDefined](https://clearlydefined.io/). Consulte também o [guia prático de créditos e licenças](#anexo-d).
 
-- [ ] Criar uma página pública de **Créditos**, acessível pelo README, site ou documentação, para projetos, ferramentas, bibliotecas, recursos e pessoas que contribuíram.
 - [ ] Manter inventário atualizado dos componentes de terceiros utilizados, incluindo dependências diretas, runtime, build, desenvolvimento, CI/CD, imagens de contêiner e serviços externos relevantes.
 - [ ] Identificar claramente para cada item o nome, finalidade, autor ou organização, URL oficial, licença e versão ou referência utilizada quando pertinente.
-- [ ] Reconhecer explicitamente ferramentas gratuitas e open source mesmo quando sua licença não exigir atribuição pública.
 - [ ] Creditar separadamente bibliotecas, frameworks, ícones, fontes, imagens, ilustrações, datasets, modelos de IA e outros materiais incorporados.
 - [ ] Reproduzir o **texto integral das licenças e avisos obrigatórios** dos componentes distribuídos, conforme suas condições, em `LICENSES/`, `THIRD_PARTY_NOTICES` ou outro local apropriado.
 - [ ] Preservar avisos de copyright, autoria, modificações, patentes e atribuições exigidos por cada licença, incluindo arquivos `NOTICE` quando aplicável.
@@ -148,33 +143,20 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 - [ ] Estabelecer critérios para publicação de avisos e correções de segurança.
 - [ ] Revisar periodicamente acessos administrativos e permissões.
 
-## 5. Comunidade e colaboração
+## 5. Colaboração e comunicação em equipes
 
-**Referências:** [guia 1](https://opensource.guide/building-community/) · [guia 2](https://opensource.guide/code-of-conduct/).
+**Aplicação:** colaboração interna, comunicação de equipes e canais de suporte. Os controles de comunidades abertas estão no Checklist II.
 
-- [ ] Publicar um código de conduta.
-- [ ] Definir o alcance do código de conduta, inclusive nos canais comunitários.
-- [ ] Disponibilizar canal de relato de violações de conduta.
-- [ ] Prever alternativa de relato quando a pessoa responsável estiver envolvida.
-- [ ] Definir procedimento de apuração, resposta e medidas possíveis.
-- [ ] Marcar tarefas apropriadas com good first issue.
-- [ ] Marcar tarefas apropriadas com help wanted.
-- [ ] Reconhecer contribuições em código, documentação, pesquisa, tradução e revisão.
 - [ ] Responder a dúvidas e propostas com respeito e clareza.
-- [ ] Justificar recusas de contribuições de forma proporcional.
-- [ ] Registrar decisões públicas sempre que não envolverem conteúdo confidencial.
-- [ ] Reduzir barreiras desnecessárias à participação.
 - [ ] Definir canais distintos para suporte, propostas e discussões.
 - [ ] Informar expectativas realistas de tempo de resposta.
-- [ ] Atribuir corretamente a autoria e o trabalho dos colaboradores.
 
-## 6. Governança, liderança e transparência
+## 6. Governança e liderança de equipes
 
 **Referência:** [Open Source Guides](https://opensource.guide/leadership-and-governance/).
 
 - [ ] Documentar papéis de contribuidores, mantenedores e administradores.
 - [ ] Definir quem pode revisar e aprovar alterações.
-- [ ] Definir critérios para admissão de novos mantenedores.
 - [ ] Estabelecer regras de concessão e revogação de acesso.
 - [ ] Explicar como decisões importantes são tomadas.
 - [ ] Criar procedimento de resolução de divergências.
@@ -183,26 +165,19 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 - [ ] Registrar decisões institucionais e suas justificativas.
 - [ ] Prever continuidade caso pessoas fundadoras se afastem.
 - [ ] Evitar concentração desnecessária de autoridade e credenciais.
-- [ ] Manter processos de decisão transparentes, proporcionais ao tamanho da comunidade.
 
-## 7. Financiamento e sustentabilidade
+## 7. Sustentabilidade financeira e continuidade
 
-**Referências:** [guia 1](https://opensource.guide/getting-paid/) · [guia 2](https://opensource.guide/maintaining-balance-for-open-source-maintainers/).
+**Aplicação:** custos, continuidade, responsabilidades e sustentabilidade de qualquer projeto.
 
 - [ ] Estimar custos de infraestrutura, manutenção e operação.
 - [ ] Identificar fontes possíveis e legítimas de financiamento.
-- [ ] Confirmar habilitação e funcionamento efetivo do GitHub Sponsors.
-- [ ] Definir política pública de doações, patrocínios e outros apoios.
-- [ ] Explicar destinação e prestação de contas dos recursos recebidos.
 - [ ] Evitar prometer contrapartidas incompatíveis com a capacidade operacional.
 - [ ] Documentar e administrar potenciais conflitos de interesses.
-- [ ] Definir critérios para aceitar ou recusar patrocinadores.
 - [ ] Planejar continuidade operacional e manutenção de longo prazo.
 - [ ] Distribuir responsabilidades e conhecimento técnico.
-- [ ] Estabelecer limites saudáveis para trabalho voluntário.
 - [ ] Não anunciar suporte, garantias ou prazos inviáveis.
 - [ ] Preparar procedimentos para períodos de inatividade.
-- [ ] Formar novos mantenedores e diminuir dependência de uma única pessoa.
 
 ## 8. Acessibilidade
 
@@ -226,7 +201,7 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 - [ ] Convidar pessoas com deficiência a avaliar a usabilidade.
 - [ ] Em ferramentas CLI, oferecer ajuda clara, códigos de saída consistentes e saídas acessíveis.
 
-## 9. Divulgação, usuários e métricas
+## 9. Comunicação, usuários e métricas
 
 **Referências:** [guia 1](https://opensource.guide/finding-users/) · [guia 2](https://opensource.guide/metrics/).
 
@@ -234,15 +209,8 @@ O [catálogo de configurações e recomendações práticas](#anexo-k) reúne ex
 - [ ] Explicar os diferenciais em relação a iniciativas semelhantes.
 - [ ] Manter um local central com informações e documentação.
 - [ ] Disponibilizar exemplos reais e verificáveis quando existirem.
-- [ ] Participar de comunidades pertinentes sem divulgação invasiva.
-- [ ] Cooperar com projetos e organizações de objetivos compatíveis.
 - [ ] Pesquisar necessidades reais de usuários e contribuidores.
 - [ ] Solicitar feedback sobre documentos, produtos e fluxos.
-- [ ] Acompanhar visualizações e acesso aos repositórios de forma proporcional.
-- [ ] Monitorar stars, forks e clones sem confundi-los com impacto social.
-- [ ] Medir participação, contribuições e retenção de colaboradores.
-- [ ] Acompanhar tempo de resposta a issues e pull requests.
-- [ ] Observar a saúde e sustentabilidade da comunidade.
 - [ ] Usar métricas para melhorar prioridades, não para mascarar resultados.
 - [ ] Evitar rastreamento invasivo e coleta desnecessária de dados de usuários.
 
@@ -286,10 +254,7 @@ Um item só deverá ser marcado como concluído quando houver evidência de conf
 
 ### 11.2. Identidade, metadados e apresentação no GitHub
 
-- [ ] Definir nome e descrição pública do repositório.
-- [ ] Configurar os topics e a categoria apropriada do repositório.
 - [ ] Configurar o endereço do site ou da documentação quando aplicável.
-- [ ] Criar imagem de apresentação e configurar a Social Preview do GitHub.
 - [ ] Manter README com propósito, recursos, estágio, limitações e instruções de uso.
 - [ ] Padronizar badges relevantes, capitalização, cores e links dos indicadores.
 - [ ] Validar se badges de status mostram workflows e informações corretas.
@@ -1142,18 +1107,9 @@ Checklist operacional condensado a partir do [guia de GitHub](#anexo-f). O perfi
 - [ ] Configurar branch protection, rulesets e checks de acordo com os recursos disponíveis no plano.
 
 ### 4. Repositório especial `owner/.github`
-- [ ] Criar e manter `owner/.github` para políticas comunitárias reutilizáveis entre repositórios elegíveis.
 - [ ] Documentar claramente quais arquivos funcionam como defaults e quando arquivos locais prevalecem.
-- [ ] Manter `CONTRIBUTING.md` com fluxo de contribuição, testes, documentação, licenças e revisão.
-- [ ] Manter `CODE_OF_CONDUCT.md` com canais de denúncia e tratamento de conduta.
 - [ ] Manter `SECURITY.md` com canal privado e política de versões suportadas.
 - [ ] Manter `SUPPORT.md` diferenciando dúvidas, bugs, propostas e vulnerabilidades.
-- [ ] Manter `.github/ISSUE_TEMPLATE/bug.yml` para bugs reproduzíveis.
-- [ ] Manter `.github/ISSUE_TEMPLATE/feature.yml` para propostas de funcionalidade.
-- [ ] Manter `.github/ISSUE_TEMPLATE/config.yml` para links de suporte e opções de issues.
-- [ ] Manter `.github/DISCUSSION_TEMPLATE/` para ideias, perguntas e discussões quando pertinente.
-- [ ] Adicionar `.github/FUNDING.yml` quando houver opções reais de apoio financeiro.
-- [ ] Revisar o escopo de herança das community health files: defaults de `.github` não substituem todas as configurações do repositório.
 - [ ] Não copiar dados sensíveis, endereços privados ou canais internos nos defaults públicos.
 
 ### 5. Arquivos recomendados em cada repositório
@@ -1162,7 +1118,6 @@ Checklist operacional condensado a partir do [guia de GitHub](#anexo-f). O perfi
 - [ ] Confirmar sintaxe, precedência de padrões e permissão de escrita dos owners.
 - [ ] Criar template de PR com descrição, motivação, teste, impacto, riscos e checklist de publicação.
 - [ ] Usar GitHub Issue Forms para informações estruturadas quando úteis, sem tornar burocrático o relato.
-- [ ] Referenciar políticas globais de `.github` e sobrescrever somente por necessidade explícita.
 - [ ] Manter licença própria do projeto em `LICENSE` e licenças de terceiros separadas.
 - [ ] Manter arquivos editoriais de configurações como `.editorconfig`, `.gitignore`, `.gitattributes` e configurações de lint.
 - [ ] Evitar duplicar instruções conflitantes entre README, CONTRIBUTING e documentação.
@@ -1175,7 +1130,6 @@ Checklist operacional condensado a partir do [guia de GitHub](#anexo-f). O perfi
 - [ ] Incluir status real de CI e documentação, quando existentes.
 - [ ] Incluir licença com destino para o texto integral no repositório.
 - [ ] Considerar OpenSSF Scorecard, Renovate, versão das ferramentas e último run, sem sugerir avaliação não executada.
-- [ ] Incluir badges de último commit, atividade mensal, PRs, issues, stars e forks quando fizerem sentido.
 - [ ] Incluir badge de local de produção ou autoria ("Feito no Brasil") somente quando verdadeiro e útil.
 - [ ] Manter rótulos em português quando o README tiver público lusófono.
 - [ ] Não incluir badges dinâmicas que exponham dados privados, tokens ou endpoints internos.
@@ -1186,7 +1140,6 @@ Checklist operacional condensado a partir do [guia de GitHub](#anexo-f). O perfi
 - [ ] Adicionar seção **Licença** com link para o texto integral, inclusive distinção entre código, documentação e assets.
 - [ ] Adicionar **Créditos e agradecimentos** com link para `CREDITS.md` e licenças de terceiros.
 - [ ] Informar ferramentas, serviços e dados de terceiros utilizados sem sugerir endosso desses fornecedores.
-- [ ] Manter links de `SECURITY.md`, `CONTRIBUTING.md` e `SUPPORT.md` visíveis.
 
 ### 7. Checklist de auditoria inicial
 - [ ] Registrar screenshot/export das configurações de General, Branches, Rulesets, Actions e Security, sem revelar segredos.
@@ -2215,16 +2168,6 @@ Esta seção é um subconjunto do [guia detalhado](#anexo-b) e do [catálogo est
 - [ ] **SAMM-07 [P1]** Definir responsáveis, orçamento e revisão periódica dos planos de melhoria. **Verificar:** Revisar tarefas, prazos e resultados. **Evidência:** Backlog de melhoria.
 - [ ] **SAMM-08 [P1]** Medir resultado e sustentabilidade do processo, não apenas presença de ferramentas. **Verificar:** Comparar evidência de execução recorrente. **Evidência:** Métricas e retrospectiva.
 - [ ] **SAMM-09 [P2]** Realizar reavaliação independente de práticas mais críticas. **Verificar:** Comparar autoavaliação com avaliação externa. **Evidência:** Relatório independente.
-### OpenSSF Best Practices Badge e governança open source
-
-- [ ] **OSF-01 [P1]** Comparar projeto elegível aos critérios OpenSSF Baseline e Best Practices Badge. **Verificar:** Preencher autoavaliação com links de evidências. **Evidência:** Matriz de critérios.
-- [ ] **OSF-02 [P1]** Distinguir OpenSSF Scorecard, OpenSSF Baseline e Best Practices Badge. **Verificar:** Conferir o objetivo, método e cobertura de cada avaliação. **Evidência:** Documentação de comparação.
-- [ ] **OSF-03 [P1]** Avaliar progressão Passing → Silver → Gold somente para projetos adequados. **Verificar:** Verificar critérios por nível e capacidade de manutenção. **Evidência:** Plano de progresso.
-- [ ] **OSF-04 [P1]** Documentar contribuição, governança, reporte de bugs, política de vulnerabilidades e suporte. **Verificar:** Verificar arquivos e canais públicos. **Evidência:** Links para documentos.
-- [ ] **OSF-05 [P1]** Documentar manutenção, releases, práticas de teste e controle de mudanças. **Verificar:** Executar release de teste e revisar processos. **Evidência:** Histórico de release.
-- [ ] **OSF-06 [P1]** Revisar bus factor, sucessão e diversidade de mantenedores para reduzir risco de abandono. **Verificar:** Simular ausência do mantenedor. **Evidência:** Plano de continuidade.
-- [ ] **OSF-07 [P1]** Declarar status real das badges; não exibir badge como certificação independente automática. **Verificar:** Validar link e critérios reportados. **Evidência:** URL pública verificável.
-- [ ] **OSF-08 [P2]** Submeter o projeto a programa de badge somente após evidências suficientes. **Verificar:** Preencher avaliação oficial quando elegível. **Evidência:** Link do formulário de avaliação.
 ### Resiliência, falhas e operações degradadas
 
 - [ ] **RES-01 [P0]** Definir comportamento seguro quando banco, DNS, rede, cache e provedores externos falharem. **Verificar:** Desconectar dependência em staging autorizado. **Evidência:** Teste de falha e logs.
@@ -2422,7 +2365,6 @@ Esta seção é um subconjunto do [guia detalhado](#anexo-a) e do [catálogo est
 Os metadados dos controles novos estão nos [Anexos L a O](#anexo-l), e o processo de aplicação está descrito em [Controles e perfis de aplicação](#anexo-c). Para avaliar um projeto real, utilize o [template de avaliação por projeto](templates/project-assessment.md), com responsáveis, evidências, exceções e decisão GO/NO-GO. O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
 
 - [ ] Determinar o perfil principal: documentação, biblioteca open source, site estático/SPA, API/backend, SaaS, dados, IA, infraestrutura ou mobile.
-- [ ] Aplicar overlays de open source e dados sensíveis quando pertinentes ao mesmo projeto.
 - [ ] Selecionar controles de categoria geral e os relacionados aos componentes realmente usados.
 - [ ] Para cada controle, registrar aplicável, N/A, falhou, verificado ou exceção temporária.
 - [ ] Explicar por que um controle de outra stack foi considerado não aplicável, sem marcar falsamente como atendido.
@@ -2572,7 +2514,6 @@ docs/
 - [ ] **DOC-076 [P1]** Medir sucesso das tarefas e tempo para localizar respostas, não só visualizações de página. **Evidência:** Teste de usabilidade documental e indicadores.
 - [ ] **DOC-077 [P1]** Prever política de depreciação, redirecionamentos e arquivamento para não deixar links antigos levando a instruções inseguras. **Evidência:** Revisão de links antigos e status do conteúdo.
 - [ ] **DOC-078 [P1]** Documentar licenças de textos, imagens e capturas de tela e reconhecer autores e ferramentas conforme aplicabilidade. **Evidência:** Seção de créditos e avisos de terceiros.
-- [ ] **DOC-079 [P1]** Permitir contribuição de documentação com orientação adequada a pessoas não desenvolvedoras. **Evidência:** CONTRIBUTING.md e validação do processo.
 - [ ] **DOC-080 [P2]** Revisar periodicamente a arquitetura documental, removendo páginas redundantes e consolidando conteúdo de baixo uso. **Evidência:** Plano editorial com justificativas.
 
 ### 25.2. Interpretação dos guias editoriais
@@ -2607,6 +2548,112 @@ A redação técnica não precisa ser excessivamente informal, rígida ou curta.
 O uso do Vale **não significa** que toda regra dos guias Google/Microsoft/IBM esteja automaticamente implementada, nem que a ferramenta verifique se uma instrução técnica está correta. Qualquer ferramenta deve ser configurada, testada, versionada e revisada antes de atuar como gate de CI.
 
 **Critério de aceite da documentação:** uma página deve ser apropriada ao leitor e ao tipo, estar tecnicamente correta para a versão declarada, ter pré-requisitos e riscos explícitos quando houver, possuir exemplos que possam ser reproduzidos ou claramente ilustrativos, ser acessível, pesquisável e mantida junto ao produto. Itens não aplicáveis precisam de justificativa.
+
+## Checklist II. Projetos open source e comunitários
+
+Este checklist é **complementar** ao [Checklist I](#checklist-i-boas-práticas-gerais-projetos-públicos-ou-privados). Aplica-se a projetos licenciados como open source e comunidades que recebem contribuições externas. **Código visível publicamente não é sinônimo de open source**. Projetos privados e públicos de código fechado aplicam as práticas gerais; projetos open source aplicam as práticas gerais e estas adicionais. Avalie cada controle pelo contexto.
+
+### Posicionamento, abertura e participação externa
+
+- [ ] Explicar a escolha pelo desenvolvimento open source.
+- [ ] Definir os tipos de contribuição externa aceitos.
+- [ ] Manter um roadmap público com prioridades e dependências.
+
+### Contribuição e acolhimento
+
+- [ ] Publicar ou revisar CONTRIBUTING.md.
+- [ ] Disponibilizar templates de issues e pull requests.
+
+### Licença de contribuições e acordos
+
+- [ ] Explicar sob qual licença as contribuições serão recebidas.
+- [ ] Avaliar se acordos adicionais de contribuição são realmente necessários.
+
+### Código de conduta, comunidade e colaboração
+
+- [ ] Publicar um código de conduta.
+- [ ] Definir o alcance do código de conduta, inclusive nos canais comunitários.
+- [ ] Disponibilizar canal de relato de violações de conduta.
+- [ ] Prever alternativa de relato quando a pessoa responsável estiver envolvida.
+- [ ] Definir procedimento de apuração, resposta e medidas possíveis.
+- [ ] Marcar tarefas apropriadas com good first issue.
+- [ ] Marcar tarefas apropriadas com help wanted.
+- [ ] Reconhecer contribuições em código, documentação, pesquisa, tradução e revisão.
+- [ ] Justificar recusas de contribuições de forma proporcional.
+- [ ] Registrar decisões públicas sempre que não envolverem conteúdo confidencial.
+- [ ] Reduzir barreiras desnecessárias à participação.
+- [ ] Atribuir corretamente a autoria e o trabalho dos colaboradores.
+
+### Governança comunitária
+
+- [ ] Definir critérios para admissão de novos mantenedores.
+- [ ] Manter processos de decisão transparentes, proporcionais ao tamanho da comunidade.
+
+### Doações, patrocinadores e sustentabilidade voluntária
+
+- [ ] Confirmar habilitação e funcionamento efetivo do GitHub Sponsors.
+- [ ] Definir política pública de doações, patrocínios e outros apoios.
+- [ ] Explicar destinação e prestação de contas dos recursos recebidos.
+- [ ] Definir critérios para aceitar ou recusar patrocinadores.
+- [ ] Estabelecer limites saudáveis para trabalho voluntário.
+- [ ] Formar novos mantenedores e diminuir dependência de uma única pessoa.
+
+### Divulgação e métricas da comunidade
+
+- [ ] Participar de comunidades pertinentes sem divulgação invasiva.
+- [ ] Cooperar com projetos e organizações de objetivos compatíveis.
+- [ ] Acompanhar visualizações e acesso aos repositórios de forma proporcional.
+- [ ] Monitorar stars, forks e clones sem confundi-los com impacto social.
+- [ ] Medir participação, contribuições e retenção de colaboradores.
+- [ ] Acompanhar tempo de resposta a issues e pull requests.
+- [ ] Observar a saúde e sustentabilidade da comunidade.
+
+### Visibilidade e apresentação pública de repositórios
+
+- [ ] Definir nome e descrição pública do repositório.
+- [ ] Configurar os topics e a categoria apropriada do repositório.
+- [ ] Criar imagem de apresentação e configurar a Social Preview do GitHub.
+
+### GitHub comunitário, templates, badges e arquivos compartilhados
+
+- [ ] Criar e manter `owner/.github` para políticas comunitárias reutilizáveis entre repositórios elegíveis.
+- [ ] Manter `CONTRIBUTING.md` com fluxo de contribuição, testes, documentação, licenças e revisão.
+- [ ] Manter `CODE_OF_CONDUCT.md` com canais de denúncia e tratamento de conduta.
+- [ ] Manter `.github/ISSUE_TEMPLATE/bug.yml` para bugs reproduzíveis.
+- [ ] Manter `.github/ISSUE_TEMPLATE/feature.yml` para propostas de funcionalidade.
+- [ ] Manter `.github/ISSUE_TEMPLATE/config.yml` para links de suporte e opções de issues.
+- [ ] Manter `.github/DISCUSSION_TEMPLATE/` para ideias, perguntas e discussões quando pertinente.
+- [ ] Adicionar `.github/FUNDING.yml` quando houver opções reais de apoio financeiro.
+- [ ] Revisar o escopo de herança das community health files: defaults de `.github` não substituem todas as configurações do repositório.
+- [ ] Referenciar políticas globais de `.github` e sobrescrever somente por necessidade explícita.
+- [ ] Incluir badges de último commit, atividade mensal, PRs, issues, stars e forks quando fizerem sentido.
+- [ ] Manter links de `SECURITY.md`, `CONTRIBUTING.md` e `SUPPORT.md` visíveis.
+
+### Perfis e aplicabilidade open source
+
+- [ ] Aplicar overlays de open source e dados sensíveis quando pertinentes ao mesmo projeto.
+
+### Acesso à contribuição de documentação
+
+- [ ] **DOC-079 [P1]** Permitir contribuição de documentação com orientação adequada a pessoas não desenvolvedoras. **Evidência:** CONTRIBUTING.md e validação do processo.
+
+### Créditos e reconhecimento público
+
+- [ ] Criar uma página pública de **Créditos**, acessível pelo README, site ou documentação, para projetos, ferramentas, bibliotecas, recursos e pessoas que contribuíram.
+- [ ] Reconhecer explicitamente ferramentas gratuitas e open source mesmo quando sua licença não exigir atribuição pública.
+
+### OpenSSF Best Practices e maturidade de projetos open source
+
+- [ ] **OSF-01 [P1]** Comparar projeto elegível aos critérios OpenSSF Baseline e Best Practices Badge. **Verificar:** Preencher autoavaliação com links de evidências. **Evidência:** Matriz de critérios.
+- [ ] **OSF-02 [P1]** Distinguir OpenSSF Scorecard, OpenSSF Baseline e Best Practices Badge. **Verificar:** Conferir o objetivo, método e cobertura de cada avaliação. **Evidência:** Documentação de comparação.
+- [ ] **OSF-03 [P1]** Avaliar progressão Passing → Silver → Gold somente para projetos adequados. **Verificar:** Verificar critérios por nível e capacidade de manutenção. **Evidência:** Plano de progresso.
+- [ ] **OSF-04 [P1]** Documentar contribuição, governança, reporte de bugs, política de vulnerabilidades e suporte. **Verificar:** Verificar arquivos e canais públicos. **Evidência:** Links para documentos.
+- [ ] **OSF-05 [P1]** Documentar manutenção, releases, práticas de teste e controle de mudanças. **Verificar:** Executar release de teste e revisar processos. **Evidência:** Histórico de release.
+- [ ] **OSF-06 [P1]** Revisar bus factor, sucessão e diversidade de mantenedores para reduzir risco de abandono. **Verificar:** Simular ausência do mantenedor. **Evidência:** Plano de continuidade.
+- [ ] **OSF-07 [P1]** Declarar status real das badges; não exibir badge como certificação independente automática. **Verificar:** Validar link e critérios reportados. **Evidência:** URL pública verificável.
+- [ ] **OSF-08 [P2]** Submeter o projeto a programa de badge somente após evidências suficientes. **Verificar:** Preencher avaliação oficial quando elegível. **Evidência:** Link do formulário de avaliação.
+
+**Referenciais específicos:** [Open Source Guides](https://opensource.guide/), [GitHub Community Health Files](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions), [OpenSSF Best Practices](https://www.bestpractices.dev/) e [OSI Open Source Definition](https://opensource.org/osd).
 
 ## Prioridades sugeridas
 
