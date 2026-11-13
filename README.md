@@ -1,4 +1,6 @@
-# Good Practices: checklist geral de engenharia de software e open source
+# Good Practices
+
+Checklist geral de engenharia de software e open source.
 
 Checklist extensivo, genérico e reutilizável de práticas de open source, engenharia de software, automação, segurança, qualidade, governança e operação, adaptado a partir de [Open Source Guides](https://opensource.guide/) e de práticas técnicas adotáveis em diferentes projetos.
 
