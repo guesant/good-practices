@@ -71,7 +71,8 @@
               "infra",
               "data",
               "ai",
-              "mobile"
+              "mobile",
+              "sensitive"
             ]
           }
         },
