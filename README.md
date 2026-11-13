@@ -1,4 +1,4 @@
-![Good Practices: checklist, segurança, qualidade, código, CI/CD e observabilidade](assets/banner.webp)
+<img src="assets/banner.webp" alt="Good Practices: checklist, segurança, qualidade, código, CI/CD e observabilidade" width="100%">
 
 # Good Practices
 
