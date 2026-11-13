@@ -54,7 +54,7 @@ Referência: [https://owaspsamm.org/model/](https://owaspsamm.org/model/). Perfi
 
 ## OpenSSF Best Practices Badge e governança open source
 
-Referência: [https://openssf.org/projects/best-practices-badge/](https://openssf.org/projects/best-practices-badge/). Perfis: oss, library, all.
+Referência: [https://openssf.org/projects/best-practices-badge/](https://openssf.org/projects/best-practices-badge/). Perfis: oss, library.
 
 - [ ] **OSF-01 [P1]** Comparar projeto elegível aos critérios OpenSSF Baseline e Best Practices Badge. **Verificação:** Preencher autoavaliação com links de evidências. **Evidência:** Matriz de critérios.
 - [ ] **OSF-02 [P1]** Distinguir OpenSSF Scorecard, OpenSSF Baseline e Best Practices Badge. **Verificação:** Conferir o objetivo, método e cobertura de cada avaliação. **Evidência:** Documentação de comparação.
