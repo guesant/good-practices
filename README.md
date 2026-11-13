@@ -23,6 +23,7 @@ Este README é o **checklist central**. Os guias vinculados aprofundam configura
 - [FinOps, DNS/e-mail, descomissionamento e portabilidade](docs/finops-domains-retirement-portability.md)
 - [Testes avançados, acessibilidade, privacidade e IA](docs/advanced-testing-accessibility-privacy-ai.md)
 - [Catálogo de controles, schema e perfis por projeto](docs/control-catalog-and-profiles.md)
+- [Diátaxis, documentação orientada ao leitor, guias de escrita técnica e Vale](#25-arquitetura-da-documentação-diátaxis-escrita-técnica-e-voz-editorial)
 
 **Guias aprofundados:** [GitHub e README](docs/github-repository-setup.md) · [Hardening](docs/security-hardening.md) · [Normas em controles e requisitos não funcionais](docs/standards-to-controls.md) · [Ferramentas](docs/tooling-configurations.md) · [Créditos e licenças](docs/credits-and-licenses.md) · [Pré-implantação e operação contínua](docs/production-readiness-and-operations.md) · [Entrega segura e processamento em segundo plano](docs/secure-delivery-and-background-processing.md) · [Contratos/ASVS/SAMM e resiliência](docs/contracts-assurance-resilience.md) · [FinOps, DNS e descomissionamento](docs/finops-domains-retirement-portability.md) · [Testes, acessibilidade, privacidade e IA](docs/advanced-testing-accessibility-privacy-ai.md) · [Catálogo e perfis](docs/control-catalog-and-profiles.md).
 
@@ -74,6 +75,7 @@ O [catálogo de configurações reais dos repositórios de guesant](docs/tooling
 - [ ] Registrar decisões técnicas relevantes e suas justificativas.
 - [ ] Documentar arquiteturas, integrações e dependências quando existirem.
 - [ ] Manter documentação sincronizada com código e comportamento reais.
+- [ ] Aplicar uma política editorial de documentação e arquitetura da informação, conforme [Diátaxis e guias de escrita técnica](#25-arquitetura-da-documentação-diátaxis-escrita-técnica-e-voz-editorial).
 - [ ] Informar versões, plataformas e ambientes suportados.
 - [ ] Sinalizar conteúdos técnicos desatualizados.
 - [ ] Publicar changelogs ou notas de versão quando houver lançamentos.
@@ -2432,6 +2434,175 @@ Os metadados completos dos controles novos ficam em [catalog/](catalog/) e o pro
 - [ ] Definir periodicidade de revisão e uma evidência fresca para cada controle crítico.
 - [ ] Evitar acumular linters, scanners e regras sobrepostos sem ganho mensurável.
 - [ ] Revisar periodicamente peso, custo e utilidade do checklist, reduzindo burocracia sem enfraquecer controles críticos.
+
+## 25. Arquitetura da documentação, Diátaxis, escrita técnica e voz editorial
+
+A documentação é um componente de qualidade, segurança e manutenção de software. Aplicar os controles abaixo conforme risco e público. **P0** é bloqueador apenas quando aplicável; **P1** é recomendado; **P2** é melhoria de maturidade. A organização e as regras editoriais são recomendações adaptáveis, não requisitos universais de uma norma técnica.
+
+**Referências principais:** [Diátaxis](https://diataxis.fr/), [Google Developer Documentation Style Guide](https://developers.google.com/style), [Google: voice and tone](https://developers.google.com/style/tone), [Google Technical Writing](https://developers.google.com/tech-writing/overview), [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide), [Microsoft: brand voice](https://learn.microsoft.com/en-us/style-guide/brand-voice-above-all-simple-human), [GitLab Documentation Style Guide](https://docs.gitlab.com/development/documentation/styleguide/), [Kubernetes Documentation Style Guide](https://kubernetes.io/docs/contribute/style/style-guide/), [IBM Style](https://www.ibm.com/docs/en/technical-content?topic=standards-style) e [Vale](https://vale.sh/).
+
+### 25.1. Entender e aplicar Diátaxis
+
+O **Diátaxis** organiza a documentação em quatro modalidades que correspondem a necessidades diferentes:
+
+| Modalidade | Pergunta do leitor | Objetivo editorial | Exemplo aplicado a Fail2Ban |
+| --- | --- | --- | --- |
+| **Tutorial** | Como começo a aprender? | Aprender por meio de uma experiência orientada, com passos pedagógicos e resultado observável | Configurar pela primeira vez um ambiente de testes com Fail2Ban |
+| **Guia prático (how-to)** | Como concluo esta tarefa? | Resolver um objetivo específico de trabalho, presumindo conhecimentos adequados | Proteger o SSH com uma jail do Fail2Ban |
+| **Referência** | Qual é o valor, contrato ou comportamento exato? | Consultar informações completas e precisas dentro de um escopo conhecido | Diretivas `maxretry`, `findtime`, `bantime`, backends e sintaxe |
+| **Explicação** | Por que isso funciona ou foi escolhido? | Compreender conceitos, decisões, limites e trade-offs | Por que banimento de IP não substitui MFA ou redução de exposição |
+
+O Diátaxis orienta a arquitetura de informação e a redação de cada modalidade, mas **não exige** quatro diretórios físicos nem um único gerador de sites. O objetivo é evitar que uma página de referência seja uma longa aula, ou que um tutorial se torne uma lista de operações sem contexto de aprendizado.
+
+Exemplo opcional de organização:
+
+```text
+docs/
+  tutorials/
+    primeiro-deploy.md
+  how-to/
+    configurar-fail2ban.md
+    restaurar-backup.md
+  reference/
+    variaveis-de-ambiente.md
+    api.md
+    configuracao.md
+  explanation/
+    modelo-de-autenticacao.md
+    migracoes-de-banco.md
+    decisoes-de-arquitetura.md
+```
+
+### Diátaxis: organização por necessidade do leitor
+
+- [ ] **DOC-001 [P0]** Definir público e tarefas reais antes de organizar a documentação, distinguindo quem está aprendendo, executando uma tarefa, consultando informação ou buscando compreender decisões. **Evidência:** Mapa de personas, tarefas e jornada de busca de informação.
+- [ ] **DOC-002 [P1]** Adotar o modelo Diátaxis (ou alternativa documentada) com quatro propósitos distintos: tutoriais, guias práticos, referência e explicações. **Evidência:** Mapa da arquitetura informacional com exemplos de cada propósito.
+- [ ] **DOC-003 [P1]** Manter tutoriais com percurso de aprendizado guiado, ambiente controlado, passos sequenciais e resultado demonstrável, sem exigir experiência prévia excessiva. **Evidência:** Tutorial executado por pessoa representativa do público.
+- [ ] **DOC-004 [P1]** Manter guias práticos (how-to) orientados à realização de uma tarefa real, partindo de um objetivo explícito e conhecimento prévio adequado. **Evidência:** Guia seguido para concluir uma operação verificável.
+- [ ] **DOC-005 [P1]** Manter referência técnica factual, completa no escopo declarado e pesquisável, com API, schemas, parâmetros, flags, tipos, defaults, limites e erros. **Evidência:** Referência conferida com código, especificação ou configuração.
+- [ ] **DOC-006 [P1]** Manter explicações conceituais que abordem porquês, contexto, decisões, arquitetura, causas, limitações e trade-offs, sem fingir serem tutoriais. **Evidência:** Revisão de contexto e decisão técnica.
+- [ ] **DOC-007 [P1]** Não confundir tutorial com how-to: aprender mediante exercício é diferente de resolver uma tarefa específica em produção. **Evidência:** Revisão editorial de um exemplar de cada tipo.
+- [ ] **DOC-008 [P1]** Não confundir referência com explicação: consulta factual e descrição de parâmetros são diferentes de fundamentação conceitual. **Evidência:** Revisão da localização do conteúdo.
+- [ ] **DOC-009 [P1]** Separar documentos quando a mistura de objetivos dificulta localizar informações; manter links entre os quatro tipos para o mesmo assunto. **Evidência:** Teste de navegação e cobertura do assunto.
+- [ ] **DOC-010 [P1]** Usar uma taxonomia estável e clara em menus, links e URLs, sem presumir que quatro diretórios rígidos sejam obrigatórios. **Evidência:** Inspeção da navegação e mapa do site.
+- [ ] **DOC-011 [P1]** Associar páginas com temas de negócio e tarefas, não apenas nomes internos de bibliotecas, classes e serviços. **Evidência:** Teste de localização por usuário.
+- [ ] **DOC-012 [P1]** Manter uma página de introdução e índice orientados ao primeiro contato, além de uma busca capaz de encontrar referência técnica. **Evidência:** Teste de chegada e busca.
+- [ ] **DOC-013 [P2]** Executar estudo de encontrabilidade e tree testing para descobrir onde pessoas procurariam tutoriais, respostas e referências. **Evidência:** Relatório de pesquisa com ações de melhoria.
+
+### Voz, tom, estilo e política editorial
+
+- [ ] **DOC-014 [P0]** Definir um guia editorial próprio do projeto para idioma, público, voz, tom, terminologia, formatação, exemplos e manutenção da documentação. **Evidência:** STYLE_GUIDE.md ou seção editorial versionada.
+- [ ] **DOC-015 [P1]** Distinguir voz (identidade consistente da comunicação), tom (adaptação à situação) e estilo (convenções de escrita e apresentação). **Evidência:** Guia editorial com definições e exemplos.
+- [ ] **DOC-016 [P1]** Não confundir voz editorial com voz ativa gramatical; escolher voz ativa por clareza quando ela explicitar a ação. **Evidência:** Exemplos comparativos revisados.
+- [ ] **DOC-017 [P1]** Adotar voz sóbria, humana, direta, respeitosa, inclusiva e tecnicamente precisa, evitando marketing exagerado, paternalismo e afirmações sem evidência. **Evidência:** Amostragem de páginas revisadas.
+- [ ] **DOC-018 [P1]** Variar o tom conforme situação: neutro em referência, instrutivo em guias, acolhedor sem infantilizar iniciantes e preciso/objetivo em incidentes e erros. **Evidência:** Matriz de exemplos por gênero documental.
+- [ ] **DOC-019 [P1]** Escrever principalmente com verbos concretos, sujeitos claros e instruções no imperativo, preferindo voz ativa quando natural. **Evidência:** Revisão editorial e exemplos antes/depois.
+- [ ] **DOC-020 [P1]** Dar prioridade ao resultado ou à ação importante no início de instruções, alertas e procedimentos. **Evidência:** Teste de leitura rápida do conteúdo.
+- [ ] **DOC-021 [P1]** Usar frases concisas e parágrafos coesos, sem eliminar contexto necessário para segurança ou compreensão. **Evidência:** Checklist de clareza e revisão humana.
+- [ ] **DOC-022 [P1]** Evitar jargões, siglas sem explicação, expressões idiomáticas locais, humor ambíguo e metáforas difíceis de traduzir. **Evidência:** Glossário e revisão de internacionalização.
+- [ ] **DOC-023 [P1]** Evitar termos condescendentes que pressupõem facilidade ou conhecimentos do leitor, como 'obviamente', 'basta', 'simplesmente' e 'é trivial'. **Evidência:** Revisão de vocabulário e regras editoriais.
+- [ ] **DOC-024 [P1]** Manter terminologia técnica consistente para comandos, APIs, nomes de produto, objetos e funcionalidades. **Evidência:** Glossário e dicionário de termos aprovados.
+- [ ] **DOC-025 [P1]** Padronizar capitalização de títulos, rótulos de UI, nomes de arquivos, ênfase, listas, sinais de pontuação e referências cruzadas. **Evidência:** Guia de formatação e revisão.
+- [ ] **DOC-026 [P1]** Garantir linguagem não discriminatória e exemplos apropriados a diferentes culturas, gêneros, idades, experiências e habilidades. **Evidência:** Revisão editorial inclusiva.
+- [ ] **DOC-027 [P1]** Definir variante de português (por exemplo, pt-BR) e política de tradução/localização; adaptar regras inglesas em vez de copiar sua gramática. **Evidência:** Vocabulário e decisões de localização.
+- [ ] **DOC-028 [P1]** Evitar promessas de roadmap, referências temporais vagas ('novo', 'atualmente') e afirmações que ficarão desatualizadas sem indicar versão ou data. **Evidência:** Revisão de conteúdos voláteis.
+- [ ] **DOC-029 [P1]** Usar datas absolutas, valores explícitos, unidades de medida, formatos e requisitos de versão quando uma instrução depender disso. **Evidência:** Verificação de exemplos dependentes de versão.
+- [ ] **DOC-030 [P1]** Padronizar mensagens de erro: explicar o problema observável, o impacto e a próxima ação segura, sem revelar segredos ou culpar o usuário. **Evidência:** Testes de mensagens de erro com fluxos reais.
+- [ ] **DOC-031 [P1]** Manter advertências proporcionais ao risco, incluindo pré-condições, efeitos irreversíveis e comandos destrutivos antes da execução. **Evidência:** Revisão de runbooks e procedimentos.
+- [ ] **DOC-032 [P2]** Manter exemplos de antes/depois para regras de escrita e uma biblioteca curta de modelos reutilizáveis. **Evidência:** Coleção de exemplos aprovada.
+
+### Documentação técnica executável e correta
+
+- [ ] **DOC-033 [P0]** Documentar instalação, requisitos prévios, versões suportadas, comandos exatos, parâmetros e resultado esperado para tarefas operacionais críticas. **Evidência:** Execução bem-sucedida dos passos em ambiente limpo.
+- [ ] **DOC-034 [P0]** Indicar riscos, permissões necessárias, efeitos colaterais, impacto em produção e plano de reversão em procedimentos sensíveis. **Evidência:** Revisão do procedimento antes de operar.
+- [ ] **DOC-035 [P0]** Nunca publicar secrets, dados pessoais, credenciais reais ou logs não sanitizados nos exemplos. **Evidência:** Varredura de segredos e revisão de exemplos.
+- [ ] **DOC-036 [P1]** Distinguir exemplos fictícios, placeholders e valores reais, deixando claro o que a pessoa deve substituir. **Evidência:** Testes de entendimento de placeholders.
+- [ ] **DOC-037 [P1]** Verificar que snippets de código, YAML, JSON, comandos shell, queries e URLs funcionam ou são explicitamente ilustrativos. **Evidência:** Testes automatizados ou execução documentada.
+- [ ] **DOC-038 [P1]** Manter exemplos autocontidos ou informar dependências externas, variáveis necessárias e versões exatas. **Evidência:** Teste em ambiente isolado.
+- [ ] **DOC-039 [P1]** Documentar o comportamento esperado, as mensagens de erro comuns e como validar se o passo funcionou. **Evidência:** Checklist de critérios de sucesso por tutorial/how-to.
+- [ ] **DOC-040 [P1]** Gerar ou validar referência de API a partir de contratos e código quando apropriado, reduzindo divergência entre documentação e produto. **Evidência:** Diff de OpenAPI/AsyncAPI e integração com build.
+- [ ] **DOC-041 [P1]** Documentar política de versionamento e migração de páginas, parâmetros, endpoints e recursos descontinuados. **Evidência:** Página por versão e link de migração.
+- [ ] **DOC-042 [P1]** Manter documentação de incidentes e troubleshooting pesquisável por sintomas, causas prováveis e passos seguros. **Evidência:** Exercício de diagnóstico com runbook.
+- [ ] **DOC-043 [P1]** Revisar exemplos destrutivos e comandos com sudo, permissões amplas ou configuração de firewall/SSH com recuperação segura. **Evidência:** Revisão de segurança e teste em sandbox.
+- [ ] **DOC-044 [P1]** Registrar autoria, revisão técnica, data de verificação, versão do produto e responsável por páginas críticas quando viável. **Evidência:** Metadados ou PR de revisão.
+- [ ] **DOC-045 [P1]** Linkar decisões arquiteturais, threat models, diagramas, requisitos e documentação operacional sem duplicar conteúdo incoerente. **Evidência:** Auditoria de links cruzados.
+- [ ] **DOC-046 [P2]** Criar ambientes de exemplo ou sandboxes descartáveis que permitam reproduzir tutoriais e guias sem danificar produção. **Evidência:** Execução automatizada de cenário de exemplo.
+
+### Acessibilidade, localização, formatos e pesquisa documental
+
+- [ ] **DOC-047 [P0]** Garantir que a documentação crítica seja utilizável com teclado e tecnologias assistivas nos formatos de publicação escolhidos. **Evidência:** Teste de navegação e leitura assistiva.
+- [ ] **DOC-048 [P1]** Usar títulos semânticos e hierarquia consistente, links com texto descritivo, alternativas para figuras e descrições de diagramas relevantes. **Evidência:** Inspeção semântica e auditoria de acessibilidade.
+- [ ] **DOC-049 [P1]** Evitar transmitir informação exclusivamente por cor, posição, animação ou imagem de terminal. **Evidência:** Revisão visual e assistiva.
+- [ ] **DOC-050 [P1]** Fornecer legendas e transcrições para material audiovisual conforme público e requisitos aplicáveis. **Evidência:** Inventário e revisão de mídia.
+- [ ] **DOC-051 [P1]** Verificar contraste, reflow, zoom e navegação do tema de documentação e de seus plugins. **Evidência:** Auditoria WCAG aplicada ao site de docs.
+- [ ] **DOC-052 [P1]** Evitar tabelas excessivamente complexas ou estruturas que prejudicam leitores de tela; usar tabelas somente para dados tabulares. **Evidência:** Teste com leitor de tela.
+- [ ] **DOC-053 [P1]** Manter pesquisa interna, índices, navegação por tema e links contextuais sem gerar conteúdo duplicado confuso. **Evidência:** Teste de busca por tarefas reais.
+- [ ] **DOC-054 [P1]** Planejar localização de mensagens, datas, unidades, terminologia e exemplos para audiências internacionais quando necessário. **Evidência:** Revisão de localização e variantes.
+- [ ] **DOC-055 [P1]** Indicar idioma e versão de cada tradução e destacar documentação potencialmente desatualizada. **Evidência:** Metadados de tradução e teste de paridade.
+
+### Quality gates de documentação como código
+
+- [ ] **DOC-056 [P0]** Tratar documentação técnica crítica como artefato versionado e revisado junto ao código que altera seu comportamento. **Evidência:** Revisão em PR de mudança funcional.
+- [ ] **DOC-057 [P1]** Executar markdownlint-cli2 ou ferramenta equivalente para estrutura e formatação dos arquivos Markdown. **Evidência:** Relatório de CI de Markdown.
+- [ ] **DOC-058 [P1]** Executar verificação de links locais e externos com lychee ou equivalente, distinguindo links temporariamente indisponíveis. **Evidência:** Relatório de links e política de retry/exceção.
+- [ ] **DOC-059 [P1]** Avaliar Vale para lint editorial de terminologia, vocabulário, estilo, marcas e convenções específicas do projeto. **Evidência:** Regras Vale executadas em exemplos de docs.
+- [ ] **DOC-060 [P1]** Versionar configuração do Vale (por exemplo, .vale.ini) e regras próprias com justificativa e casos válidos/inválidos. **Evidência:** Arquivos versionados e testes das regras.
+- [ ] **DOC-061 [P1]** Configurar dicionário personalizado e spellchecker (por exemplo, cspell) para português e termos técnicos efetivamente usados. **Evidência:** Dicionário e relatório de falsos positivos.
+- [ ] **DOC-062 [P1]** Diferenciar falhas editoriais objetivas que bloqueiam CI de sugestões subjetivas que exigem julgamento humano. **Evidência:** Política de severidade error/warning/suggestion.
+- [ ] **DOC-063 [P1]** Validar snippets, código embutido, exemplos de CLI e arquivos de configuração em testes quando viável. **Evidência:** Testes de exemplo versionados.
+- [ ] **DOC-064 [P1]** Executar build e checagem de links do site de documentação antes da publicação. **Evidência:** Workflow de docs com logs verificáveis.
+- [ ] **DOC-065 [P1]** Executar detecção de secrets e análise de licenças/atribuições também sobre documentação, assets e exemplos. **Evidência:** Resultados de verificação de secrets/licenças.
+- [ ] **DOC-066 [P1]** Evitar instalar todos os verificadores sem uma finalidade mensurável; reduzir sobreposições e ruído. **Evidência:** Matriz ferramenta → risco ou defeito detectado.
+- [ ] **DOC-067 [P1]** Planejar revisão editorial por pessoas e revisão técnica por responsáveis pela funcionalidade documentada. **Evidência:** Aprovações e critérios de PR.
+- [ ] **DOC-068 [P1]** Testar se a documentação funciona com versão, sistema e dependências indicados, não apenas se Markdown renderiza. **Evidência:** Registro de teste de procedimento.
+- [ ] **DOC-069 [P1]** Automatizar alertas de documentação desatualizada após alterações em API, flags, releases ou esquema. **Evidência:** Issue/PR automático ou relatório de drift.
+- [ ] **DOC-070 [P2]** Validar documentação de instalação e tutoriais em ambiente efêmero de CI com imagens e ferramentas fixadas. **Evidência:** Build e testes de docs reproduzíveis.
+
+### Manutenção, governança e experiência do leitor
+
+- [ ] **DOC-071 [P0]** Definir responsáveis pela documentação e canal claro para corrigir erros de instrução que afetem usuários ou segurança. **Evidência:** CODEOWNERS ou política de ownership documentada.
+- [ ] **DOC-072 [P1]** Incluir documentação no Definition of Done quando a alteração mudar comportamento, API, configuração ou operação. **Evidência:** Checklist de PR com exemplos preenchidos.
+- [ ] **DOC-073 [P1]** Estabelecer revisão em releases e calendário de atualização de páginas críticas, sem criar prazos universais artificiais. **Evidência:** Histórico de revisão e responsáveis.
+- [ ] **DOC-074 [P1]** Coletar feedback sobre lacunas, documentação incorreta e dificuldades de localizar conteúdo. **Evidência:** Issues, survey ou registros de suporte.
+- [ ] **DOC-075 [P1]** Avaliar se usuários conseguem concluir uma tarefa apenas seguindo a documentação, sem conhecimento implícito do mantenedor. **Evidência:** Teste de tarefa com leitor representativo.
+- [ ] **DOC-076 [P1]** Medir sucesso das tarefas e tempo para localizar respostas, não só visualizações de página. **Evidência:** Teste de usabilidade documental e indicadores.
+- [ ] **DOC-077 [P1]** Prever política de depreciação, redirecionamentos e arquivamento para não deixar links antigos levando a instruções inseguras. **Evidência:** Revisão de links antigos e status do conteúdo.
+- [ ] **DOC-078 [P1]** Documentar licenças de textos, imagens e capturas de tela e reconhecer autores e ferramentas conforme aplicabilidade. **Evidência:** Seção de créditos e avisos de terceiros.
+- [ ] **DOC-079 [P1]** Permitir contribuição de documentação com orientação adequada a pessoas não desenvolvedoras. **Evidência:** CONTRIBUTING.md e validação do processo.
+- [ ] **DOC-080 [P2]** Revisar periodicamente a arquitetura documental, removendo páginas redundantes e consolidando conteúdo de baixo uso. **Evidência:** Plano editorial com justificativas.
+
+### 25.2. Interpretação dos guias editoriais
+
+Os guias públicos podem orientar uma **política editorial própria**, mas não devem ser reproduzidos integralmente nem copiados sem considerar o idioma e o público:
+
+| Referência | O que absorver | Aplicação prática |
+| --- | --- | --- |
+| **Google Developer Documentation Style Guide** | Linguagem direta, voz ativa quando apropriada, segunda pessoa, termos consistentes, clareza global, exemplos úteis e tom respeitoso | Descrever tarefas com o que executar, por que e como confirmar resultado |
+| **Microsoft Writing Style Guide** | Voz humana, simples e clara; distinguir voz persistente de tom situacional; instruções e mensagens de erro úteis | Comunicar ação e próximo passo sem ambiguidade |
+| **GitLab Documentation Style Guide** | Consistência de terminologia, páginas, UI, exemplos, tabelas, links, imagens e revisão da documentação como código | Padronizar templates de PR e quality gates para docs |
+| **IBM Style** | Correção, consistência, acessibilidade cultural e capacidade de tradução, terminologia e apresentação | Tornar documentação compreensível por públicos internacionais |
+| **Kubernetes Documentation Style Guide** | Padrões para comandos, objetos de API, termos, referências, versões, alertas e procedimentos de infraestrutura | Criar guias operacionais reproduzíveis e seguros |
+| **Diátaxis** | Organização por necessidade: aprendizado, tarefa, consulta e compreensão | Estruturar navegação sem misturar tipos documentais |
+| **Google Technical Writing** | Formação em redação técnica, acessibilidade e mensagens de erro | Desenvolver habilidade editorial da equipe, não apenas impor lints |
+
+**Voz, tom, estilo e voz ativa não são sinônimos.** Voz é o modo de comunicação recorrente do projeto, tom varia com situação e gravidade, estilo reúne convenções editoriais, e voz ativa é uma forma sintática que pode aumentar clareza.
+
+Uma redação ruim diz: “Recomenda-se que seja realizada a verificação de eventuais bloqueios operacionais antes que a migração seja efetivada.” Uma redação acionável diz: **“Antes de executar a migração, verifique o tamanho da tabela, os locks necessários e as transações ativas. Teste a alteração em uma base com volume de dados representativo.”**
+
+A redação técnica não precisa ser excessivamente informal, rígida ou curta. A prioridade é preservar a **correção técnica** com o mínimo de esforço cognitivo necessário.
+
+### 25.3. Lint editorial: Vale e verificações complementares
+
+- **Vale**: análise de texto conforme regras editoriais versionadas; pode detectar terminologia proibida, inconsistência de vocabulário e padrões textuais. [Site](https://vale.sh/) e [exemplo de integração do GitLab](https://docs.gitlab.com/development/documentation/testing/vale/).
+- **markdownlint-cli2**: estrutura e formatação Markdown, como headings, listas e convenções de marcação; não substitui o Vale.
+- **lychee**: links internos e externos com política adequada para páginas temporariamente indisponíveis.
+- **cspell** ou equivalente: ortografia e dicionário de nomes próprios/técnicos, considerando o idioma e a taxa de falsos positivos.
+- **Testes de snippets e exemplos**: conferem execução, sintaxe e comportamento real de comandos, scripts, YAML e JSON.
+- **Testes de acessibilidade e usabilidade**: revisão manual e ferramentas como axe-core/Pa11y para o site de documentação.
+
+O uso do Vale **não significa** que toda regra dos guias Google/Microsoft/IBM esteja automaticamente implementada, nem que a ferramenta verifique se uma instrução técnica está correta. Qualquer ferramenta deve ser configurada, testada, versionada e revisada antes de atuar como gate de CI.
+
+**Critério de aceite da documentação:** uma página deve ser apropriada ao leitor e ao tipo, estar tecnicamente correta para a versão declarada, ter pré-requisitos e riscos explícitos quando houver, possuir exemplos que possam ser reproduzidos ou claramente ilustrativos, ser acessível, pesquisável e mantida junto ao produto. Itens não aplicáveis precisam de justificativa.
 
 ## Prioridades sugeridas
 
