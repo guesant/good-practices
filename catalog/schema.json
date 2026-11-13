@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Good Practices – controle verificável",
+  "description": "Schema de documentos catalog/*.json contendo controle editorial próprio; não implica certificação ou representação integral de normas.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "description",
+    "controls"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/control"
+      }
+    }
+  },
+  "$defs": {
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "priority",
+        "text",
+        "profiles",
+        "verify",
+        "evidence",
+        "reference",
+        "section"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9]{1,8}-[0-9]{2}$"
+        },
+        "priority": {
+          "enum": [
+            "P0",
+            "P1",
+            "P2"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 12
+        },
+        "profiles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "all",
+              "oss",
+              "library",
+              "docs",
+              "web",
+              "api",
+              "backend",
+              "saas",
+              "infra",
+              "data",
+              "ai",
+              "mobile"
+            ]
+          }
+        },
+        "verify": {
+          "type": "string",
+          "minLength": 6
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 6
+        },
+        "reference": {
+          "type": "string",
+          "format": "uri"
+        },
+        "section": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    }
+  }
+}
