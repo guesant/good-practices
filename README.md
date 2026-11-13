@@ -33,7 +33,7 @@ Este README é o **checklist central**. Os guias vinculados aprofundam configura
 
 ## Configurações práticas de ferramentas
 
-O [catálogo de configurações reais dos repositórios de guesant](#anexo-k) reúne exemplos, critérios de adoção e checklists adicionais para ESLint, Biome, Prettier, Stylelint, ast-grep, jscpd, Knip, actionlint, zizmor, Hadolint, Gitleaks, Renovate e outras ferramentas. Qlty está identificado como alternativa ainda sem configuração própria verificada.
+O [catálogo de configurações e recomendações práticas](#anexo-k) reúne exemplos, critérios de adoção e checklists adicionais para ESLint, Biome, Prettier, Stylelint, ast-grep, jscpd, Knip, actionlint, zizmor, Hadolint, Gitleaks, Renovate e outras ferramentas. Qlty está identificado como alternativa ainda sem configuração própria verificada.
 
 ## Como acompanhar
 
@@ -322,7 +322,7 @@ Um item só deverá ser marcado como concluído quando houver evidência de conf
 | `quality` | Exigir PR, branch atualizada com a base e aprovação do job agregador `gate` do workflow `ci.yaml`. Vincular o check ao GitHub Actions e confirmar seu nome de exibição. | Nenhuma. |
 | `review` | Invalidar aprovações após novos pushes, exigir aprovação do último push por outra pessoa e exigir a resolução das conversas de revisão. | Bypass apenas para responsáveis explicitamente autorizados, com justificativa e registro. A exceção vale somente para `review`. |
 
-Como evidência, conferir as configurações efetivas do repositório, a exclusão automática de uma branch elegível após merge e o bloqueio de um PR com gate pendente ou reprovado, inclusive para quem tem bypass de revisão. [Exemplo de rulesets](https://github.com/Rondoscopio/osint-rondonia/rules)
+Como evidência, conferir as configurações efetivas do repositório, a exclusão automática de uma branch elegível após merge e o bloqueio de um PR com gate pendente ou reprovado, inclusive para quem tem bypass de revisão. Consultar a [documentação oficial de rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets).
 
 ### 11.4. Ambiente reproduzível, just, Docker e Compose
 
@@ -477,7 +477,7 @@ Como evidência, conferir as configurações efetivas do repositório, a exclus�
 - [ ] Testar bloqueio de merge com falha intencional em branch de teste.
 - [ ] Testar o fluxo de integração após aprovação das verificações.
 
-O OSINT Rondônia é a referência para o job agregador. [Workflow CI](https://github.com/Rondoscopio/osint-rondonia/blob/main/.github/workflows/ci.yaml)
+Como exemplo, usar um job agregador de CI que depende dos checks obrigatórios, detecta falhas e jobs pulados indevidamente e apresenta um único status confiável para proteção de branch.
 
 ### 11.13. Evidências, auditoria e manutenção da conformidade
 
@@ -2618,7 +2618,7 @@ O [Open Source Guides](https://opensource.guide/) oferece orientações para com
 
 **Referências principais:** [Open Source Guides](https://opensource.guide/), [GitHub Actions Security](https://docs.github.com/en/actions/security-for-github-actions), [OpenSSF](https://openssf.org/), [OWASP](https://owasp.org/), [NIST CSF](https://www.nist.gov/cyberframework), [WCAG](https://www.w3.org/TR/WCAG22/).
 
-**Origem editorial:** catálogo adaptado e generalizado a partir do checklist público de [Rondoscopio/conformidade](https://github.com/Rondoscopio/conformidade). Regras e ferramentas não são universalmente obrigatórias. Documente escopo, evidência e exceções para cada projeto.
+**Aplicabilidade editorial:** regras e ferramentas não são universalmente obrigatórias. Documente escopo, evidências e exceções para cada projeto.
 
 
 ---
@@ -2939,7 +2939,7 @@ Fonte temática: [https://www.cncf.io/projects/](https://www.cncf.io/projects/).
 
 Este guia contém um **perfil de preferência pessoal** e controles de segurança mais amplos. As escolhas de merge commit exclusivo, aparência dos badges e convenções de commits são preferências, **não exigências da ISO, do NIST ou do GitHub**.
 
-**Referências reais:** [guesant/.github](https://github.com/guesant/.github), [guesant/hl-infrastructure](https://github.com/guesant/hl-infrastructure), [guesant/lobby](https://github.com/guesant/lobby), [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml) e [CI do Lobby](https://github.com/guesant/lobby/blob/main/.github/workflows/ci.yml).
+**Referências técnicas:** [configurações de pull requests](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges), [arquivos comunitários padrão](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file), [GitHub Actions](https://docs.github.com/en/actions) e [Shields.io](https://shields.io/).
 
 #### 1. Settings → General: perfil preferido
 
@@ -2956,7 +2956,7 @@ Documentação: [GitHub: tipos de merge](https://docs.github.com/en/repositories
 
 #### 4. Repositório especial `owner/.github`
 
-**Exemplo verificado:** [guesant/.github](https://github.com/guesant/.github).
+**Aplicação:** usar um repositório especial `owner/.github` para arquivos comunitários compartilhados, conforme as regras de precedência do GitHub.
 
 
 #### 5. Arquivos recomendados em cada repositório
@@ -2997,7 +2997,7 @@ A lista é um **catálogo**, não a exigência de criar arquivos vazios. Algumas
 
 #### 6. README: apresentação, badges e transparência
 
-**Referências:** [HL Infrastructure README](https://github.com/guesant/hl-infrastructure/blob/main/README.md) e [Lobby README](https://github.com/guesant/lobby/blob/main/README.md).
+**Referências:** [Shields.io](https://shields.io/) e [documentação de READMEs do GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes).
 
 
 ##### Badges de referência, adaptáveis
@@ -3243,7 +3243,7 @@ Ambas as duas últimas costumam ser abreviadas como **CD**. Não confundir um wo
 }
 ```
 
-O valor de sete dias é ilustrativo e aparece em [guesant/hl-infrastructure](https://github.com/guesant/hl-infrastructure/blob/main/.github/renovate.json). Renovate pode reter uma atualização por versão com base no timestamp informado pelo registry. **Atualizações de segurança reconhecidas por Renovate contornam o minimum release age**, conforme sua documentação. Isso não dispensa revisão do patch e mitigação urgente de vulnerabilidades exploráveis.
+O valor de sete dias é uma configuração de referência, ajustável conforme o ecossistema e o risco. Renovate pode reter uma atualização por versão com base no timestamp informado pelo registry. **Atualizações de segurança reconhecidas por Renovate contornam o minimum release age**, conforme sua documentação. Isso não dispensa revisão do patch e mitigação urgente de vulnerabilidades exploráveis.
 
 **Limitações:** registries sem timestamp, tags móveis, digest pinning e manutenção de lockfile podem exigir exceções explícitas. Em gerenciadores de pacotes que suportam cooldown, configure-o também para que resoluções transitivas não contornem a política. Não bloquear indefinidamente correções de segurança por configurações de maturação.
 
@@ -3828,7 +3828,7 @@ Conferir a situação vigente de cada edição no [catálogo ISO](https://www.is
 
 ### Configurações de ferramentas: referências de projetos reais
 
-Catálogo reutilizável de configurações identificadas nos repositórios de `guesant`. Este documento **não declara que todas as configurações foram testadas neste repositório**. Os exemplos são pontos de partida, extraídos de arquivos existentes em outros projetos. Verifique a versão instalada da ferramenta, o formato de configuração, a compatibilidade dos plugins e o escopo de cada projeto antes de copiar.
+Catálogo reutilizável de configurações de ferramentas. Este documento **não declara que todas as configurações foram testadas em todos os ambientes**. Os exemplos são pontos de partida que precisam de adaptação. Verifique a versão instalada da ferramenta, o formato de configuração, a compatibilidade dos plugins e o escopo de cada projeto antes de copiar.
 
 #### Checklist de adoção
 
@@ -3845,7 +3845,7 @@ Catálogo reutilizável de configurações identificadas nos repositórios de `g
 
 #### ESLint e TypeScript: análise tipada, imports e regras arquiteturais
 
-**Origem:** [guesant/lobby: configuração central ESLint](https://github.com/guesant/lobby/blob/main/.config/eslint.config.ts).
+**Configuração de referência:** ESLint com análise tipada, controle de imports e regras arquiteturais.
 
 O projeto usa Flat Config, `@eslint/js`, `typescript-eslint` com presets `strictTypeChecked` e `stylisticTypeChecked`, `eslint-plugin-svelte`, `eslint-plugin-sonarjs`, `eslint-plugin-import-x`, `eslint-plugin-simple-import-sort`, `@stylistic/eslint-plugin` e um conjunto de regras próprias em `.config/eslint-rules/`.
 
@@ -3859,11 +3859,11 @@ O projeto usa Flat Config, `@eslint/js`, `typescript-eslint` com presets `strict
 - [ ] Evitar copiar restrições subjetivas (por exemplo, proibir ternários ou limitar funções por arquivo) como se fossem universais.
 - [ ] Validar custo e compatibilidade de análises type-aware e dos plugins na versão escolhida.
 
-**Referência de execução:** [lint-code.ts](https://github.com/guesant/lobby/blob/main/.config/scripts/quality/lint-code.ts) executa `eslint --config website/eslint.config.js . --max-warnings 0` e Knip em etapa própria.
+**Exemplo de execução:** `eslint --config website/eslint.config.js . --max-warnings 0`, com Knip em etapa própria. Ajuste os caminhos ao projeto.
 
 #### Biome: alternativa integrada para lint e formatação
 
-**Origem:** [guesant/fabricjs-object-fit: src/biome.json](https://github.com/guesant/fabricjs-object-fit/blob/main/src/biome.json).
+**Configuração de referência:** `biome.json` para formatação e lint consistentes.
 
 A configuração encontrada define `files.includes` para os fontes dos pacotes, formatação com espaços de dois caracteres e largura de 80, regras recomendadas do linter, `noUnusedVariables` como erro e estilo JavaScript de aspas duplas e ponto e vírgula.
 
@@ -3905,9 +3905,9 @@ O exemplo acima é uma **adaptação mínima** do arquivo original: omite `exper
 
 #### Prettier e Stylelint: formatação e CSS
 
-**Origens:** [Prettier no lobby](https://github.com/guesant/lobby/blob/main/.config/prettier.config.ts), [Stylelint no lobby](https://github.com/guesant/lobby/blob/main/.config/.stylelintrc.json) e [Stylelint no blog](https://github.com/guesant/blog/blob/main/.stylelintrc.json).
+**Configurações de referência:** Prettier com plugins conforme a stack e Stylelint com regras consistentes para CSS.
 
-O Prettier do lobby usa plugins para Svelte e arrays multilinha, aspas simples, vírgulas finais, `objectWrap: preserve` e tratamento específico de whitespace em `.svelte`. O Stylelint usa `stylelint-config-standard`; uma configuração mais rigorosa restringe unidades físicas e tamanhos rígidos.
+Uma configuração de Prettier pode usar plugins para Svelte e arrays multilinha, aspas simples, vírgulas finais, `objectWrap: preserve` e tratamento específico de whitespace em `.svelte`. O Stylelint pode usar `stylelint-config-standard`; uma configuração mais rigorosa restringe unidades físicas e tamanhos rígidos.
 
 - [ ] Configurar Prettier quando suas linguagens e opções forem adequadas.
 - [ ] Habilitar plugin de framework somente quando necessário.
@@ -3919,7 +3919,7 @@ O Prettier do lobby usa plugins para Svelte e arrays multilinha, aspas simples, 
 
 #### ast-grep: política estrutural personalizada
 
-**Origens:** [configuração do lobby](https://github.com/guesant/lobby/blob/main/.config/ast-grep/sgconfig.yml), [regra TypeScript](https://github.com/guesant/lobby/blob/main/.config/ast-grep/rules/no-narrative-comments-typescript.yml), [testes CSS](https://github.com/guesant/lobby/blob/main/.config/ast-grep/tests/no-narrative-comments-css.yml) e [configuração da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.config/ast-grep/sgconfig.yml).
+**Configurações de referência:** `sgconfig.yml`, regras TypeScript, testes CSS de regras próprias e `languageGlobs` para templates.
 
 ```yaml
 ruleDirs:
@@ -3935,7 +3935,7 @@ ast-grep test --config .config/ast-grep/sgconfig.yml
 ast-grep scan --config .config/ast-grep/sgconfig.yml .
 ```
 
-O lobby possui regras para comentários narrativos em TypeScript, JavaScript, CSS e YAML, com casos válidos e inválidos. Na infraestrutura há `languageGlobs` para arquivos de template `*.j2`.
+É possível configurar regras para comentários narrativos em TypeScript, JavaScript, CSS e YAML, com casos válidos e inválidos. Para templates, usar `languageGlobs` para arquivos `*.j2` quando aplicável.
 
 - [ ] Criar regras estruturais para invariantes verificáveis e repetitivos.
 - [ ] Incluir testes positivos e negativos para cada regra.
@@ -3946,7 +3946,7 @@ O lobby possui regras para comentários narrativos em TypeScript, JavaScript, CS
 
 #### jscpd: detecção de duplicação
 
-**Origens:** [configuração YAML da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.config/jscpd.json) e [scripts de tooling do lobby](https://github.com/guesant/lobby/blob/main/.config/package.json).
+**Configurações de referência:** `jscpd.json` para limiares e exclusões, com scripts de tooling do projeto.
 
 Configuração real encontrada na infraestrutura:
 
@@ -3962,7 +3962,7 @@ Configuração real encontrada na infraestrutura:
 }
 ```
 
-O lobby executa `jscpd` com `--min-tokens 50 --min-lines 5 --skip-comments`, filtragem de fontes e testes, além de um baseline versionado e `--fail-on-new-clones=0`. Consulte o [baseline efetivo](https://github.com/guesant/lobby/blob/main/.config/jscpd-baseline.json).
+Um exemplo de execução usa `jscpd` com `--min-tokens 50 --min-lines 5 --skip-comments`, filtragem de fontes e testes, além de um baseline versionado e `--fail-on-new-clones=0`. Mantenha o baseline sob controle de versão e revise seu crescimento.
 
 - [ ] Definir linguagens, diretórios e formatos a escanear.
 - [ ] Excluir código gerado, dependências e duplicações deliberadas justificadas.
@@ -3974,9 +3974,9 @@ O lobby executa `jscpd` com `--min-tokens 50 --min-lines 5 --skip-comments`, fil
 
 #### Knip: arquivos, exports e dependências não utilizados
 
-**Origens:** [configuração do lobby](https://github.com/guesant/lobby/blob/main/.config/knip.json) e [executor do lobby](https://github.com/guesant/lobby/blob/main/.config/scripts/quality/lint-code.ts).
+**Configuração de referência:** Knip com workspaces, entrypoints, projetos e exclusões explícitas.
 
-O arquivo do lobby define workspaces, `entry` e `project`, arquivos de configuração ESLint e `ignoreBinaries` para ferramentas invocadas externamente. O executor usa `--treat-config-hints-as-errors`.
+Uma configuração pode definir workspaces, `entry` e `project`, arquivos de configuração ESLint e `ignoreBinaries` para ferramentas invocadas externamente. Um executor pode usar `--treat-config-hints-as-errors`.
 
 - [ ] Definir entrypoints reais, inclusive rotas e scripts de automação.
 - [ ] Informar workspaces e fontes sem incluir diretórios de build.
@@ -3986,7 +3986,7 @@ O arquivo do lobby define workspaces, `entry` e `project`, arquivos de configura
 
 #### GitHub Actions: actionlint, zizmor e segregação de checks
 
-**Origens:** [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml), [script do blog](https://github.com/guesant/blog/blob/main/.config/check.sh).
+**Configurações de referência:** workflows de CI com checks segregados e scripts de verificação executáveis localmente.
 
 O CI da infraestrutura usa `actionlint` para validação dos workflows, `zizmor` para auditoria de segurança, jobs separados para outras ferramentas, checkout com `persist-credentials: false`, `permissions: contents: read` no escopo global e escalonamento de permissões por job quando necessário.
 
@@ -4005,7 +4005,7 @@ No blog, `zizmor --format sarif` gera relatório, e `actionlint` roda sobre `.gi
 
 #### Hadolint, ShellCheck, yamllint, markdownlint e Gitleaks
 
-**Origens:** [script agregador do blog](https://github.com/guesant/blog/blob/main/.config/check.sh), [configuração Hadolint do blog](https://github.com/guesant/blog/blob/main/.config/hadolint.yaml) e [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml).
+**Configurações de referência:** job agregador de CI, `hadolint.yaml` e verificação de scripts, YAML e segredos.
 
 A configuração Hadolint recuperada do blog contém:
 
@@ -4026,7 +4026,7 @@ O CI da infraestrutura inclui exceções `DL3008` e `DL3018` para o Hadolint; es
 
 #### Renovate e gestão automatizada de dependências
 
-**Origem:** [guesant/hl-infrastructure: renovate.json](https://github.com/guesant/hl-infrastructure/blob/main/.github/renovate.json).
+**Configuração de referência:** `renovate.json`, com janela de maturação de releases e exceções de segurança.
 
 A configuração usa `config:recommended`, janela mínima de maturação de sete dias (com exceções), `pinDigests` para imagens, regras por gerenciador, grupos de atualizações, custom managers regex para ferramentas em YAML e comandos pós-atualização para checksums.
 
@@ -4042,7 +4042,7 @@ A configuração usa `config:recommended`, janela mínima de maturação de sete
 
 #### Testes e relatórios de segurança
 
-**Origens:** [tooling do lobby](https://github.com/guesant/lobby/blob/main/.config/package.json), [CI da infraestrutura](https://github.com/guesant/hl-infrastructure/blob/main/.github/workflows/ci.yml) e [verificações do blog](https://github.com/guesant/blog/blob/main/.config/check.sh).
+**Configurações de referência:** scripts de qualidade, workflows de CI e verificações automatizadas de segurança.
 
 Nos repositórios aparecem Vitest, fast-check, Trivy, scanners OSV, SBOM, SARIF, além de tarefas de testes e qualidade. A combinação depende do tipo de entrega.
 
@@ -4056,7 +4056,7 @@ Nos repositórios aparecem Vitest, fast-check, Trivy, scanners OSV, SBOM, SARIF,
 
 #### Qlty: candidato ainda não localizado nos repositórios pesquisados
 
-Não foi encontrada uma configuração `qlty.toml` ou uso confirmado de Qlty nas buscas efetuadas em `guesant`. Assim, **não existe exemplo próprio verificado para copiar aqui**.
+Qlty é uma alternativa opcional. Sua adoção deve ser justificada pelo benefício real e acompanhada de uma configuração validada no próprio projeto, não presumida a partir deste checklist.
 
 - [ ] Avaliar Qlty se a agregação de métricas ou a substituição de verificações já existentes trouxer benefício.
 - [ ] Comparar suas análises com ESLint, Biome, jscpd, Knip e scanners já adotados antes de adicionar mais uma etapa.
@@ -4093,7 +4093,7 @@ Não foi encontrada uma configuração `qlty.toml` ou uso confirmado de Qlty nas
 - [ ] Fixar toolchain, versões transitivas e lockfiles para builds limpos e repetíveis.
 - [ ] Promover o mesmo artefato entre ambientes e verificar hashes, SBOM e atestação quando necessária.
 
-**Referência própria:** [Renovate em guesant/hl-infrastructure](https://github.com/guesant/hl-infrastructure/blob/main/.github/renovate.json), com `minimumReleaseAge: "7 days"`. O guia [entrega segura e processamento](#anexo-h) apresenta configurações, limitações e critérios de escolha.
+**Exemplo de configuração:** `minimumReleaseAge: "7 days"` no Renovate. O [guia de entrega segura e processamento](#anexo-h) apresenta configurações, limitações e critérios de escolha.
 
 **Referências oficiais:** [Renovate Minimum Release Age](https://docs.renovatebot.com/key-concepts/minimum-release-age/), [Socket for GitHub](https://docs.socket.dev/docs/socket-for-github).
 
