@@ -46,7 +46,7 @@ Fonte temática: [https://www.w3.org/TR/WCAG22/](https://www.w3.org/TR/WCAG22/).
 
 ## Privacidade por concepção, ciclo de vida e minimização de dados
 
-Fonte temática: [https://www.nist.gov/privacy-framework](https://www.nist.gov/privacy-framework). Perfis: saas, api, data, web, ai.
+Fonte temática: [https://www.nist.gov/privacy-framework](https://www.nist.gov/privacy-framework). Perfis: saas, api, data, web, ai, sensitive.
 
 - [ ] **PRIV-01 [P0]** Inventariar dados pessoais, suas fontes, finalidades, bases aplicáveis, destinos e acessos. **Verificação:** Traçar fluxo de dados por serviço. **Evidência:** Mapa de tratamento de dados.
 - [ ] **PRIV-02 [P0]** Minimizar coleta, armazenamento, telemetria e compartilhamento ao estritamente necessário. **Verificação:** Comparar campos coletados às finalidades. **Evidência:** Revisão de campos.
@@ -67,7 +67,7 @@ Fonte temática: [https://www.nist.gov/privacy-framework](https://www.nist.gov/p
 
 ## Segurança, qualidade e governança de IA e agentes
 
-Fonte temática: [https://genai.owasp.org/llm-top-10/](https://genai.owasp.org/llm-top-10/). Perfis: ai, saas, api.
+Fonte temática: [https://genai.owasp.org/llm-top-10/](https://genai.owasp.org/llm-top-10/). Perfis: ai.
 
 - [ ] **AIG-01 [P0]** Identificar todos os usos de IA e distinguir geração de texto de agentes capazes de executar ações. **Verificação:** Inventariar modelos, ferramentas e acessos. **Evidência:** Inventário de aplicações de IA.
 - [ ] **AIG-02 [P0]** Tratar texto de usuário, arquivos, páginas recuperadas e resultados de ferramentas como entradas não confiáveis. **Verificação:** Executar testes de prompt injection. **Evidência:** Relatório de red teaming.
