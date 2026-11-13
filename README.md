@@ -72,6 +72,28 @@ O [catálogo de configurações reais dos repositórios de guesant](docs/tooling
 - [ ] Documentar critérios para eventuais mudanças de licenciamento.
 - [ ] Não presumir que conteúdo público na internet seja livre para reutilização.
 
+## 3.1. Créditos, atribuições, licenças de terceiros e transparência
+
+**Referências:** [Open Source Guides: aspectos jurídicos](https://opensource.guide/legal/), [SPDX](https://spdx.dev/), [REUSE](https://reuse.software/) e [ClearlyDefined](https://clearlydefined.io/). Consulte também o [guia prático de créditos e licenças](docs/credits-and-licenses.md).
+
+- [ ] Criar uma página pública de **Créditos**, acessível pelo README, site ou documentação, para projetos, ferramentas, bibliotecas, recursos e pessoas que contribuíram.
+- [ ] Manter inventário atualizado dos componentes de terceiros utilizados, incluindo dependências diretas, runtime, build, desenvolvimento, CI/CD, imagens de contêiner e serviços externos relevantes.
+- [ ] Identificar claramente para cada item o nome, finalidade, autor ou organização, URL oficial, licença e versão ou referência utilizada quando pertinente.
+- [ ] Reconhecer explicitamente ferramentas gratuitas e open source mesmo quando sua licença não exigir atribuição pública.
+- [ ] Creditar separadamente bibliotecas, frameworks, ícones, fontes, imagens, ilustrações, datasets, modelos de IA e outros materiais incorporados.
+- [ ] Reproduzir o **texto integral das licenças e avisos obrigatórios** dos componentes distribuídos, conforme suas condições, em `LICENSES/`, `THIRD_PARTY_NOTICES` ou outro local apropriado.
+- [ ] Preservar avisos de copyright, autoria, modificações, patentes e atribuições exigidos por cada licença, incluindo arquivos `NOTICE` quando aplicável.
+- [ ] Diferenciar créditos de cortesia de obrigações jurídicas: links e menções na página de Créditos não substituem os textos de licenças e avisos obrigatórios.
+- [ ] Verificar compatibilidade de licenças e cumprir obrigações específicas de redistribuição, disponibilização de código-fonte e copyleft quando aplicáveis.
+- [ ] Incluir informações de licenças e atribuições em artefatos distribuídos quando exigidas, sem depender exclusivamente de uma página hospedada no GitHub.
+- [ ] Registrar componentes de licença desconhecida ou ambígua e impedir sua redistribuição até esclarecer os direitos pertinentes.
+- [ ] Não presumir que ferramentas SaaS, APIs comerciais ou dependências de build tenham licença open source ou exijam republicação de termos proprietários.
+- [ ] Automatizar inventários e conferência de licenças com SBOM, SPDX, REUSE ou ferramentas equivalentes, mantendo revisão humana das obrigações.
+- [ ] Atualizar os créditos e o conjunto de licenças em alterações de dependências, assets, versões ou licenciamento.
+- [ ] Revisar links, nomes, créditos e licenças antes de cada release, especialmente para pacotes ou imagens distribuídos.
+- [ ] Incluir política para solicitar correções, retirada de atribuições indevidas ou reconhecimento de autoria omitida.
+- [ ] Evitar apresentar terceiros como patrocinadores, parceiros ou endossantes sem autorização.
+
 ## 4. Segurança e cadeia de suprimentos
 
 **Referência:** [Open Source Guides](https://opensource.guide/security-best-practices-for-your-project/).
