@@ -440,7 +440,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Traçar fluxo de dados por serviço.",
       "evidence": "Mapa de tratamento de dados",
@@ -456,7 +457,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Comparar campos coletados às finalidades.",
       "evidence": "Revisão de campos",
@@ -472,7 +474,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Testar permissões por papel.",
       "evidence": "Matriz de acesso a dados",
@@ -488,7 +491,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Inspecionar payloads de observabilidade.",
       "evidence": "Registro de inspeção sanitizada",
@@ -504,7 +508,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Testar exclusão em ambiente controlado.",
       "evidence": "Política e teste de eliminação",
@@ -520,7 +525,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Revisar retenção e restauração após exclusão.",
       "evidence": "Teste de restauração e retenção",
@@ -536,7 +542,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Executar exportação completa de teste.",
       "evidence": "Arquivo de export validado",
@@ -552,7 +559,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Auditar contratos e arquitetura.",
       "evidence": "Matriz de fornecedores",
@@ -568,7 +576,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Verificar se reidentificação é possível.",
       "evidence": "Relatório de dados sintéticos",
@@ -584,7 +593,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Executar inspeção de endpoints e headers.",
       "evidence": "Relatório de exposição",
@@ -600,7 +610,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Executar avaliação contextual.",
       "evidence": "Documento de impacto e mitigação",
@@ -616,7 +627,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Executar cenário ponta a ponta.",
       "evidence": "Evidência de exclusão distribuída",
@@ -632,7 +644,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Revisar experiência e política.",
       "evidence": "Textos publicados",
@@ -648,7 +661,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Simular incidente e comunicação.",
       "evidence": "Plano e exercício",
@@ -664,7 +678,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Inspecionar requests no navegador.",
       "evidence": "Mapa de terceiros",
@@ -680,7 +695,8 @@
         "api",
         "data",
         "web",
-        "ai"
+        "ai",
+        "sensitive"
       ],
       "verify": "Revisar cenários de correlacionamento/identificação.",
       "evidence": "Modelo de ameaças de privacidade",
@@ -692,9 +708,7 @@
       "priority": "P0",
       "text": "Identificar todos os usos de IA e distinguir geração de texto de agentes capazes de executar ações.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Inventariar modelos, ferramentas e acessos.",
       "evidence": "Inventário de aplicações de IA",
@@ -706,9 +720,7 @@
       "priority": "P0",
       "text": "Tratar texto de usuário, arquivos, páginas recuperadas e resultados de ferramentas como entradas não confiáveis.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Executar testes de prompt injection.",
       "evidence": "Relatório de red teaming",
@@ -720,9 +732,7 @@
       "priority": "P0",
       "text": "Nunca permitir que instruções de um modelo sejam tratadas como autorização para acessar dados ou executar operações.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Testar tool calls com contas sem permissão.",
       "evidence": "Matriz de autorização do agente",
@@ -734,9 +744,7 @@
       "priority": "P0",
       "text": "Limitar escopo e privilégios de ferramentas do agente, especialmente execução de código, browser, DB e e-mail.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Revisar permissões e testar operações negadas.",
       "evidence": "Matriz de ferramentas e decisões",
@@ -748,9 +756,7 @@
       "priority": "P0",
       "text": "Impedir envio de segredos, chaves e dados privados a modelos sem finalidade e autorização.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Testar filtros/redações e integrações.",
       "evidence": "Relatório de vazamento de dados",
@@ -762,9 +768,7 @@
       "priority": "P0",
       "text": "Definir cotas, budgets e limites de tokens, tempo, concorrência e chamadas externas.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Simular abuso de consumo.",
       "evidence": "Teste de custos e limites",
@@ -776,9 +780,7 @@
       "priority": "P1",
       "text": "Criar dataset de avaliação versionado com cenários reais, adversariais e de erro.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Rodar avaliações com versão de modelo e seed.",
       "evidence": "Relatório de eval reproduzível",
@@ -790,9 +792,7 @@
       "priority": "P1",
       "text": "Medir qualidade factual, alucinação, precisão, robustez e vieses conforme contexto.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Comparar outputs a ground truth e revisão.",
       "evidence": "Métricas de qualidade",
@@ -804,9 +804,7 @@
       "priority": "P1",
       "text": "Sanitizar e validar saída do modelo antes de renderizar HTML, executar comandos ou alterar dados.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Testar output handling malicioso.",
       "evidence": "Teste de saída segura",
@@ -818,9 +816,7 @@
       "priority": "P1",
       "text": "Isolar execução de código gerado e impor sandbox com rede, filesystem e tempo limitados.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Executar comando de teste restrito.",
       "evidence": "Relatório de sandbox",
@@ -832,9 +828,7 @@
       "priority": "P1",
       "text": "Aplicar aprovação humana a ações irreversíveis ou de alto impacto.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Testar fluxo de aprovação e auditoria.",
       "evidence": "Fluxo de aprovação",
@@ -846,9 +840,7 @@
       "priority": "P1",
       "text": "Monitorar latência, uso, tokens, falhas, prompts bloqueados e custos por usuário.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Inspecionar dashboard sem dados sensíveis.",
       "evidence": "Dashboard operacional",
@@ -860,9 +852,7 @@
       "priority": "P1",
       "text": "Documentar modelo, versão, fornecedor, termos de uso e licenças de datasets/outputs.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Revisar manifest e licenças.",
       "evidence": "Model card / inventário",
@@ -874,9 +864,7 @@
       "priority": "P1",
       "text": "Avaliar poisoning de dados, RAG e vetores, incluindo recuperação entre tenants.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Testar injeção em documentos e cross-tenant retrieval.",
       "evidence": "Teste de isolamento RAG",
@@ -888,9 +876,7 @@
       "priority": "P1",
       "text": "Definir política de retenção e exclusão de conversas, embeddings e datasets.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Executar eliminação em armazenamento vetorial.",
       "evidence": "Evidência de retenção",
@@ -902,9 +888,7 @@
       "priority": "P1",
       "text": "Restringir saída de sistema de IA em contextos médicos, jurídicos, financeiros ou de alto impacto.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Revisar risco e controles humanos.",
       "evidence": "Avaliação de impacto",
@@ -916,9 +900,7 @@
       "priority": "P1",
       "text": "Manter monitoramento de regressões quando modelo ou prompt for atualizado.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Executar conjunto de avaliações antes de release.",
       "evidence": "Comparação entre versões",
@@ -930,9 +912,7 @@
       "priority": "P2",
       "text": "Realizar avaliação de segurança independente para agentes com acesso privilegiado.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Conduzir teste adversarial autorizado.",
       "evidence": "Relatório e mitigação",
@@ -944,9 +924,7 @@
       "priority": "P2",
       "text": "Executar avaliação contínua de drift e mudanças de dados/modelo.",
       "profiles": [
-        "ai",
-        "saas",
-        "api"
+        "ai"
       ],
       "verify": "Comparar métricas entre períodos.",
       "evidence": "Painel de drift",
