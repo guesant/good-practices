@@ -118,10 +118,7 @@
       "description": "Camada de exigência adicional, acumulada ao tipo de aplicação.",
       "tags": [
         "all",
-        "saas",
-        "api",
-        "backend",
-        "web",
+        "sensitive",
         "data"
       ],
       "examples": [
@@ -186,8 +183,7 @@
       "description": "Apps com interfaces e recursos nativos.",
       "tags": [
         "all",
-        "mobile",
-        "api"
+        "mobile"
       ],
       "examples": [
         "acessibilidade",
