@@ -1,0 +1,901 @@
+{
+  "schema_version": 1,
+  "description": "Controles de FinOps, DNS/email, descomissionamento e portabilidade; IDs locais",
+  "controls": [
+    {
+      "id": "FIN-01",
+      "priority": "P0",
+      "text": "Identificar todos os provedores que podem gerar despesa por requisição, consumo ou transferência.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Mapear fatura, plano e endpoints cobrados.",
+      "evidence": "Inventário de provedores e preços",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-02",
+      "priority": "P0",
+      "text": "Definir orçamentos de produção e alertas de consumo para serviços com cobrança variável.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Simular alerta de custo seguro.",
+      "evidence": "Alerta recebido",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-03",
+      "priority": "P0",
+      "text": "Limitar operações que permitem consumo descontrolado de APIs pagas.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Testar cotas por usuário/tenant/chave.",
+      "evidence": "Teste de abuso e quotas",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-04",
+      "priority": "P0",
+      "text": "Proteger chaves e credenciais de billing e APIs de alto custo contra acesso de clientes.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Inspecionar frontend, permissões e segredos.",
+      "evidence": "Relatório de segurança de credenciais",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-05",
+      "priority": "P1",
+      "text": "Definir owner, centro de custo, tags de ambiente e política de contabilização.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Conferir tags e orçamento por serviço.",
+      "evidence": "Dashboard com responsabilidades",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-06",
+      "priority": "P1",
+      "text": "Configurar quotas, budget alerts, throttling e hard limits quando o provedor suportar.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Simular pico controlado de uso.",
+      "evidence": "Registro de limite disparado",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-07",
+      "priority": "P1",
+      "text": "Criar alertas de anomalia de custo para variações de uso e cobranças.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Verificar cobertura em provedor e teste controlado.",
+      "evidence": "Regra e histórico de alerta",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-08",
+      "priority": "P1",
+      "text": "Medir custo por requisição, tenant, job, build, modelo de IA ou funcionalidade.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Analisar tracing e fatura por dimensões.",
+      "evidence": "Relatório de unit economics",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-09",
+      "priority": "P1",
+      "text": "Limitar concorrência, payload, número de itens e profundidade de consultas pagas.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Executar carga por tenant dentro de limites.",
+      "evidence": "Relatório de stress econômico",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-10",
+      "priority": "P1",
+      "text": "Evitar loops e retries infinitos em tarefas faturáveis, incluindo alertas sobre repetição.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Injetar falhas de fornecedor e contar chamadas.",
+      "evidence": "Teste de retry com custos",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-11",
+      "priority": "P1",
+      "text": "Planejar reservas, instâncias, storage, retenção de logs e egress para evitar desperdício.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Revisar custos antes/depois da otimização.",
+      "evidence": "Relatório FinOps",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-12",
+      "priority": "P1",
+      "text": "Definir orçamento e alertas de recursos criados em ambientes temporários/preview.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Criar e destruir ambiente em ensaio.",
+      "evidence": "Inventário de recursos órfãos",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-13",
+      "priority": "P1",
+      "text": "Monitorar custos de observabilidade: cardinalidade, retenção, sampling e volume de logs.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Comparar custo/volume de ingestão.",
+      "evidence": "Métricas e relatório de retenção",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-14",
+      "priority": "P1",
+      "text": "Documentar comportamento diante de esgotamento de créditos, quotas ou budget.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Simular limite de provedor/staging.",
+      "evidence": "Teste de degradação econômica",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "FIN-15",
+      "priority": "P2",
+      "text": "Comparar provedores e cenários de custos para crescimento 10x ou 100x.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "ai",
+        "backend"
+      ],
+      "verify": "Modelar TCO e curva de utilização.",
+      "evidence": "Planilha de cenários",
+      "reference": "https://www.finops.org/framework/",
+      "section": "Custos, quotas e FinOps / segurança econômica"
+    },
+    {
+      "id": "DNS-01",
+      "priority": "P0",
+      "text": "Proteger conta de registrador DNS e provedores de zona com MFA resistente a phishing quando suportado.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Revisar contas, tokens e papéis.",
+      "evidence": "Revisão de identidade do registrador",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-02",
+      "priority": "P0",
+      "text": "Definir owner, renovação e alertas para todos os domínios produtivos.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Consultar expiração e testar notificações.",
+      "evidence": "Inventário e alerta",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-03",
+      "priority": "P0",
+      "text": "Verificar que registros públicos A/AAAA/CNAME/MX/TXT não expõem serviços internos por engano.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Fazer inventário e consulta DNS autorizada.",
+      "evidence": "Snapshot redigido da zona",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-04",
+      "priority": "P0",
+      "text": "Proteger HTTPS com certificado válido e renovação automatizada ou plano comprovado.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Forçar renovação em ambiente de teste.",
+      "evidence": "Relatório TLS/ACME",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-05",
+      "priority": "P1",
+      "text": "Avaliar DNSSEC segundo suporte do registrador e do DNS autoritativo, incluindo rotação de chaves.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Testar cadeia de confiança e plano de rollover.",
+      "evidence": "Relatório de validação DNSSEC",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-06",
+      "priority": "P1",
+      "text": "Configurar CAA para limitar autoridades certificadoras autorizadas quando viável.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Consultar CAA e testar emissão legítima.",
+      "evidence": "Configuração CAA",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-07",
+      "priority": "P1",
+      "text": "Configurar SPF válido para domínios que enviam e-mail, sem registros excessivos ou permissivos.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Avaliar SPF real dos remetentes.",
+      "evidence": "Resultado de autenticação",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-08",
+      "priority": "P1",
+      "text": "Assinar e-mails com DKIM e verificar gerenciamento de seletores e rotação.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Enviar teste e examinar headers.",
+      "evidence": "Cabeçalhos de e-mail de teste",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-09",
+      "priority": "P1",
+      "text": "Configurar DMARC e evoluir monitorado de p=none para política de quarentena/rejeição após validar alinhamento.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Analisar relatórios agregados e spoofing.",
+      "evidence": "Política DMARC e análise",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-10",
+      "priority": "P1",
+      "text": "Proteger domínio que não envia e-mail com política coerente (SPF e DMARC apropriados).",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Verificar tratamento de e-mails forjados.",
+      "evidence": "Registros DNS e teste",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-11",
+      "priority": "P1",
+      "text": "Separar subdomínios transacionais, marketing e autenticadores conforme risco e reputação.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Verificar rotas e reputação.",
+      "evidence": "Mapa de fluxo de e-mail",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-12",
+      "priority": "P1",
+      "text": "Monitorar emissões CT inesperadas, certificados novos e alterações sensíveis de DNS.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Inspecionar alertas de Certificate Transparency.",
+      "evidence": "Alertas verificados",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-13",
+      "priority": "P1",
+      "text": "Avaliar proteção contra domain/subdomain takeover em DNS apontando para serviços extintos.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Encontrar aliases órfãos autorizados.",
+      "evidence": "Inventário de CNAMEs",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-14",
+      "priority": "P1",
+      "text": "Usar permissões mínimas para tokens DNS e limitar alcance de automações ACME.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Auditar permissões API de zona.",
+      "evidence": "Matriz de tokens",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-15",
+      "priority": "P1",
+      "text": "Testar failover DNS e efeitos de TTL/caching quando há múltiplos endpoints.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Executar ensaio controlado de mudança.",
+      "evidence": "Relatório DNS",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-16",
+      "priority": "P1",
+      "text": "Monitorar MX, DKIM, SPF, DMARC e falhas de entrega de e-mail transacional.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Inspecionar bounce e autenticação.",
+      "evidence": "Dashboard de e-mail",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "DNS-17",
+      "priority": "P2",
+      "text": "Considerar separação de registrador e DNS, lock de domínio e redundância autoritativa em serviços críticos.",
+      "profiles": [
+        "web",
+        "api",
+        "saas",
+        "infra"
+      ],
+      "verify": "Revisar arquitetura de DNS e contingência.",
+      "evidence": "Plano de continuidade",
+      "reference": "https://www.rfc-editor.org/rfc/rfc7489",
+      "section": "Domínios, DNS, HTTPS e e-mail confiável"
+    },
+    {
+      "id": "RET-01",
+      "priority": "P0",
+      "text": "Criar processo formal para decidir quando um serviço ou projeto será desativado.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Verificar inventário e aprovação da retirada.",
+      "evidence": "Registro de decisão",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-02",
+      "priority": "P0",
+      "text": "Inventariar usuários, integrações, APIs, filas, jobs, DNS, webhooks e dependentes antes da retirada.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Pesquisar consumidores reais e proprietários.",
+      "evidence": "Mapa de dependências",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-03",
+      "priority": "P0",
+      "text": "Revisar obrigações legais de retenção, exclusão e exportação antes de apagar dados.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Validar política e acordos aplicáveis.",
+      "evidence": "Matriz de retenção",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-04",
+      "priority": "P0",
+      "text": "Revogar tokens, chaves, webhooks, service accounts, deploy keys e credenciais do serviço desativado.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Conferir IAM e secrets manager.",
+      "evidence": "Evidência de revogação",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-05",
+      "priority": "P0",
+      "text": "Remover exposição externa: DNS, load balancers, ingress, portas, certificados e regras de firewall não usados.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Reescanear perímetro após remoção.",
+      "evidence": "Relatório de superfície reduzida",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-06",
+      "priority": "P0",
+      "text": "Assegurar entrega, exportação ou descarte seguro de dados, conforme contrato e legislação.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Simular solicitação de recuperação e descarte.",
+      "evidence": "Termo e comprovante de descarte",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-07",
+      "priority": "P1",
+      "text": "Comunicar depreciação, prazo, alternativas e suporte aos consumidores.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Revisar avisos e cronograma.",
+      "evidence": "Aviso de descontinuação",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-08",
+      "priority": "P1",
+      "text": "Definir janela de read-only e redirecionamento quando houver clientes ativos.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Executar testes de experiência na retirada.",
+      "evidence": "Plano de migração",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-09",
+      "priority": "P1",
+      "text": "Desligar cron jobs, pipelines, bots e integrações para evitar gasto ou trabalho órfão.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Revisar agendamentos e últimas execuções.",
+      "evidence": "Lista de jobs encerrados",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-10",
+      "priority": "P1",
+      "text": "Remover recursos cloud, volumes, registries, snapshots e ambientes efêmeros não retidos.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Comparar inventário antes/depois.",
+      "evidence": "Relatório de recursos destruídos",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-11",
+      "priority": "P1",
+      "text": "Revisar backups e sua política de expiração, inclusive cópias fora do ambiente.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Auditar backups e políticas de descarte.",
+      "evidence": "Registro de retenção",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-12",
+      "priority": "P1",
+      "text": "Arquivar documentação e código necessários ao suporte histórico ou auditoria.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Testar acesso de mantenedor ao arquivo.",
+      "evidence": "Link para arquivo",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-13",
+      "priority": "P1",
+      "text": "Remover permissões e papéis administrativos exclusivos do sistema extinto.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Comparar IAM.",
+      "evidence": "Relatório de privilégios",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-14",
+      "priority": "P1",
+      "text": "Atualizar status no README, releases, changelog, docs e repositório (archived/deprecated).",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Revisar documentação pública.",
+      "evidence": "Links com status atualizado",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-15",
+      "priority": "P1",
+      "text": "Verificar inexistência de DNS órfão ou subdomain takeover após desligamento.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Executar checagem de aliases públicos.",
+      "evidence": "Resultado de varredura",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "RET-16",
+      "priority": "P1",
+      "text": "Revisar fatura, telemetria e logs após desligamento para detectar uso residual.",
+      "profiles": [
+        "all"
+      ],
+      "verify": "Verificar custo e acessos em janela de observação.",
+      "evidence": "Relatório pós-descomissionamento",
+      "reference": "https://csrc.nist.gov/pubs/sp/800/88/r1/final",
+      "section": "Descomissionamento, retirada de sistemas e limpeza de acessos"
+    },
+    {
+      "id": "PORT-01",
+      "priority": "P1",
+      "text": "Registrar dependências em nuvem, SaaS, protocolos e formatos proprietários de alto impacto.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Manter inventário de fornecedores e funcionalidades.",
+      "evidence": "Mapa de dependências e contrato",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-02",
+      "priority": "P1",
+      "text": "Definir formato de exportação e política de portabilidade dos dados.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Executar export e reimport em ambiente isolado.",
+      "evidence": "Teste de portabilidade",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-03",
+      "priority": "P1",
+      "text": "Definir estratégia para substituir provedores críticos de autenticação, filas, object storage e observabilidade.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Simular adaptação de uma integração.",
+      "evidence": "ADR e esforço estimado",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-04",
+      "priority": "P1",
+      "text": "Documentar custos de saída (egress), licenciamento, retirada de dados e término de contrato.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Avaliar termos e cenários de troca.",
+      "evidence": "Estimativa de saída",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-05",
+      "priority": "P1",
+      "text": "Preferir interfaces estáveis e padrões abertos quando cumprirem requisitos reais.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Comparar soluções por critérios técnicos.",
+      "evidence": "ADR de escolha de protocolo",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-06",
+      "priority": "P1",
+      "text": "Separar código de integração de regras de domínio quando essa separação reduzir custo de mudança.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Revisar dependências de componentes.",
+      "evidence": "Diagrama e teste de adaptação",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-07",
+      "priority": "P1",
+      "text": "Identificar single points of failure e dependências externas que inviabilizam todo o serviço.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Simular falhas das dependências.",
+      "evidence": "Mapa de impacto",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-08",
+      "priority": "P1",
+      "text": "Medir disponibilidade contratual/observada de provedores e plano de contingência.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Confrontar SLAs e incidentes.",
+      "evidence": "Relatório mensal de fornecedor",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-09",
+      "priority": "P1",
+      "text": "Definir tratamento de indisponibilidade e rate limit de APIs de terceiros.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Injetar 429/timeout em staging.",
+      "evidence": "Testes de fallback",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-10",
+      "priority": "P1",
+      "text": "Avaliar risco de abandono de bibliotecas, extensão e produtos essenciais.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Revisar atividade, CVEs, mantenedores e releases.",
+      "evidence": "Registro de risco tecnológico",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-11",
+      "priority": "P1",
+      "text": "Registrar pontos de reversibilidade de decisões arquiteturais e custo de migração.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Revisar ADR após release.",
+      "evidence": "Registro de trade-offs",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-12",
+      "priority": "P2",
+      "text": "Executar prova de conceito de portabilidade entre provedores para sistemas críticos.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Reimplantar serviço com dados de teste.",
+      "evidence": "Relatório PoC",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    },
+    {
+      "id": "PORT-13",
+      "priority": "P2",
+      "text": "Definir estratégia de continuidade se SaaS for encerrado ou elevar preços drasticamente.",
+      "profiles": [
+        "api",
+        "saas",
+        "infra",
+        "backend",
+        "data"
+      ],
+      "verify": "Simular interrupção contratual.",
+      "evidence": "Plano de saída",
+      "reference": "https://www.cncf.io/projects/",
+      "section": "Portabilidade, custos arquiteturais e vendor lock-in"
+    }
+  ]
+}
