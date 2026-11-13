@@ -19,8 +19,12 @@ Este README é o **checklist central**. Os guias vinculados aprofundam configura
 - [ISO/IEC 25010, NIST CSF, SP 800-53, SSDF e demais normas](#18-controles-derivados-de-nist-isoiecieee-e-requisitos-não-funcionais)
 - [Pré-implantação, hardening de produção, Go/No-Go, logs, CVEs e observabilidade contínua](#19-pré-implantação-production-readiness-e-operação-contínua)
 - [CI, Delivery, Deployment, supply chain, reprodutibilidade, CSPRNG, probes, migrações e workers](#20-cicd-supply-chain-reprodutibilidade-aleatoriedade-probes-migrações-e-workers)
+- [Contratos, ASVS, SAMM, OpenSSF, resiliência e monitoramento](docs/contracts-assurance-resilience.md)
+- [FinOps, DNS/e-mail, descomissionamento e portabilidade](docs/finops-domains-retirement-portability.md)
+- [Testes avançados, acessibilidade, privacidade e IA](docs/advanced-testing-accessibility-privacy-ai.md)
+- [Catálogo de controles, schema e perfis por projeto](docs/control-catalog-and-profiles.md)
 
-**Guias aprofundados:** [GitHub e README](docs/github-repository-setup.md) · [Hardening](docs/security-hardening.md) · [Normas em controles e requisitos não funcionais](docs/standards-to-controls.md) · [Ferramentas](docs/tooling-configurations.md) · [Créditos e licenças](docs/credits-and-licenses.md) · [Pré-implantação e operação contínua](docs/production-readiness-and-operations.md) · [Entrega segura e processamento em segundo plano](docs/secure-delivery-and-background-processing.md).
+**Guias aprofundados:** [GitHub e README](docs/github-repository-setup.md) · [Hardening](docs/security-hardening.md) · [Normas em controles e requisitos não funcionais](docs/standards-to-controls.md) · [Ferramentas](docs/tooling-configurations.md) · [Créditos e licenças](docs/credits-and-licenses.md) · [Pré-implantação e operação contínua](docs/production-readiness-and-operations.md) · [Entrega segura e processamento em segundo plano](docs/secure-delivery-and-background-processing.md) · [Contratos/ASVS/SAMM e resiliência](docs/contracts-assurance-resilience.md) · [FinOps, DNS e descomissionamento](docs/finops-domains-retirement-portability.md) · [Testes, acessibilidade, privacidade e IA](docs/advanced-testing-accessibility-privacy-ai.md) · [Catálogo e perfis](docs/control-catalog-and-profiles.md).
 
 **Aplicação:** classificar controles como aplicáveis, não aplicáveis ou pendentes de análise; vincular risco, prioridade, responsável, evidência e data de revisão. A existência de um item ou de uma configuração não comprova sua implementação.
 
@@ -2137,6 +2141,276 @@ Itens detalhados no [mapeamento de normas para requisitos verificáveis](docs/st
 - [ ] **SC-07-14 [P1]** Validar deduplicação, ordenação e consistência dos resultados quando relevantes.
 - [ ] **SC-07-15 [P1]** Ter alternativas síncronas simples quando o trabalho for rápido, limitado e precisar de resposta imediata; não criar fila por dogma.
 - [ ] **SC-07-16 [P2]** Executar testes de carga com fluxo completo de fila + banco + workers, simulando retry storm e gargalos.
+
+
+## 21. API, OWASP ASVS, SAMM, OpenSSF, resiliência e monitoramento
+
+Esta seção é um subconjunto do [guia detalhado](docs/contracts-assurance-resilience.md) e do [catálogo estruturado](catalog/). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
+
+### Contratos de API, compatibilidade e integrações
+
+- [ ] **API-01 [P0]** Versionar contratos OpenAPI, AsyncAPI ou esquema equivalente para interfaces públicas. **Verificar:** Comparar contratos publicados com endpoints e eventos reais. **Evidência:** Contrato versionado e teste de contrato aprovado.
+- [ ] **API-02 [P0]** Detectar mudanças incompatíveis em schemas, headers, parâmetros, códigos e eventos. **Verificar:** Executar diff semântico na PR. **Evidência:** Relatório de breaking changes e decisão.
+- [ ] **API-03 [P0]** Testar compatibilidade de frontend, backend, SDKs, workers e consumidores legados. **Verificar:** Rodar matriz de versões suportadas. **Evidência:** Matriz de testes de integração.
+- [ ] **API-04 [P0]** Testar falhas e respostas de contratos de autenticação e autorização. **Verificar:** Executar contratos com perfis distintos. **Evidência:** Relatório de negativas e permissões.
+- [ ] **API-05 [P1]** Criar testes orientados por contrato para consumidores e provedores. **Verificar:** Executar Pact ou verificações de schema equivalentes. **Evidência:** Pipeline e artefatos versionados.
+- [ ] **API-06 [P1]** Documentar janelas de suporte, depreciação e política de breaking changes. **Verificar:** Validar changelog, versões e anúncios. **Evidência:** Política e histórico de releases.
+- [ ] **API-07 [P1]** Definir semântica e padronização de códigos de erro sem vazar detalhes internos. **Verificar:** Testar casos normais, erro e timeout. **Evidência:** Coleção de contratos e testes.
+- [ ] **API-08 [P1]** Testar idempotência de POSTs/commands que podem sofrer retry. **Verificar:** Repetir chamadas concorrentes com mesma chave. **Evidência:** Teste de idempotência.
+- [ ] **API-09 [P1]** Definir timeout, circuit breaking, retry com jitter e orçamento fim a fim. **Verificar:** Injetar latência e falhas de dependência. **Evidência:** Teste de resiliência e tracing.
+- [ ] **API-10 [P1]** Versionar eventos e tratar consumidores desconhecidos, campos opcionais e mensagens antigas. **Verificar:** Reproduzir mensagens de versões anteriores. **Evidência:** Fixtures e resultado.
+- [ ] **API-11 [P1]** Publicar exemplos reproduzíveis e schemas de erros em API docs. **Verificar:** Validar exemplos automaticamente contra schema. **Evidência:** Build de documentação validado.
+- [ ] **API-12 [P1]** Impedir introdução de campos sensíveis em payloads ou logs sem revisão de privacidade. **Verificar:** Inspecionar diff de schemas e sample payloads. **Evidência:** Revisão de dados registrada.
+### Controles de segurança verificáveis inspirados no OWASP ASVS 5.0
+
+- [ ] **ASVS-01 [P0]** Definir versão do ASVS, escopo e requisitos aplicáveis por criticidade. **Verificar:** Importar catálogo oficial CSV e selecionar IDs oficiais. **Evidência:** Matriz ASVS com edição e escopo.
+- [ ] **ASVS-02 [P0]** Verificar autenticação, recuperação de conta, MFA e política de sessões. **Verificar:** Executar casos positivos e negativos contra produção de teste. **Evidência:** Testes de autenticação assinados.
+- [ ] **ASVS-03 [P0]** Verificar autorização no backend por recurso, operação e tenant. **Verificar:** Exercitar IDOR/BOLA, privilégios e acesso cruzado. **Evidência:** Matriz de autorização e testes.
+- [ ] **ASVS-04 [P0]** Validar entradas e saídas contra injeção, XSS, SSRF, path traversal e execução indevida. **Verificar:** Testes dinâmicos e negativos por ponto de entrada. **Evidência:** Relatório de validação de entrada.
+- [ ] **ASVS-05 [P0]** Verificar segredos, criptografia, TLS, hashes de senha e gestão de tokens. **Verificar:** Revisar configuração e executar casos técnicos. **Evidência:** Checklist de criptografia auditado.
+- [ ] **ASVS-06 [P0]** Verificar arquitetura de fronteiras de confiança, interfaces e permissões entre serviços. **Verificar:** Revisão de arquitetura por threat model. **Evidência:** Diagrama e decisões revisadas.
+- [ ] **ASVS-07 [P1]** Verificar cabeçalhos HTTP, CSP, caches, cookies, CORS e isolamento de conteúdo. **Verificar:** Inspeção automatizada e teste funcional. **Evidência:** Resultados de testes de headers.
+- [ ] **ASVS-08 [P1]** Verificar mensagens de erro, logs, monitoramento e ausência de dados sensíveis. **Verificar:** Injetar erros e inspecionar registros redigidos. **Evidência:** Log sanitizado e relatório.
+- [ ] **ASVS-09 [P1]** Testar operações de upload, download e processamento de arquivos não confiáveis. **Verificar:** Usar corpus de testes de tipo/tamanho/paths. **Evidência:** Testes de upload com falhas esperadas.
+- [ ] **ASVS-10 [P1]** Revisar configurações padrão, endpoints administrativos e hardening de deploy. **Verificar:** Executar scan de superfície e configuração. **Evidência:** Relatório de hardening.
+- [ ] **ASVS-11 [P1]** Executar testes de segurança no CI que correspondam a controles ASVS selecionados. **Verificar:** Relacionar IDs do ASVS a testes executáveis. **Evidência:** Matriz requisito → teste → evidência.
+- [ ] **ASVS-12 [P1]** Manter um registro do que não foi testado, dos falsos positivos e dos riscos residuais. **Verificar:** Revisar exceções antes de release. **Evidência:** Registro de risco e aprovações.
+- [ ] **ASVS-13 [P1]** Revisar licenças e obrigações de atribuição do próprio ASVS ao reutilizar materiais. **Verificar:** Verificar licença e atribuição da fonte. **Evidência:** Lista de referências e avisos.
+- [ ] **ASVS-14 [P2]** Planejar avaliação de segurança independente para aplicações de alto risco. **Verificar:** Realizar revisão independente de escopo. **Evidência:** Relatório com remediação.
+### Maturidade de segurança com OWASP SAMM
+
+- [ ] **SAMM-01 [P1]** Avaliar Strategy & Metrics, Policy & Compliance e Education & Guidance. **Verificar:** Aplicar autoavaliação SAMM de governança. **Evidência:** Matriz de maturidade e plano.
+- [ ] **SAMM-02 [P1]** Avaliar Threat Assessment, Security Requirements e Secure Architecture. **Verificar:** Revisar desenho e requisitos de segurança. **Evidência:** Relatório SAMM Design.
+- [ ] **SAMM-03 [P1]** Avaliar Secure Build, Secure Deployment e Defect Management. **Verificar:** Inspecionar pipeline, releases e correção de defeitos. **Evidência:** Evidências de implementação.
+- [ ] **SAMM-04 [P1]** Avaliar Architecture Assessment, Requirements-driven Testing e Security Testing. **Verificar:** Confrontar controles com testes e arquitetura. **Evidência:** Evidências de verificação.
+- [ ] **SAMM-05 [P1]** Avaliar Incident Management, Environment Management e Operational Management. **Verificar:** Exercitar rotina de operação, incidentes e patches. **Evidência:** Relatório de operações.
+- [ ] **SAMM-06 [P1]** Definir nível-alvo de maturidade por domínio, evitando a mesma meta para todos. **Verificar:** Justificar baseline em análise de risco. **Evidência:** Objetivos de maturidade.
+- [ ] **SAMM-07 [P1]** Definir responsáveis, orçamento e revisão periódica dos planos de melhoria. **Verificar:** Revisar tarefas, prazos e resultados. **Evidência:** Backlog de melhoria.
+- [ ] **SAMM-08 [P1]** Medir resultado e sustentabilidade do processo, não apenas presença de ferramentas. **Verificar:** Comparar evidência de execução recorrente. **Evidência:** Métricas e retrospectiva.
+- [ ] **SAMM-09 [P2]** Realizar reavaliação independente de práticas mais críticas. **Verificar:** Comparar autoavaliação com avaliação externa. **Evidência:** Relatório independente.
+### OpenSSF Best Practices Badge e governança open source
+
+- [ ] **OSF-01 [P1]** Comparar projeto elegível aos critérios OpenSSF Baseline e Best Practices Badge. **Verificar:** Preencher autoavaliação com links de evidências. **Evidência:** Matriz de critérios.
+- [ ] **OSF-02 [P1]** Distinguir OpenSSF Scorecard, OpenSSF Baseline e Best Practices Badge. **Verificar:** Conferir o objetivo, método e cobertura de cada avaliação. **Evidência:** Documentação de comparação.
+- [ ] **OSF-03 [P1]** Avaliar progressão Passing → Silver → Gold somente para projetos adequados. **Verificar:** Verificar critérios por nível e capacidade de manutenção. **Evidência:** Plano de progresso.
+- [ ] **OSF-04 [P1]** Documentar contribuição, governança, reporte de bugs, política de vulnerabilidades e suporte. **Verificar:** Verificar arquivos e canais públicos. **Evidência:** Links para documentos.
+- [ ] **OSF-05 [P1]** Documentar manutenção, releases, práticas de teste e controle de mudanças. **Verificar:** Executar release de teste e revisar processos. **Evidência:** Histórico de release.
+- [ ] **OSF-06 [P1]** Revisar bus factor, sucessão e diversidade de mantenedores para reduzir risco de abandono. **Verificar:** Simular ausência do mantenedor. **Evidência:** Plano de continuidade.
+- [ ] **OSF-07 [P1]** Declarar status real das badges; não exibir badge como certificação independente automática. **Verificar:** Validar link e critérios reportados. **Evidência:** URL pública verificável.
+- [ ] **OSF-08 [P2]** Submeter o projeto a programa de badge somente após evidências suficientes. **Verificar:** Preencher avaliação oficial quando elegível. **Evidência:** Link do formulário de avaliação.
+### Resiliência, falhas e operações degradadas
+
+- [ ] **RES-01 [P0]** Definir comportamento seguro quando banco, DNS, rede, cache e provedores externos falharem. **Verificar:** Desconectar dependência em staging autorizado. **Evidência:** Teste de falha e logs.
+- [ ] **RES-02 [P0]** Garantir que retries não dupliquem pagamentos, mensagens ou mutações irreversíveis. **Verificar:** Repetir falhas no meio da transação. **Evidência:** Teste de idempotência.
+- [ ] **RES-03 [P0]** Definir limite de concorrência, timeout, fila e política de sobrecarga. **Verificar:** Executar teste de saturação e backlog. **Evidência:** Métricas de sobrecarga.
+- [ ] **RES-04 [P1]** Simular queda de banco, lentidão de queries, pool exaurido e deadlocks. **Verificar:** Usar fault injection isolada. **Evidência:** Relatório de falha de banco.
+- [ ] **RES-05 [P1]** Simular interrupção de DNS ou resolução incorreta. **Verificar:** Aplicar DNS fault em ambiente de teste. **Evidência:** Teste com recuperação.
+- [ ] **RES-06 [P1]** Simular perda de conectividade entre serviços e comportamento de timeout. **Verificar:** Aplicar fault network no ambiente autorizado. **Evidência:** Trace e relatório.
+- [ ] **RES-07 [P1]** Simular parada de filas, workers e brokers, verificando backlog e retomada. **Verificar:** Suspender consumers e publicar mensagens de teste. **Evidência:** Dashboard de filas.
+- [ ] **RES-08 [P1]** Simular disco cheio, arquivos temporários lotados e falha de logging. **Verificar:** Limitar volume em staging controlado. **Evidência:** Resultados e alertas.
+- [ ] **RES-09 [P1]** Simular falta de memória, CPU e reinícios abruptos de processo. **Verificar:** Aplicar limites e encerrar processos. **Evidência:** Tempo de recuperação.
+- [ ] **RES-10 [P1]** Testar implantação com instância indisponível, rollout interrompido e rollback. **Verificar:** Parar instância durante rollout. **Evidência:** Relatório de rollout.
+- [ ] **RES-11 [P1]** Validar graceful shutdown, drenagem de conexões e tarefas em voo. **Verificar:** Enviar SIGTERM no processamento. **Evidência:** Teste sem perda de trabalho.
+- [ ] **RES-12 [P1]** Verificar circuit breaker, bulkhead e limites de retries para evitar cascata. **Verificar:** Falhar uma dependência comum. **Evidência:** Métrica de impacto no restante.
+- [ ] **RES-13 [P1]** Testar cache desatualizado, indisponível ou inconsistente. **Verificar:** Desligar cache e verificar fallback. **Evidência:** Resultado de consistência.
+- [ ] **RES-14 [P1]** Testar repetição de processamento com at-least-once delivery. **Verificar:** Reentregar mensagens deliberadamente. **Evidência:** Teste de deduplicação.
+- [ ] **RES-15 [P1]** Verificar recuperação após interrupção no meio de backup ou migração. **Verificar:** Interromper operação no laboratório. **Evidência:** Plano de recuperação validado.
+- [ ] **RES-16 [P1]** Definir RPO/RTO e medir recuperação observada, não apenas planejada. **Verificar:** Executar exercício cronometrado. **Evidência:** Relatório de RTO/RPO.
+- [ ] **RES-17 [P1]** Registrar hipóteses, blast radius e plano de abortar cada experimento. **Verificar:** Revisar game day antes da execução. **Evidência:** Plano de experimento.
+- [ ] **RES-18 [P2]** Executar game days controlados e chaos engineering progressivo. **Verificar:** Executar cenário aprovado. **Evidência:** Relatório e melhorias.
+- [ ] **RES-19 [P2]** Repetir experimentos após mudança importante de infraestrutura. **Verificar:** Comparar resultados. **Evidência:** Registro de regressão.
+### Observabilidade da observabilidade e alertas
+
+- [ ] **OBS-01 [P0]** Verificar disponibilidade do próprio pipeline de monitoramento e entrega de alertas. **Verificar:** Interromper exporter/receptor em teste. **Evidência:** Alerta externo recebido.
+- [ ] **OBS-02 [P0]** Definir quem recebe alertas, quem substitui o responsável e como escalar. **Verificar:** Executar exercício de notificação. **Evidência:** Registro de recebimento.
+- [ ] **OBS-03 [P0]** Testar se falha de logs, métricas ou alertmanager é detectada por canal independente. **Verificar:** Derrubar componente de observabilidade em teste. **Evidência:** Alerta out-of-band.
+- [ ] **OBS-04 [P1]** Definir SLIs por jornada crítica e SLOs verificáveis por janela. **Verificar:** Confrontar métricas com usuários sintéticos. **Evidência:** Dashboard SLO.
+- [ ] **OBS-05 [P1]** Configurar alertas multiwindow/multi-burn-rate de consumo do error budget quando há volume suficiente. **Verificar:** Simular erro sustentado e spikes. **Evidência:** Regra e firing test.
+- [ ] **OBS-06 [P1]** Calibrar alertas para baixo tráfego, evitando alarmes erráticos por amostras raras. **Verificar:** Simular janelas com poucas requisições. **Evidência:** Teste de baixa amostragem.
+- [ ] **OBS-07 [P1]** Evitar tempestade de alertas com agrupamento, deduplicação, silenciamento e inibição. **Verificar:** Provocar falhas correlacionadas em teste. **Evidência:** Histórico de alertas.
+- [ ] **OBS-08 [P1]** Associar runbook, impacto e painel a cada alerta acionável. **Verificar:** Abrir links a partir do alerta. **Evidência:** Runbook vinculado.
+- [ ] **OBS-09 [P1]** Testar ausência de métricas (no data) separadamente de métricas normais. **Verificar:** Remover série/expor falha de scrape. **Evidência:** Resultado de ausência de dados.
+- [ ] **OBS-10 [P1]** Monitorar atraso de ingestão, cardinalidade excessiva e perda de traces/logs. **Verificar:** Injetar atraso e verificar lacunas. **Evidência:** Dashboards de pipeline.
+- [ ] **OBS-11 [P1]** Revisar quem acessa logs e dados pessoais na observabilidade. **Verificar:** Auditar roles e retenção. **Evidência:** Matriz de acesso.
+- [ ] **OBS-12 [P1]** Registrar incidentes sem alerta, alarmes falsos e tempo até detecção. **Verificar:** Analisar postmortems. **Evidência:** Relatório de qualidade dos alertas.
+- [ ] **OBS-13 [P1]** Verificar heartbeat ou dead man's switch para monitoramento crítico. **Verificar:** Interromper sinal periódico. **Evidência:** Notificação de heartbeat ausente.
+- [ ] **OBS-14 [P2]** Aplicar testes sintéticos e RUM combinados para validar perspectiva do usuário. **Verificar:** Comparar sintéticos e sinais reais. **Evidência:** Análise de divergência.
+
+## 22. FinOps, domínios, e-mail, descomissionamento e portabilidade
+
+Esta seção é um subconjunto do [guia detalhado](docs/finops-domains-retirement-portability.md) e do [catálogo estruturado](catalog/). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
+
+### Custos, quotas e FinOps / segurança econômica
+
+- [ ] **FIN-01 [P0]** Identificar todos os provedores que podem gerar despesa por requisição, consumo ou transferência. **Verificar:** Mapear fatura, plano e endpoints cobrados. **Evidência:** Inventário de provedores e preços.
+- [ ] **FIN-02 [P0]** Definir orçamentos de produção e alertas de consumo para serviços com cobrança variável. **Verificar:** Simular alerta de custo seguro. **Evidência:** Alerta recebido.
+- [ ] **FIN-03 [P0]** Limitar operações que permitem consumo descontrolado de APIs pagas. **Verificar:** Testar cotas por usuário/tenant/chave. **Evidência:** Teste de abuso e quotas.
+- [ ] **FIN-04 [P0]** Proteger chaves e credenciais de billing e APIs de alto custo contra acesso de clientes. **Verificar:** Inspecionar frontend, permissões e segredos. **Evidência:** Relatório de segurança de credenciais.
+- [ ] **FIN-05 [P1]** Definir owner, centro de custo, tags de ambiente e política de contabilização. **Verificar:** Conferir tags e orçamento por serviço. **Evidência:** Dashboard com responsabilidades.
+- [ ] **FIN-06 [P1]** Configurar quotas, budget alerts, throttling e hard limits quando o provedor suportar. **Verificar:** Simular pico controlado de uso. **Evidência:** Registro de limite disparado.
+- [ ] **FIN-07 [P1]** Criar alertas de anomalia de custo para variações de uso e cobranças. **Verificar:** Verificar cobertura em provedor e teste controlado. **Evidência:** Regra e histórico de alerta.
+- [ ] **FIN-08 [P1]** Medir custo por requisição, tenant, job, build, modelo de IA ou funcionalidade. **Verificar:** Analisar tracing e fatura por dimensões. **Evidência:** Relatório de unit economics.
+- [ ] **FIN-09 [P1]** Limitar concorrência, payload, número de itens e profundidade de consultas pagas. **Verificar:** Executar carga por tenant dentro de limites. **Evidência:** Relatório de stress econômico.
+- [ ] **FIN-10 [P1]** Evitar loops e retries infinitos em tarefas faturáveis, incluindo alertas sobre repetição. **Verificar:** Injetar falhas de fornecedor e contar chamadas. **Evidência:** Teste de retry com custos.
+- [ ] **FIN-11 [P1]** Planejar reservas, instâncias, storage, retenção de logs e egress para evitar desperdício. **Verificar:** Revisar custos antes/depois da otimização. **Evidência:** Relatório FinOps.
+- [ ] **FIN-12 [P1]** Definir orçamento e alertas de recursos criados em ambientes temporários/preview. **Verificar:** Criar e destruir ambiente em ensaio. **Evidência:** Inventário de recursos órfãos.
+- [ ] **FIN-13 [P1]** Monitorar custos de observabilidade: cardinalidade, retenção, sampling e volume de logs. **Verificar:** Comparar custo/volume de ingestão. **Evidência:** Métricas e relatório de retenção.
+- [ ] **FIN-14 [P1]** Documentar comportamento diante de esgotamento de créditos, quotas ou budget. **Verificar:** Simular limite de provedor/staging. **Evidência:** Teste de degradação econômica.
+- [ ] **FIN-15 [P2]** Comparar provedores e cenários de custos para crescimento 10x ou 100x. **Verificar:** Modelar TCO e curva de utilização. **Evidência:** Planilha de cenários.
+### Domínios, DNS, HTTPS e e-mail confiável
+
+- [ ] **DNS-01 [P0]** Proteger conta de registrador DNS e provedores de zona com MFA resistente a phishing quando suportado. **Verificar:** Revisar contas, tokens e papéis. **Evidência:** Revisão de identidade do registrador.
+- [ ] **DNS-02 [P0]** Definir owner, renovação e alertas para todos os domínios produtivos. **Verificar:** Consultar expiração e testar notificações. **Evidência:** Inventário e alerta.
+- [ ] **DNS-03 [P0]** Verificar que registros públicos A/AAAA/CNAME/MX/TXT não expõem serviços internos por engano. **Verificar:** Fazer inventário e consulta DNS autorizada. **Evidência:** Snapshot redigido da zona.
+- [ ] **DNS-04 [P0]** Proteger HTTPS com certificado válido e renovação automatizada ou plano comprovado. **Verificar:** Forçar renovação em ambiente de teste. **Evidência:** Relatório TLS/ACME.
+- [ ] **DNS-05 [P1]** Avaliar DNSSEC segundo suporte do registrador e do DNS autoritativo, incluindo rotação de chaves. **Verificar:** Testar cadeia de confiança e plano de rollover. **Evidência:** Relatório de validação DNSSEC.
+- [ ] **DNS-06 [P1]** Configurar CAA para limitar autoridades certificadoras autorizadas quando viável. **Verificar:** Consultar CAA e testar emissão legítima. **Evidência:** Configuração CAA.
+- [ ] **DNS-07 [P1]** Configurar SPF válido para domínios que enviam e-mail, sem registros excessivos ou permissivos. **Verificar:** Avaliar SPF real dos remetentes. **Evidência:** Resultado de autenticação.
+- [ ] **DNS-08 [P1]** Assinar e-mails com DKIM e verificar gerenciamento de seletores e rotação. **Verificar:** Enviar teste e examinar headers. **Evidência:** Cabeçalhos de e-mail de teste.
+- [ ] **DNS-09 [P1]** Configurar DMARC e evoluir monitorado de p=none para política de quarentena/rejeição após validar alinhamento. **Verificar:** Analisar relatórios agregados e spoofing. **Evidência:** Política DMARC e análise.
+- [ ] **DNS-10 [P1]** Proteger domínio que não envia e-mail com política coerente (SPF e DMARC apropriados). **Verificar:** Verificar tratamento de e-mails forjados. **Evidência:** Registros DNS e teste.
+- [ ] **DNS-11 [P1]** Separar subdomínios transacionais, marketing e autenticadores conforme risco e reputação. **Verificar:** Verificar rotas e reputação. **Evidência:** Mapa de fluxo de e-mail.
+- [ ] **DNS-12 [P1]** Monitorar emissões CT inesperadas, certificados novos e alterações sensíveis de DNS. **Verificar:** Inspecionar alertas de Certificate Transparency. **Evidência:** Alertas verificados.
+- [ ] **DNS-13 [P1]** Avaliar proteção contra domain/subdomain takeover em DNS apontando para serviços extintos. **Verificar:** Encontrar aliases órfãos autorizados. **Evidência:** Inventário de CNAMEs.
+- [ ] **DNS-14 [P1]** Usar permissões mínimas para tokens DNS e limitar alcance de automações ACME. **Verificar:** Auditar permissões API de zona. **Evidência:** Matriz de tokens.
+- [ ] **DNS-15 [P1]** Testar failover DNS e efeitos de TTL/caching quando há múltiplos endpoints. **Verificar:** Executar ensaio controlado de mudança. **Evidência:** Relatório DNS.
+- [ ] **DNS-16 [P1]** Monitorar MX, DKIM, SPF, DMARC e falhas de entrega de e-mail transacional. **Verificar:** Inspecionar bounce e autenticação. **Evidência:** Dashboard de e-mail.
+- [ ] **DNS-17 [P2]** Considerar separação de registrador e DNS, lock de domínio e redundância autoritativa em serviços críticos. **Verificar:** Revisar arquitetura de DNS e contingência. **Evidência:** Plano de continuidade.
+### Descomissionamento, retirada de sistemas e limpeza de acessos
+
+- [ ] **RET-01 [P0]** Criar processo formal para decidir quando um serviço ou projeto será desativado. **Verificar:** Verificar inventário e aprovação da retirada. **Evidência:** Registro de decisão.
+- [ ] **RET-02 [P0]** Inventariar usuários, integrações, APIs, filas, jobs, DNS, webhooks e dependentes antes da retirada. **Verificar:** Pesquisar consumidores reais e proprietários. **Evidência:** Mapa de dependências.
+- [ ] **RET-03 [P0]** Revisar obrigações legais de retenção, exclusão e exportação antes de apagar dados. **Verificar:** Validar política e acordos aplicáveis. **Evidência:** Matriz de retenção.
+- [ ] **RET-04 [P0]** Revogar tokens, chaves, webhooks, service accounts, deploy keys e credenciais do serviço desativado. **Verificar:** Conferir IAM e secrets manager. **Evidência:** Evidência de revogação.
+- [ ] **RET-05 [P0]** Remover exposição externa: DNS, load balancers, ingress, portas, certificados e regras de firewall não usados. **Verificar:** Reescanear perímetro após remoção. **Evidência:** Relatório de superfície reduzida.
+- [ ] **RET-06 [P0]** Assegurar entrega, exportação ou descarte seguro de dados, conforme contrato e legislação. **Verificar:** Simular solicitação de recuperação e descarte. **Evidência:** Termo e comprovante de descarte.
+- [ ] **RET-07 [P1]** Comunicar depreciação, prazo, alternativas e suporte aos consumidores. **Verificar:** Revisar avisos e cronograma. **Evidência:** Aviso de descontinuação.
+- [ ] **RET-08 [P1]** Definir janela de read-only e redirecionamento quando houver clientes ativos. **Verificar:** Executar testes de experiência na retirada. **Evidência:** Plano de migração.
+- [ ] **RET-09 [P1]** Desligar cron jobs, pipelines, bots e integrações para evitar gasto ou trabalho órfão. **Verificar:** Revisar agendamentos e últimas execuções. **Evidência:** Lista de jobs encerrados.
+- [ ] **RET-10 [P1]** Remover recursos cloud, volumes, registries, snapshots e ambientes efêmeros não retidos. **Verificar:** Comparar inventário antes/depois. **Evidência:** Relatório de recursos destruídos.
+- [ ] **RET-11 [P1]** Revisar backups e sua política de expiração, inclusive cópias fora do ambiente. **Verificar:** Auditar backups e políticas de descarte. **Evidência:** Registro de retenção.
+- [ ] **RET-12 [P1]** Arquivar documentação e código necessários ao suporte histórico ou auditoria. **Verificar:** Testar acesso de mantenedor ao arquivo. **Evidência:** Link para arquivo.
+- [ ] **RET-13 [P1]** Remover permissões e papéis administrativos exclusivos do sistema extinto. **Verificar:** Comparar IAM. **Evidência:** Relatório de privilégios.
+- [ ] **RET-14 [P1]** Atualizar status no README, releases, changelog, docs e repositório (archived/deprecated). **Verificar:** Revisar documentação pública. **Evidência:** Links com status atualizado.
+- [ ] **RET-15 [P1]** Verificar inexistência de DNS órfão ou subdomain takeover após desligamento. **Verificar:** Executar checagem de aliases públicos. **Evidência:** Resultado de varredura.
+- [ ] **RET-16 [P1]** Revisar fatura, telemetria e logs após desligamento para detectar uso residual. **Verificar:** Verificar custo e acessos em janela de observação. **Evidência:** Relatório pós-descomissionamento.
+### Portabilidade, custos arquiteturais e vendor lock-in
+
+- [ ] **PORT-01 [P1]** Registrar dependências em nuvem, SaaS, protocolos e formatos proprietários de alto impacto. **Verificar:** Manter inventário de fornecedores e funcionalidades. **Evidência:** Mapa de dependências e contrato.
+- [ ] **PORT-02 [P1]** Definir formato de exportação e política de portabilidade dos dados. **Verificar:** Executar export e reimport em ambiente isolado. **Evidência:** Teste de portabilidade.
+- [ ] **PORT-03 [P1]** Definir estratégia para substituir provedores críticos de autenticação, filas, object storage e observabilidade. **Verificar:** Simular adaptação de uma integração. **Evidência:** ADR e esforço estimado.
+- [ ] **PORT-04 [P1]** Documentar custos de saída (egress), licenciamento, retirada de dados e término de contrato. **Verificar:** Avaliar termos e cenários de troca. **Evidência:** Estimativa de saída.
+- [ ] **PORT-05 [P1]** Preferir interfaces estáveis e padrões abertos quando cumprirem requisitos reais. **Verificar:** Comparar soluções por critérios técnicos. **Evidência:** ADR de escolha de protocolo.
+- [ ] **PORT-06 [P1]** Separar código de integração de regras de domínio quando essa separação reduzir custo de mudança. **Verificar:** Revisar dependências de componentes. **Evidência:** Diagrama e teste de adaptação.
+- [ ] **PORT-07 [P1]** Identificar single points of failure e dependências externas que inviabilizam todo o serviço. **Verificar:** Simular falhas das dependências. **Evidência:** Mapa de impacto.
+- [ ] **PORT-08 [P1]** Medir disponibilidade contratual/observada de provedores e plano de contingência. **Verificar:** Confrontar SLAs e incidentes. **Evidência:** Relatório mensal de fornecedor.
+- [ ] **PORT-09 [P1]** Definir tratamento de indisponibilidade e rate limit de APIs de terceiros. **Verificar:** Injetar 429/timeout em staging. **Evidência:** Testes de fallback.
+- [ ] **PORT-10 [P1]** Avaliar risco de abandono de bibliotecas, extensão e produtos essenciais. **Verificar:** Revisar atividade, CVEs, mantenedores e releases. **Evidência:** Registro de risco tecnológico.
+- [ ] **PORT-11 [P1]** Registrar pontos de reversibilidade de decisões arquiteturais e custo de migração. **Verificar:** Revisar ADR após release. **Evidência:** Registro de trade-offs.
+- [ ] **PORT-12 [P2]** Executar prova de conceito de portabilidade entre provedores para sistemas críticos. **Verificar:** Reimplantar serviço com dados de teste. **Evidência:** Relatório PoC.
+- [ ] **PORT-13 [P2]** Definir estratégia de continuidade se SaaS for encerrado ou elevar preços drasticamente. **Verificar:** Simular interrupção contratual. **Evidência:** Plano de saída.
+
+## 23. Testes avançados, acessibilidade, privacidade e segurança de IA
+
+Esta seção é um subconjunto do [guia detalhado](docs/advanced-testing-accessibility-privacy-ai.md) e do [catálogo estruturado](catalog/). Cada controle informa prioridade condicional à aplicabilidade, como verificar e qual evidência apresentar. IDs são próprios do Good Practices, não de cláusulas normativas. **P0** = gate quando aplicável, **P1** = recomendado, **P2** = avançado.
+
+### Testes avançados, concorrência e qualidade de verificação
+
+- [ ] **TEST-01 [P0]** Definir estratégia de testes orientada a risco e requisitos funcionais/não funcionais. **Verificar:** Relacionar cada requisito crítico a um teste. **Evidência:** Matriz requisito → teste.
+- [ ] **TEST-02 [P0]** Manter testes de regressão para falhas graves e incidentes anteriores. **Verificar:** Reproduzir bug antes e depois da correção. **Evidência:** Teste automatizado e issue.
+- [ ] **TEST-03 [P0]** Testar concorrência e atomicidade de operações que alteram estado sensível. **Verificar:** Executar requisições simultâneas e retries. **Evidência:** Teste de race condition.
+- [ ] **TEST-04 [P1]** Empregar testes baseados em propriedades para invariantes e casos combinatórios úteis. **Verificar:** Gerar entradas com semente reproduzível. **Evidência:** Relatório de property-based test.
+- [ ] **TEST-05 [P1]** Aplicar fuzzing a parsers, protocolos, arquivos, serialização e entradas de alto risco. **Verificar:** Executar corpus e registrar crashes. **Evidência:** Corpus e relatório de fuzz.
+- [ ] **TEST-06 [P1]** Avaliar mutation testing para medir se testes detectam defeitos, não apenas linhas executadas. **Verificar:** Rodar mutantes em módulos críticos. **Evidência:** Mutation score com análise.
+- [ ] **TEST-07 [P1]** Testar limites numéricos, fusos horários, Unicode, localização, grandes payloads e campos ausentes. **Verificar:** Executar tabela de casos limites. **Evidência:** Fixtures e resultados.
+- [ ] **TEST-08 [P1]** Incluir testes de contrato e de compatibilidade retroativa de APIs e eventos. **Verificar:** Rodar matriz entre versões. **Evidência:** Relatório de contratos.
+- [ ] **TEST-09 [P1]** Testar isolamento multi-tenant e autorização por recurso/ação. **Verificar:** Executar acessos cruzados. **Evidência:** Matriz de permissões.
+- [ ] **TEST-10 [P1]** Testar idempotência, entrega duplicada, timeout e queda de worker. **Verificar:** Injetar retries e interromper job. **Evidência:** Teste de processamento resiliente.
+- [ ] **TEST-11 [P1]** Testar recuperação de backup, rollback e migrações com dados representativos. **Verificar:** Executar exercício de restauração. **Evidência:** Relatório de recuperação.
+- [ ] **TEST-12 [P1]** Aplicar testes de carga, soak e picos com SLO e dados de capacidade. **Verificar:** Executar cenário de volume realista. **Evidência:** Resultados de latência/saturação.
+- [ ] **TEST-13 [P1]** Investigar flakiness de testes e evitar apagar testes sem correção da causa. **Verificar:** Reexecutar testes intermitentes e correlacionar logs. **Evidência:** Histórico de falhas.
+- [ ] **TEST-14 [P1]** Registrar cobertura por risco/funcionalidade, não apenas percentual bruto de código. **Verificar:** Mapear caminhos críticos com testes. **Evidência:** Matriz de cobertura funcional.
+- [ ] **TEST-15 [P1]** Executar testes de acessibilidade, segurança e resiliência com ferramentas e revisão humana. **Verificar:** Validar pipeline e relatório independente. **Evidência:** Evidência de testes especializados.
+- [ ] **TEST-16 [P2]** Executar testes de performance diferencial entre commits com baseline confiável. **Verificar:** Comparar execução em ambiente estável. **Evidência:** Relatório de regressão.
+- [ ] **TEST-17 [P2]** Introduzir differential testing entre implementações para algoritmos críticos. **Verificar:** Comparar resultados de oráculos independentes. **Evidência:** Relatório diferencial.
+### Acessibilidade real e inclusão digital
+
+- [ ] **A11Y-01 [P0]** Definir meta de acessibilidade coerente com requisitos legais e público, preferencialmente WCAG 2.2 AA para produto web. **Verificar:** Mapear critérios aplicáveis e jornadas. **Evidência:** Matriz WCAG por interface.
+- [ ] **A11Y-02 [P0]** Garantir navegação completa por teclado, foco visível e ordem de foco lógica. **Verificar:** Executar jornadas sem mouse. **Evidência:** Registro de teste teclado.
+- [ ] **A11Y-03 [P0]** Garantir rótulos, nomes acessíveis e identificação de erro em formulários. **Verificar:** Testar com leitor de tela e inspeção. **Evidência:** Relatório de formulários.
+- [ ] **A11Y-04 [P0]** Verificar contraste e legibilidade em estados normais, erro, hover e desabilitado. **Verificar:** Medir contraste e revisar casos. **Evidência:** Resultados de contraste.
+- [ ] **A11Y-05 [P1]** Executar axe-core, Pa11y ou similar como triagem automatizada. **Verificar:** Rodar testes sobre páginas representativas. **Evidência:** Relatório de scanner.
+- [ ] **A11Y-06 [P1]** Não confundir scanner sem alertas com conformidade WCAG: executar revisão manual e testes assistivos. **Verificar:** Fazer amostragem com NVDA, VoiceOver ou equivalente. **Evidência:** Roteiro de teste assistivo.
+- [ ] **A11Y-07 [P1]** Testar zoom 200%-400%, reflow, orientação e redimensionamento de texto. **Verificar:** Navegar nas resoluções definidas. **Evidência:** Capturas de teste.
+- [ ] **A11Y-08 [P1]** Fornecer alternativa textual para conteúdo informativo visual. **Verificar:** Revisar imagens, gráficos e diagramas. **Evidência:** Inventário de alternativas.
+- [ ] **A11Y-09 [P1]** Testar mensagens dinâmicas, notificações, modais e mudanças de rota em SPA com tecnologias assistivas. **Verificar:** Executar jornada com leitor de tela. **Evidência:** Relatório de anúncio de estado.
+- [ ] **A11Y-10 [P1]** Validar semântica HTML, landmarks, headings, ARIA e estados de componentes. **Verificar:** Inspecionar accessibility tree. **Evidência:** Checklist de semântica.
+- [ ] **A11Y-11 [P1]** Garantir suporte a reduced motion e evitar animações que atrapalhem acesso. **Verificar:** Ativar prefers-reduced-motion. **Evidência:** Teste de preferência.
+- [ ] **A11Y-12 [P1]** Testar áreas de toque, arrastar, autenticadores acessíveis e alternativas a gestos complexos. **Verificar:** Executar fluxo em mobile e teclado. **Evidência:** Roteiro de acessibilidade.
+- [ ] **A11Y-13 [P1]** Fornecer legendas/transcrições para mídia conforme requisitos aplicáveis. **Verificar:** Revisar vídeos/áudios publicados. **Evidência:** Inventário de mídia acessível.
+- [ ] **A11Y-14 [P1]** Corrigir impedimentos críticos antes de publicar funcionalidades essenciais. **Verificar:** Revisar issues por severidade. **Evidência:** Registro de bloqueios resolvidos.
+- [ ] **A11Y-15 [P2]** Conduzir testes com pessoas com deficiência e incorporar achados. **Verificar:** Executar estudo consentido. **Evidência:** Relatório de pesquisa.
+### Privacidade por concepção, ciclo de vida e minimização de dados
+
+- [ ] **PRIV-01 [P0]** Inventariar dados pessoais, suas fontes, finalidades, bases aplicáveis, destinos e acessos. **Verificar:** Traçar fluxo de dados por serviço. **Evidência:** Mapa de tratamento de dados.
+- [ ] **PRIV-02 [P0]** Minimizar coleta, armazenamento, telemetria e compartilhamento ao estritamente necessário. **Verificar:** Comparar campos coletados às finalidades. **Evidência:** Revisão de campos.
+- [ ] **PRIV-03 [P0]** Garantir acesso limitado por finalidade, identidade e menor privilégio. **Verificar:** Testar permissões por papel. **Evidência:** Matriz de acesso a dados.
+- [ ] **PRIV-04 [P0]** Não transmitir dados pessoais ou segredos desnecessários a logs, analytics, serviços de IA e ferramentas de erro. **Verificar:** Inspecionar payloads de observabilidade. **Evidência:** Registro de inspeção sanitizada.
+- [ ] **PRIV-05 [P0]** Definir retenção, exclusão e resposta às solicitações de titulares conforme lei aplicável. **Verificar:** Testar exclusão em ambiente controlado. **Evidência:** Política e teste de eliminação.
+- [ ] **PRIV-06 [P1]** Definir tratamento de dados excluídos em backups e cópias imutáveis, com prazo de expurgo apropriado. **Verificar:** Revisar retenção e restauração após exclusão. **Evidência:** Teste de restauração e retenção.
+- [ ] **PRIV-07 [P1]** Oferecer exportação de dados ou portabilidade quando houver obrigação ou compromisso. **Verificar:** Executar exportação completa de teste. **Evidência:** Arquivo de export validado.
+- [ ] **PRIV-08 [P1]** Documentar compartilhamentos, subprocessadores, países/regiões e localização dos dados. **Verificar:** Auditar contratos e arquitetura. **Evidência:** Matriz de fornecedores.
+- [ ] **PRIV-09 [P1]** Aplicar anonimização/pseudonimização e segregação de dados em desenvolvimento e testes. **Verificar:** Verificar se reidentificação é possível. **Evidência:** Relatório de dados sintéticos.
+- [ ] **PRIV-10 [P1]** Proteger identificadores em URLs, logs, traces e analytics. **Verificar:** Executar inspeção de endpoints e headers. **Evidência:** Relatório de exposição.
+- [ ] **PRIV-11 [P1]** Realizar avaliação de impacto à privacidade para dados sensíveis ou riscos elevados. **Verificar:** Executar avaliação contextual. **Evidência:** Documento de impacto e mitigação.
+- [ ] **PRIV-12 [P1]** Testar retenção e eliminação em cache, filas, search indexes, data lakes e backups quando aplicável. **Verificar:** Executar cenário ponta a ponta. **Evidência:** Evidência de exclusão distribuída.
+- [ ] **PRIV-13 [P1]** Garantir transparência sobre coleta, cookies, tracking, bases e meios de contato. **Verificar:** Revisar experiência e política. **Evidência:** Textos publicados.
+- [ ] **PRIV-14 [P1]** Estabelecer notificação e tratamento de incidentes com dados pessoais. **Verificar:** Simular incidente e comunicação. **Evidência:** Plano e exercício.
+- [ ] **PRIV-15 [P1]** Medir privacidade de terceiros integrados, incluindo analytics, CDNs e fontes embutidas. **Verificar:** Inspecionar requests no navegador. **Evidência:** Mapa de terceiros.
+- [ ] **PRIV-16 [P2]** Executar privacy threat modeling dedicado para mudanças de arquitetura. **Verificar:** Revisar cenários de correlacionamento/identificação. **Evidência:** Modelo de ameaças de privacidade.
+### Segurança, qualidade e governança de IA e agentes
+
+- [ ] **AIG-01 [P0]** Identificar todos os usos de IA e distinguir geração de texto de agentes capazes de executar ações. **Verificar:** Inventariar modelos, ferramentas e acessos. **Evidência:** Inventário de aplicações de IA.
+- [ ] **AIG-02 [P0]** Tratar texto de usuário, arquivos, páginas recuperadas e resultados de ferramentas como entradas não confiáveis. **Verificar:** Executar testes de prompt injection. **Evidência:** Relatório de red teaming.
+- [ ] **AIG-03 [P0]** Nunca permitir que instruções de um modelo sejam tratadas como autorização para acessar dados ou executar operações. **Verificar:** Testar tool calls com contas sem permissão. **Evidência:** Matriz de autorização do agente.
+- [ ] **AIG-04 [P0]** Limitar escopo e privilégios de ferramentas do agente, especialmente execução de código, browser, DB e e-mail. **Verificar:** Revisar permissões e testar operações negadas. **Evidência:** Matriz de ferramentas e decisões.
+- [ ] **AIG-05 [P0]** Impedir envio de segredos, chaves e dados privados a modelos sem finalidade e autorização. **Verificar:** Testar filtros/redações e integrações. **Evidência:** Relatório de vazamento de dados.
+- [ ] **AIG-06 [P0]** Definir cotas, budgets e limites de tokens, tempo, concorrência e chamadas externas. **Verificar:** Simular abuso de consumo. **Evidência:** Teste de custos e limites.
+- [ ] **AIG-07 [P1]** Criar dataset de avaliação versionado com cenários reais, adversariais e de erro. **Verificar:** Rodar avaliações com versão de modelo e seed. **Evidência:** Relatório de eval reproduzível.
+- [ ] **AIG-08 [P1]** Medir qualidade factual, alucinação, precisão, robustez e vieses conforme contexto. **Verificar:** Comparar outputs a ground truth e revisão. **Evidência:** Métricas de qualidade.
+- [ ] **AIG-09 [P1]** Sanitizar e validar saída do modelo antes de renderizar HTML, executar comandos ou alterar dados. **Verificar:** Testar output handling malicioso. **Evidência:** Teste de saída segura.
+- [ ] **AIG-10 [P1]** Isolar execução de código gerado e impor sandbox com rede, filesystem e tempo limitados. **Verificar:** Executar comando de teste restrito. **Evidência:** Relatório de sandbox.
+- [ ] **AIG-11 [P1]** Aplicar aprovação humana a ações irreversíveis ou de alto impacto. **Verificar:** Testar fluxo de aprovação e auditoria. **Evidência:** Fluxo de aprovação.
+- [ ] **AIG-12 [P1]** Monitorar latência, uso, tokens, falhas, prompts bloqueados e custos por usuário. **Verificar:** Inspecionar dashboard sem dados sensíveis. **Evidência:** Dashboard operacional.
+- [ ] **AIG-13 [P1]** Documentar modelo, versão, fornecedor, termos de uso e licenças de datasets/outputs. **Verificar:** Revisar manifest e licenças. **Evidência:** Model card / inventário.
+- [ ] **AIG-14 [P1]** Avaliar poisoning de dados, RAG e vetores, incluindo recuperação entre tenants. **Verificar:** Testar injeção em documentos e cross-tenant retrieval. **Evidência:** Teste de isolamento RAG.
+- [ ] **AIG-15 [P1]** Definir política de retenção e exclusão de conversas, embeddings e datasets. **Verificar:** Executar eliminação em armazenamento vetorial. **Evidência:** Evidência de retenção.
+- [ ] **AIG-16 [P1]** Restringir saída de sistema de IA em contextos médicos, jurídicos, financeiros ou de alto impacto. **Verificar:** Revisar risco e controles humanos. **Evidência:** Avaliação de impacto.
+- [ ] **AIG-17 [P1]** Manter monitoramento de regressões quando modelo ou prompt for atualizado. **Verificar:** Executar conjunto de avaliações antes de release. **Evidência:** Comparação entre versões.
+- [ ] **AIG-18 [P2]** Realizar avaliação de segurança independente para agentes com acesso privilegiado. **Verificar:** Conduzir teste adversarial autorizado. **Evidência:** Relatório e mitigação.
+- [ ] **AIG-19 [P2]** Executar avaliação contínua de drift e mudanças de dados/modelo. **Verificar:** Comparar métricas entre períodos. **Evidência:** Painel de drift.
+
+## 24. Catálogo de controles e perfis de aplicação
+
+Os metadados completos dos controles novos ficam em [catalog/](catalog/) e o processo de aplicação está descrito em [Controles e perfis de aplicação](docs/control-catalog-and-profiles.md). O README permanece a referência humana principal. **Os 1.209 controles anteriores ainda não estão integralmente normalizados no JSON**, de modo que o catálogo estruturado é incremental.
+
+- [ ] Determinar o perfil principal: documentação, biblioteca open source, site estático/SPA, API/backend, SaaS, dados, IA, infraestrutura ou mobile.
+- [ ] Aplicar overlays de open source e dados sensíveis quando pertinentes ao mesmo projeto.
+- [ ] Selecionar controles de categoria geral e os relacionados aos componentes realmente usados.
+- [ ] Para cada controle, registrar aplicável, N/A, falhou, verificado ou exceção temporária.
+- [ ] Explicar por que um controle de outra stack foi considerado não aplicável, sem marcar falsamente como atendido.
+- [ ] Associar ID estável, prioridade, responsável, método de verificação e evidência.
+- [ ] Vincular riscos e controles a requirements, testes, PRs, CI, observabilidade ou documentos.
+- [ ] Distinguir referência temática de exigência normativa oficial e especificar edição/ID da norma ao afirmar conformidade.
+- [ ] Exigir critérios de aceite mensuráveis para requisitos funcionais e não funcionais relevantes.
+- [ ] Reavaliar controles quando mudar arquitetura, fornecedor, risco, público, requisitos legais ou frequência de deploy.
+- [ ] Não bloquear sites estáticos por controles de bancos de dados, filas ou Kubernetes que não se aplicam.
+- [ ] Definir como um controle P0 não atendido bloqueia produção ou recebe exceção com responsável, prazo e compensação.
+- [ ] Executar o validador `node scripts/validate-catalog.mjs` e verificar que todos os controles estruturados estão no README.
+- [ ] Separar validação do catálogo (consistência documental) de testes de segurança/funcionalidade do projeto.
+- [ ] Definir periodicidade de revisão e uma evidência fresca para cada controle crítico.
+- [ ] Evitar acumular linters, scanners e regras sobrepostos sem ganho mensurável.
+- [ ] Revisar periodicamente peso, custo e utilidade do checklist, reduzindo burocracia sem enfraquecer controles críticos.
 
 ## Prioridades sugeridas
 
